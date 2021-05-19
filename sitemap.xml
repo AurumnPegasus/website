@@ -158,6 +158,9 @@
     <loc>https://aurumnpegasus.github.io/website/publication/misc/misc_any_folder_name_1/</loc>
     <lastmod>2016-11-01T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://aurumnpegasus.github.io/website/resume/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>https://aurumnpegasus.github.io/website/tags/index/</loc>
   </url>
 </urlset>
