@@ -2,10 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://aurumnpegasus.github.io/website/showcase/hugo/hugo-theme-zzo/</loc>
+    <loc>https://aurumnpegasus.github.io/website/work/hugo/hugo-theme-zzo/</loc>
     <lastmod>2020-01-19T21:13:42+09:00</lastmod>
   </url><url>
-    <loc>https://aurumnpegasus.github.io/website/showcase/hugo/hugo-theme-zdoc/</loc>
+    <loc>https://aurumnpegasus.github.io/website/work/hugo/hugo-theme-zdoc/</loc>
     <lastmod>2020-01-19T21:13:42+09:00</lastmod>
   </url><url>
     <loc>https://aurumnpegasus.github.io/website/</loc>
@@ -35,10 +35,10 @@
     <loc>https://aurumnpegasus.github.io/website/tags/</loc>
     <lastmod>2020-01-25T06:40:51+09:00</lastmod>
   </url><url>
-    <loc>https://aurumnpegasus.github.io/website/showcase/hugo/</loc>
+    <loc>https://aurumnpegasus.github.io/website/work/hugo/</loc>
     <lastmod>2020-01-19T21:04:11+09:00</lastmod>
   </url><url>
-    <loc>https://aurumnpegasus.github.io/website/showcase/</loc>
+    <loc>https://aurumnpegasus.github.io/website/work/</loc>
     <lastmod>2020-01-19T15:43:38+09:00</lastmod>
   </url><url>
     <loc>https://aurumnpegasus.github.io/website/categories/</loc>
@@ -142,30 +142,6 @@
   </url><url>
     <loc>https://aurumnpegasus.github.io/website/posts/test-flowchart/</loc>
     <lastmod>2019-11-14T12:00:06+09:00</lastmod>
-  </url><url>
-    <loc>https://aurumnpegasus.github.io/website/gallery/cartoon/</loc>
-    <lastmod>2019-10-31T10:20:16+09:00</lastmod>
-  </url><url>
-    <loc>https://aurumnpegasus.github.io/website/gallery/</loc>
-    <lastmod>2019-10-31T10:20:16+09:00</lastmod>
-  </url><url>
-    <loc>https://aurumnpegasus.github.io/website/gallery/photo/</loc>
-    <lastmod>2019-10-31T10:20:16+09:00</lastmod>
-  </url><url>
-    <loc>https://aurumnpegasus.github.io/website/presentation/dir/fourth/</loc>
-    <lastmod>2019-10-30T20:48:10+09:00</lastmod>
-  </url><url>
-    <loc>https://aurumnpegasus.github.io/website/presentation/</loc>
-    <lastmod>2019-10-30T20:48:10+09:00</lastmod>
-  </url><url>
-    <loc>https://aurumnpegasus.github.io/website/presentation/third/</loc>
-    <lastmod>2019-10-30T20:46:30+09:00</lastmod>
-  </url><url>
-    <loc>https://aurumnpegasus.github.io/website/presentation/second/</loc>
-    <lastmod>2019-10-30T20:45:24+09:00</lastmod>
-  </url><url>
-    <loc>https://aurumnpegasus.github.io/website/presentation/first/</loc>
-    <lastmod>2019-10-30T19:45:20+09:00</lastmod>
   </url><url>
     <loc>https://aurumnpegasus.github.io/website/archive/</loc>
     <lastmod>2019-10-19T11:44:14+09:00</lastmod>
