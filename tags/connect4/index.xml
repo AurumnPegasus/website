@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>connect4 on Aurumn Pegasus</title>
+    <link>https://aurumnpegasus.github.io/website/tags/connect4/</link>
+    <description>Recent content in connect4 on Aurumn Pegasus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>subramanian.shivansh@gmail.com (Shivansh Subramanian)</managingEditor>
+    <webMaster>subramanian.shivansh@gmail.com (Shivansh Subramanian)</webMaster>
+    <copyright>©2021, All Rights Reserved</copyright>
+    <lastBuildDate>Fri, 20 Dec 2019 12:00:06 +0900</lastBuildDate>
+    
+        <atom:link href="https://aurumnpegasus.github.io/website/tags/connect4/index.xml" rel="self" type="application/rss+xml" />
+    
+
+      
+      <item>
+        <title>Connect Four, Part-1</title>
+        <link>https://aurumnpegasus.github.io/website/posts/connect_four_1/</link>
+        <pubDate>Fri, 20 Dec 2019 12:00:06 +0900</pubDate>
+        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
+        <atom:modified>Fri, 20 Dec 2019 12:00:06 +0900</atom:modified>
+        <guid>https://aurumnpegasus.github.io/website/posts/connect_four_1/</guid>
+        <description>&lt;p&gt;This blog contains explanation of the paper by Victor Allis called &lt;a href=&#34;http://www.informatik.uni-trier.de/~fernau/DSL0607/Masterthesis-Viergewinnt.pdf&#34;&gt;&amp;lsquo;A Knowledge-based Approach of Connect-Four&amp;rsquo;&lt;/a&gt;&lt;/p&gt;</description>
+        
+        <dc:creator>Shivansh S</dc:creator>
+        <media:content url="https://aurumnpegasus.github.io/website/images/feature1/connect_four_1.gif" medium="image"><media:title type="html">featured image</media:title></media:content>
+        
+        
+        
+          
+            
+              <category>game</category>
+            
+          
+            
+              <category>paper</category>
+            
+          
+            
+              <category>connect4</category>
+            
+          
+        
+        
+        
+          
+            
+              <category>Paper</category>
+            
+          
+        
+      </item>
+      
+      <item>
+        <title>Connect Four, Part-2</title>
+        <link>https://aurumnpegasus.github.io/website/posts/connect_four_2/</link>
+        <pubDate>Fri, 20 Dec 2019 12:00:06 +0900</pubDate>
+        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
+        <atom:modified>Fri, 20 Dec 2019 12:00:06 +0900</atom:modified>
+        <guid>https://aurumnpegasus.github.io/website/posts/connect_four_2/</guid>
+        <description>&lt;p&gt;This blog contains explanation of the paper by Victor Allis called &lt;a href=&#34;http://www.informatik.uni-trier.de/~fernau/DSL0607/Masterthesis-Viergewinnt.pdf&#34;&gt;&amp;lsquo;A Knowledge-based Approach of Connect-Four&amp;rsquo;&lt;/a&gt;&lt;br /&gt;
+This is a 2 part series exploring the paper, and I would suggest going through &lt;a href=&#34;&#34;&gt;&amp;lsquo;first part&amp;rsquo;&lt;/a&gt; if you haven&amp;rsquo;t already.&lt;/p&gt;</description>
+        
+        <dc:creator>Shivansh S</dc:creator>
+        <media:content url="https://aurumnpegasus.github.io/website/images/feature1/markdown.png" medium="image"><media:title type="html">featured image</media:title></media:content>
+        
+        
+        
+          
+            
+              <category>game</category>
+            
+          
+            
+              <category>paper</category>
+            
+          
+            
+              <category>connect4</category>
+            
+          
+        
+        
+        
+          
+            
+              <category>Paper</category>
+            
+          
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>
