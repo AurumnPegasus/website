@@ -6,9 +6,9 @@
   xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
-    <title>paper on Aurumn Pegasus</title>
-    <link>https://aurumnpegasus.github.io/website/tags/paper/</link>
-    <description>Recent content in paper on Aurumn Pegasus</description>
+    <title>game on Aurumn Pegasus</title>
+    <link>https://aurumnpegasus.github.io/website/categories/game/</link>
+    <description>Recent content in game on Aurumn Pegasus</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>subramanian.shivansh@gmail.com (Shivansh Subramanian)</managingEditor>
@@ -16,7 +16,7 @@
     <copyright>©2021, All Rights Reserved</copyright>
     <lastBuildDate>Sun, 22 Nov 2020 12:00:06 +0900</lastBuildDate>
     
-        <atom:link href="https://aurumnpegasus.github.io/website/tags/paper/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://aurumnpegasus.github.io/website/categories/game/index.xml" rel="self" type="application/rss+xml" />
     
 
       
