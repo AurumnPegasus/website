@@ -14,11 +14,29 @@
     <managingEditor>subramanian.shivansh@gmail.com (Shivansh Subramanian)</managingEditor>
     <webMaster>subramanian.shivansh@gmail.com (Shivansh Subramanian)</webMaster>
     <copyright>©2021, All Rights Reserved</copyright>
-    <lastBuildDate>Sun, 22 Nov 2020 12:00:06 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 24 May 2021 12:00:06 +0900</lastBuildDate>
     
         <atom:link href="https://aurumnpegasus.github.io/website/series/index.xml" rel="self" type="application/rss+xml" />
     
 
+      
+      <item>
+        <title>TryHackMe</title>
+        <link>https://aurumnpegasus.github.io/website/series/tryhackme/</link>
+        <pubDate>Mon, 24 May 2021 12:00:06 +0900</pubDate>
+        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
+        
+        <guid>https://aurumnpegasus.github.io/website/series/tryhackme/</guid>
+        <description></description>
+        
+        <dc:creator>Shivansh Subramanian</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
       <item>
         <title>Paper</title>

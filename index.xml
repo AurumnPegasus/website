@@ -14,7 +14,7 @@
     <managingEditor>subramanian.shivansh@gmail.com (Shivansh Subramanian)</managingEditor>
     <webMaster>subramanian.shivansh@gmail.com (Shivansh Subramanian)</webMaster>
     <copyright>©2021, All Rights Reserved</copyright>
-    <lastBuildDate>Sun, 22 Nov 2020 12:00:06 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 24 May 2021 12:00:06 +0900</lastBuildDate>
     
         <atom:link href="https://aurumnpegasus.github.io/website/index.xml" rel="self" type="application/rss+xml" />
     
@@ -40,6 +40,36 @@
         
       
 
+      
+      <item>
+        <title>Networks</title>
+        <link>https://aurumnpegasus.github.io/website/posts/networks/</link>
+        <pubDate>Mon, 24 May 2021 12:00:06 +0900</pubDate>
+        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
+        <atom:modified>Mon, 24 May 2021 12:00:06 +0900</atom:modified>
+        <guid>https://aurumnpegasus.github.io/website/posts/networks/</guid>
+        <description>&lt;p&gt;This blog talks about the structure of OSI model, and how data is sent across computers.&lt;/p&gt;</description>
+        
+        <dc:creator>Shivansh S</dc:creator>
+        <media:content url="https://aurumnpegasus.github.io/website/images/feature1/networks.jpg" medium="image"><media:title type="html">featured image</media:title></media:content>
+        
+        
+        
+          
+            
+              <category>network</category>
+            
+          
+        
+        
+        
+          
+            
+              <category>TryHackMe</category>
+            
+          
+        
+      </item>
       
       <item>
         <title>Connect Four, Part-1</title>
