@@ -14,7 +14,7 @@
     <managingEditor>subramanian.shivansh@gmail.com (Shivansh Subramanian)</managingEditor>
     <webMaster>subramanian.shivansh@gmail.com (Shivansh Subramanian)</webMaster>
     <copyright>©2021, All Rights Reserved</copyright>
-    <lastBuildDate>Mon, 24 May 2021 12:00:06 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 04 Jun 2021 12:00:06 +0900</lastBuildDate>
     
         <atom:link href="https://aurumnpegasus.github.io/website/index.xml" rel="self" type="application/rss+xml" />
     
@@ -40,6 +40,42 @@
         
       
 
+      
+      <item>
+        <title>Code-Mixing</title>
+        <link>https://aurumnpegasus.github.io/website/posts/codemix/</link>
+        <pubDate>Fri, 04 Jun 2021 12:00:06 +0900</pubDate>
+        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
+        <atom:modified>Fri, 04 Jun 2021 12:00:06 +0900</atom:modified>
+        <guid>https://aurumnpegasus.github.io/website/posts/codemix/</guid>
+        <description>&lt;p&gt;This blog contains a detailed analysis of codemixing done by Me and my teammates &lt;a href=&#34;https://github.com/chaudhary1337&#34;&gt;Tanishq Chaudhary&lt;/a&gt; and &lt;a href=&#34;https://github.com/MayankGoel28&#34;&gt;Mayank Goel&lt;/a&gt;. We have used a Hindi-English dataset, and a more in-depth analysis + datasets can be found &lt;a href=&#34;https://github.com/AurumnPegasus/CodeMix-Analysis&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;</description>
+        
+        <dc:creator>Shivansh S</dc:creator>
+        <media:content url="https://aurumnpegasus.github.io/website/images/feature1/codemix.gif" medium="image"><media:title type="html">featured image</media:title></media:content>
+        
+        
+        
+          
+            
+              <category>codemix</category>
+            
+          
+        
+        
+          
+            
+              <category>languages</category>
+            
+          
+        
+        
+          
+            
+              <category>Linguistics</category>
+            
+          
+        
+      </item>
       
       <item>
         <title>Networks</title>
