@@ -6,9 +6,9 @@
   xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
-    <title>TryHackMe on Aurumn Pegasus</title>
-    <link>https://aurumnpegasus.github.io/website/series/tryhackme/</link>
-    <description>Recent content in TryHackMe on Aurumn Pegasus</description>
+    <title>room on Aurumn Pegasus</title>
+    <link>https://aurumnpegasus.github.io/website/tags/room/</link>
+    <description>Recent content in room on Aurumn Pegasus</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>subramanian.shivansh@gmail.com (Shivansh Subramanian)</managingEditor>
@@ -16,7 +16,7 @@
     <copyright>©2021, All Rights Reserved</copyright>
     <lastBuildDate>Mon, 14 Jun 2021 12:00:06 +0900</lastBuildDate>
     
-        <atom:link href="https://aurumnpegasus.github.io/website/series/tryhackme/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://aurumnpegasus.github.io/website/tags/room/index.xml" rel="self" type="application/rss+xml" />
     
 
       
@@ -45,36 +45,6 @@
           
             
               <category>tryhackme</category>
-            
-          
-        
-      </item>
-      
-      <item>
-        <title>Networks</title>
-        <link>https://aurumnpegasus.github.io/website/posts/networks/</link>
-        <pubDate>Mon, 24 May 2021 12:00:06 +0900</pubDate>
-        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
-        <atom:modified>Mon, 24 May 2021 12:00:06 +0900</atom:modified>
-        <guid>https://aurumnpegasus.github.io/website/posts/networks/</guid>
-        <description>&lt;p&gt;This blog talks about the structure of OSI model, and how data is sent across computers.&lt;/p&gt;</description>
-        
-        <dc:creator>Shivansh S</dc:creator>
-        <media:content url="https://aurumnpegasus.github.io/website/images/feature1/networks.jpg" medium="image"><media:title type="html">featured image</media:title></media:content>
-        
-        
-        
-          
-            
-              <category>network</category>
-            
-          
-        
-        
-        
-          
-            
-              <category>TryHackMe</category>
             
           
         

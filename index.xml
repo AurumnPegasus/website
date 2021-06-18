@@ -14,7 +14,7 @@
     <managingEditor>subramanian.shivansh@gmail.com (Shivansh Subramanian)</managingEditor>
     <webMaster>subramanian.shivansh@gmail.com (Shivansh Subramanian)</webMaster>
     <copyright>©2021, All Rights Reserved</copyright>
-    <lastBuildDate>Fri, 04 Jun 2021 12:00:06 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 14 Jun 2021 12:00:06 +0900</lastBuildDate>
     
         <atom:link href="https://aurumnpegasus.github.io/website/index.xml" rel="self" type="application/rss+xml" />
     
@@ -40,6 +40,36 @@
         
       
 
+      
+      <item>
+        <title>OWASP top10</title>
+        <link>https://aurumnpegasus.github.io/website/posts/owasp/</link>
+        <pubDate>Mon, 14 Jun 2021 12:00:06 +0900</pubDate>
+        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
+        <atom:modified>Mon, 14 Jun 2021 12:00:06 +0900</atom:modified>
+        <guid>https://aurumnpegasus.github.io/website/posts/owasp/</guid>
+        <description>&lt;p&gt;This blog contains my walkthrough of the OWASP room in tryhackme while trying to learn more about cyber security. Check out the original room as well &lt;a href=&#34;https://tryhackme.com/room/owasptop10&#34;&gt;here.&lt;/a&gt;&lt;/p&gt;</description>
+        
+        <dc:creator>Shivansh S</dc:creator>
+        <media:content url="https://aurumnpegasus.github.io/website/images/feature1/owasptop10.png" medium="image"><media:title type="html">featured image</media:title></media:content>
+        
+        
+        
+          
+            
+              <category>room</category>
+            
+          
+        
+        
+        
+          
+            
+              <category>tryhackme</category>
+            
+          
+        
+      </item>
       
       <item>
         <title>Code-Mixing</title>
