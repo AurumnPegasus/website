@@ -14,11 +14,71 @@
     <managingEditor>subramanian.shivansh@gmail.com (Shivansh Subramanian)</managingEditor>
     <webMaster>subramanian.shivansh@gmail.com (Shivansh Subramanian)</webMaster>
     <copyright>©2021, All Rights Reserved</copyright>
-    <lastBuildDate>Mon, 14 Jun 2021 12:00:06 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 13 Sep 2021 12:00:06 +0900</lastBuildDate>
     
         <atom:link href="https://aurumnpegasus.github.io/website/posts/index.xml" rel="self" type="application/rss+xml" />
     
 
+      
+      <item>
+        <title>Co-Occurance Matrix</title>
+        <link>https://aurumnpegasus.github.io/website/posts/cooc_embeddings/</link>
+        <pubDate>Mon, 13 Sep 2021 12:00:06 +0900</pubDate>
+        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
+        <atom:modified>Mon, 13 Sep 2021 12:00:06 +0900</atom:modified>
+        <guid>https://aurumnpegasus.github.io/website/posts/cooc_embeddings/</guid>
+        <description>&lt;p&gt;This blog contains an explanation and tutorial to create word embeddings via co-occurance matrix and svd&lt;/p&gt;</description>
+        
+        <dc:creator>Shivansh S</dc:creator>
+        <media:content url="https://aurumnpegasus.github.io/website/images/feature1/cooc.gif" medium="image"><media:title type="html">featured image</media:title></media:content>
+        
+        
+        
+          
+            
+              <category>Python</category>
+            
+          
+            
+              <category>words</category>
+            
+          
+            
+              <category>svd</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Reversing Huge Files</title>
+        <link>https://aurumnpegasus.github.io/website/posts/huge_files/</link>
+        <pubDate>Mon, 13 Sep 2021 12:00:06 +0900</pubDate>
+        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
+        <atom:modified>Mon, 13 Sep 2021 12:00:06 +0900</atom:modified>
+        <guid>https://aurumnpegasus.github.io/website/posts/huge_files/</guid>
+        <description>&lt;p&gt;This blog contains an explanation and tutorial of how to reverse very large files in C&lt;/p&gt;</description>
+        
+        <dc:creator>Shivansh S</dc:creator>
+        <media:content url="https://aurumnpegasus.github.io/website/images/feature1/huge_files.gif" medium="image"><media:title type="html">featured image</media:title></media:content>
+        
+        
+        
+          
+            
+              <category>C</category>
+            
+          
+            
+              <category>system</category>
+            
+          
+        
+        
+        
+      </item>
       
       <item>
         <title>OWASP top10</title>

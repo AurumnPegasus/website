@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>words on Aurumn Pegasus</title>
+    <link>https://aurumnpegasus.github.io/website/tags/words/</link>
+    <description>Recent content in words on Aurumn Pegasus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>subramanian.shivansh@gmail.com (Shivansh Subramanian)</managingEditor>
+    <webMaster>subramanian.shivansh@gmail.com (Shivansh Subramanian)</webMaster>
+    <copyright>©2021, All Rights Reserved</copyright>
+    <lastBuildDate>Mon, 13 Sep 2021 12:00:06 +0900</lastBuildDate>
+    
+        <atom:link href="https://aurumnpegasus.github.io/website/tags/words/index.xml" rel="self" type="application/rss+xml" />
+    
+
+      
+      <item>
+        <title>Co-Occurance Matrix</title>
+        <link>https://aurumnpegasus.github.io/website/posts/cooc_embeddings/</link>
+        <pubDate>Mon, 13 Sep 2021 12:00:06 +0900</pubDate>
+        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
+        <atom:modified>Mon, 13 Sep 2021 12:00:06 +0900</atom:modified>
+        <guid>https://aurumnpegasus.github.io/website/posts/cooc_embeddings/</guid>
+        <description>&lt;p&gt;This blog contains an explanation and tutorial to create word embeddings via co-occurance matrix and svd&lt;/p&gt;</description>
+        
+        <dc:creator>Shivansh S</dc:creator>
+        <media:content url="https://aurumnpegasus.github.io/website/images/feature1/cooc.gif" medium="image"><media:title type="html">featured image</media:title></media:content>
+        
+        
+        
+          
+            
+              <category>Python</category>
+            
+          
+            
+              <category>words</category>
+            
+          
+            
+              <category>svd</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>
