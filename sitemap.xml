@@ -3,15 +3,39 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://aurumnpegasus.github.io/website/</loc>
-    <lastmod>2021-09-13T12:00:06+09:00</lastmod>
+    <lastmod>2021-09-21T12:00:06+09:00</lastmod>
+  </url><url>
+    <loc>https://aurumnpegasus.github.io/website/categories/</loc>
+    <lastmod>2021-09-21T12:00:06+09:00</lastmod>
+  </url><url>
+    <loc>https://aurumnpegasus.github.io/website/categories/classifier/</loc>
+    <lastmod>2021-09-21T12:00:06+09:00</lastmod>
+  </url><url>
+    <loc>https://aurumnpegasus.github.io/website/tags/hadamard/</loc>
+    <lastmod>2021-09-21T12:00:06+09:00</lastmod>
+  </url><url>
+    <loc>https://aurumnpegasus.github.io/website/posts/sigmoid/</loc>
+    <lastmod>2021-09-21T12:00:06+09:00</lastmod>
+  </url><url>
+    <loc>https://aurumnpegasus.github.io/website/series/ml/</loc>
+    <lastmod>2021-09-21T12:00:06+09:00</lastmod>
+  </url><url>
+    <loc>https://aurumnpegasus.github.io/website/posts/</loc>
+    <lastmod>2021-09-21T12:00:06+09:00</lastmod>
+  </url><url>
+    <loc>https://aurumnpegasus.github.io/website/series/</loc>
+    <lastmod>2021-09-21T12:00:06+09:00</lastmod>
+  </url><url>
+    <loc>https://aurumnpegasus.github.io/website/tags/sigmoid/</loc>
+    <lastmod>2021-09-21T12:00:06+09:00</lastmod>
+  </url><url>
+    <loc>https://aurumnpegasus.github.io/website/tags/</loc>
+    <lastmod>2021-09-21T12:00:06+09:00</lastmod>
   </url><url>
     <loc>https://aurumnpegasus.github.io/website/tags/c/</loc>
     <lastmod>2021-09-13T12:00:06+09:00</lastmod>
   </url><url>
     <loc>https://aurumnpegasus.github.io/website/posts/cooc_embeddings/</loc>
-    <lastmod>2021-09-13T12:00:06+09:00</lastmod>
-  </url><url>
-    <loc>https://aurumnpegasus.github.io/website/posts/</loc>
     <lastmod>2021-09-13T12:00:06+09:00</lastmod>
   </url><url>
     <loc>https://aurumnpegasus.github.io/website/tags/python/</loc>
@@ -26,9 +50,6 @@
     <loc>https://aurumnpegasus.github.io/website/tags/system/</loc>
     <lastmod>2021-09-13T12:00:06+09:00</lastmod>
   </url><url>
-    <loc>https://aurumnpegasus.github.io/website/tags/</loc>
-    <lastmod>2021-09-13T12:00:06+09:00</lastmod>
-  </url><url>
     <loc>https://aurumnpegasus.github.io/website/tags/words/</loc>
     <lastmod>2021-09-13T12:00:06+09:00</lastmod>
   </url><url>
@@ -36,9 +57,6 @@
     <lastmod>2021-06-14T12:00:06+09:00</lastmod>
   </url><url>
     <loc>https://aurumnpegasus.github.io/website/tags/room/</loc>
-    <lastmod>2021-06-14T12:00:06+09:00</lastmod>
-  </url><url>
-    <loc>https://aurumnpegasus.github.io/website/series/</loc>
     <lastmod>2021-06-14T12:00:06+09:00</lastmod>
   </url><url>
     <loc>https://aurumnpegasus.github.io/website/series/tryhackme/</loc>
@@ -49,9 +67,6 @@
   </url><url>
     <loc>https://aurumnpegasus.github.io/website/posts/networks/</loc>
     <lastmod>2021-05-24T12:00:06+09:00</lastmod>
-  </url><url>
-    <loc>https://aurumnpegasus.github.io/website/categories/</loc>
-    <lastmod>2020-11-22T12:00:06+09:00</lastmod>
   </url><url>
     <loc>https://aurumnpegasus.github.io/website/posts/connect_four_1/</loc>
     <lastmod>2020-11-22T12:00:06+09:00</lastmod>

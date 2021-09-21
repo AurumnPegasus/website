@@ -14,7 +14,7 @@
     <managingEditor>subramanian.shivansh@gmail.com (Shivansh Subramanian)</managingEditor>
     <webMaster>subramanian.shivansh@gmail.com (Shivansh Subramanian)</webMaster>
     <copyright>©2021, All Rights Reserved</copyright>
-    <lastBuildDate>Mon, 13 Sep 2021 12:00:06 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 21 Sep 2021 12:00:06 +0900</lastBuildDate>
     
         <atom:link href="https://aurumnpegasus.github.io/website/index.xml" rel="self" type="application/rss+xml" />
     
@@ -40,6 +40,46 @@
         
       
 
+      
+      <item>
+        <title>Linear Classifier</title>
+        <link>https://aurumnpegasus.github.io/website/posts/sigmoid/</link>
+        <pubDate>Tue, 21 Sep 2021 12:00:06 +0900</pubDate>
+        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
+        <atom:modified>Tue, 21 Sep 2021 12:00:06 +0900</atom:modified>
+        <guid>https://aurumnpegasus.github.io/website/posts/sigmoid/</guid>
+        <description>&lt;p&gt;The blog explains how to create a linear classifier from scratch using MSE loss and Sigmoid Function.&lt;/p&gt;</description>
+        
+        <dc:creator>Shivansh S</dc:creator>
+        <media:content url="https://aurumnpegasus.github.io/website/images/feature1/sigmoid.gif" medium="image"><media:title type="html">featured image</media:title></media:content>
+        
+        
+        
+          
+            
+              <category>sigmoid</category>
+            
+          
+            
+              <category>hadamard</category>
+            
+          
+        
+        
+          
+            
+              <category>classifier</category>
+            
+          
+        
+        
+          
+            
+              <category>ML</category>
+            
+          
+        
+      </item>
       
       <item>
         <title>Co-Occurance Matrix</title>
