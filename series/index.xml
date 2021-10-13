@@ -14,16 +14,34 @@
     <managingEditor>subramanian.shivansh@gmail.com (Shivansh Subramanian)</managingEditor>
     <webMaster>subramanian.shivansh@gmail.com (Shivansh Subramanian)</webMaster>
     <copyright>©2021, All Rights Reserved</copyright>
-    <lastBuildDate>Tue, 21 Sep 2021 12:00:06 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 13 Oct 2021 12:00:06 +0900</lastBuildDate>
     
         <atom:link href="https://aurumnpegasus.github.io/website/series/index.xml" rel="self" type="application/rss+xml" />
     
 
       
       <item>
+        <title>Linear Algebra</title>
+        <link>https://aurumnpegasus.github.io/website/series/linear-algebra/</link>
+        <pubDate>Wed, 13 Oct 2021 12:00:06 +0900</pubDate>
+        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
+        
+        <guid>https://aurumnpegasus.github.io/website/series/linear-algebra/</guid>
+        <description></description>
+        
+        <dc:creator>Shivansh Subramanian</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
         <title>ML</title>
         <link>https://aurumnpegasus.github.io/website/series/ml/</link>
-        <pubDate>Tue, 21 Sep 2021 12:00:06 +0900</pubDate>
+        <pubDate>Wed, 13 Oct 2021 12:00:06 +0900</pubDate>
         <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
         
         <guid>https://aurumnpegasus.github.io/website/series/ml/</guid>

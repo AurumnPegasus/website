@@ -6,9 +6,9 @@
   xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
-    <title>ML on Aurumn Pegasus</title>
-    <link>https://aurumnpegasus.github.io/website/series/ml/</link>
-    <description>Recent content in ML on Aurumn Pegasus</description>
+    <title>Linear Algebra on Aurumn Pegasus</title>
+    <link>https://aurumnpegasus.github.io/website/series/linear-algebra/</link>
+    <description>Recent content in Linear Algebra on Aurumn Pegasus</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>subramanian.shivansh@gmail.com (Shivansh Subramanian)</managingEditor>
@@ -16,7 +16,7 @@
     <copyright>©2021, All Rights Reserved</copyright>
     <lastBuildDate>Wed, 13 Oct 2021 12:00:06 +0900</lastBuildDate>
     
-        <atom:link href="https://aurumnpegasus.github.io/website/series/ml/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://aurumnpegasus.github.io/website/series/linear-algebra/index.xml" rel="self" type="application/rss+xml" />
     
 
       
@@ -46,46 +46,6 @@
             
               <category>Linear Algebra</category>
             
-          
-            
-              <category>ML</category>
-            
-          
-        
-      </item>
-      
-      <item>
-        <title>Linear Classifier</title>
-        <link>https://aurumnpegasus.github.io/website/posts/sigmoid/</link>
-        <pubDate>Tue, 21 Sep 2021 12:00:06 +0900</pubDate>
-        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
-        <atom:modified>Tue, 21 Sep 2021 12:00:06 +0900</atom:modified>
-        <guid>https://aurumnpegasus.github.io/website/posts/sigmoid/</guid>
-        <description>&lt;p&gt;The blog explains how to create a linear classifier from scratch using MSE loss and Sigmoid Function.&lt;/p&gt;</description>
-        
-        <dc:creator>Shivansh S</dc:creator>
-        <media:content url="https://aurumnpegasus.github.io/website/images/feature1/sigmoid.gif" medium="image"><media:title type="html">featured image</media:title></media:content>
-        
-        
-        
-          
-            
-              <category>sigmoid</category>
-            
-          
-            
-              <category>hadamard</category>
-            
-          
-        
-        
-          
-            
-              <category>classifier</category>
-            
-          
-        
-        
           
             
               <category>ML</category>
