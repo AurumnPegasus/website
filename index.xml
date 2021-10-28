@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shivansh Subramanian</title>
+    <link>https://aurumnpegasus.github.io/website/</link>
+    <description>Recent content on Shivansh Subramanian</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Wed, 13 Oct 2021 12:00:06 +0900</lastBuildDate>
+    
+	<atom:link href="https://aurumnpegasus.github.io/website/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Reduced Row Echelon Form</title>
+      <link>https://aurumnpegasus.github.io/website/posts/rref/</link>
+      <pubDate>Wed, 13 Oct 2021 12:00:06 +0900</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/posts/rref/</guid>
+      <description>&lt;p&gt;The blog explains how to find reduced row-echelon form of a matrix in python&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linear Classifier</title>
+      <link>https://aurumnpegasus.github.io/website/posts/sigmoid/</link>
+      <pubDate>Tue, 21 Sep 2021 12:00:06 +0900</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/posts/sigmoid/</guid>
+      <description>&lt;p&gt;The blog explains how to create a linear classifier from scratch using MSE loss and Sigmoid Function.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Co-Occurance Matrix</title>
+      <link>https://aurumnpegasus.github.io/website/posts/cooc_embeddings/</link>
+      <pubDate>Mon, 13 Sep 2021 12:00:06 +0900</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/posts/cooc_embeddings/</guid>
+      <description>&lt;p&gt;This blog contains an explanation and tutorial to create word embeddings via co-occurance matrix and svd&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Reversing Huge Files</title>
+      <link>https://aurumnpegasus.github.io/website/posts/huge_files/</link>
+      <pubDate>Mon, 13 Sep 2021 12:00:06 +0900</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/posts/huge_files/</guid>
+      <description>&lt;p&gt;This blog contains an explanation and tutorial of how to reverse very large files in C&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>OWASP top10</title>
+      <link>https://aurumnpegasus.github.io/website/posts/owasp/</link>
+      <pubDate>Mon, 14 Jun 2021 12:00:06 +0900</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/posts/owasp/</guid>
+      <description>&lt;p&gt;This blog contains my walkthrough of the OWASP room in tryhackme while trying to learn more about cyber security. Check out the original room as well &lt;a href=&#34;https://tryhackme.com/room/owasptop10&#34;&gt;here.&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Networks</title>
+      <link>https://aurumnpegasus.github.io/website/posts/networks/</link>
+      <pubDate>Mon, 24 May 2021 20:32:11 +0530</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/posts/networks/</guid>
+      <description>Here is the stuff I read related to networks, different models and their working,
+OSI Model The OSI Model (Open Systems Interconnection Model) is a conceptual framework used to describe the functions of a networking system. It defines rules and requirements that support effortless data transfer between different products and software. In the OSI reference model, the communications between a computing system are split into seven different abstraction layers: Physical, Data Link, Network, Transport, Session, Presentation, and Application.</description>
+    </item>
+    
+    <item>
+      <title>Connect Four, Part 1</title>
+      <link>https://aurumnpegasus.github.io/website/posts/connect_four_1/</link>
+      <pubDate>Sun, 22 Nov 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/posts/connect_four_1/</guid>
+      <description>&lt;p&gt;This blog contains explanation of the paper by Victor Allis called &lt;a href=&#34;http://www.informatik.uni-trier.de/~fernau/DSL0607/Masterthesis-Viergewinnt.pdf&#34;&gt;&amp;lsquo;A Knowledge-based Approach of Connect-Four&amp;rsquo;&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Connect Four, Part 2</title>
+      <link>https://aurumnpegasus.github.io/website/posts/connect_four_2/</link>
+      <pubDate>Sun, 22 Nov 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/posts/connect_four_2/</guid>
+      <description>&lt;p&gt;This blog contains explanation of the paper by Victor Allis called &lt;a href=&#34;http://www.informatik.uni-trier.de/~fernau/DSL0607/Masterthesis-Viergewinnt.pdf&#34;&gt;&amp;lsquo;A Knowledge-based Approach of Connect-Four&amp;rsquo;&lt;/a&gt;
+This is a 2 part series exploring the paper, and I would suggest going through &lt;a href=&#34;&#34;&gt;&amp;lsquo;first part&amp;rsquo;&lt;/a&gt; if you haven&amp;rsquo;t already.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Scotland Yard: Part 1</title>
+      <link>https://aurumnpegasus.github.io/website/posts/scotland_yard_1/</link>
+      <pubDate>Sun, 22 Nov 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/posts/scotland_yard_1/</guid>
+      <description>&lt;p&gt;This blog contains an explanation of the paper &lt;a href=&#34;https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=A042C241BA640121A461FBF99CD93FEC?doi=10.1.1.76.9583&amp;amp;rep=rep1&amp;amp;type=pdf&#34;&gt;&amp;lsquo;The complexity of Scotland Yard&amp;rsquo;&lt;/a&gt; by Merlijn Sevenster.&lt;/p&gt;
+&lt;p&gt;This is part 1 of a two part blog. Part 1 explains the game, and lays out the foundations required for formalisation of the game. It also lists out the various assumptions we are going to consider in the game.&lt;/p&gt;
+&lt;p&gt;The blog was originally published on &lt;a href=&#34;https://captains-mistress.github.io/scotlandyard&#34;&gt;&amp;lsquo;GameLab&amp;rsquo;&lt;/a&gt; for our course project. The website also contains additional information about heuristics used in Scotland Yard, and similar analysis for other board games.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Scotland Yard: Part 2</title>
+      <link>https://aurumnpegasus.github.io/website/posts/scotland_yard_2/</link>
+      <pubDate>Sun, 22 Nov 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/posts/scotland_yard_2/</guid>
+      <description>&lt;p&gt;This blog contains an explanation of the paper &lt;a href=&#34;https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=A042C241BA640121A461FBF99CD93FEC?doi=10.1.1.76.9583&amp;amp;rep=rep1&amp;amp;type=pdf&#34;&gt;&amp;lsquo;The complexity of Scotland Yard&amp;rsquo;&lt;/a&gt; by Merlijn Sevenster.&lt;/p&gt;
+&lt;p&gt;This is part 2 of a two part blog. Part 1 explains the game, and lays out the foundations required for formalisation of the game. It also lists out the various assumptions we are going to consider in the game. Part 2 formalises the game and proves that it is of PSPACE complexity.&lt;/p&gt;
+&lt;p&gt;The blog was originally published on &lt;a href=&#34;https://captains-mistress.github.io/scotlandyard&#34;&gt;&amp;lsquo;GameLab&amp;rsquo;&lt;/a&gt; for our course project. The website also contains additional information about heuristics used in Scotland Yard, and similar analysis for other board games.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>math on Shivansh Subramanian</title>
+    <link>https://aurumnpegasus.github.io/website/tags/math/</link>
+    <description>Recent content in math on Shivansh Subramanian</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Wed, 13 Oct 2021 12:00:06 +0900</lastBuildDate>
+    
+	<atom:link href="https://aurumnpegasus.github.io/website/tags/math/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Reduced Row Echelon Form</title>
+      <link>https://aurumnpegasus.github.io/website/posts/rref/</link>
+      <pubDate>Wed, 13 Oct 2021 12:00:06 +0900</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/posts/rref/</guid>
+      <description>&lt;p&gt;The blog explains how to find reduced row-echelon form of a matrix in python&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

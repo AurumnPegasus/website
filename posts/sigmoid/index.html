@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Linear Classifier">
+<meta itemprop="description" content="The blog explains how to create a linear classifier from scratch using MSE loss and Sigmoid Function.">
+<meta itemprop="datePublished" content="2021-09-21T12:00:06&#43;09:00" />
+<meta itemprop="dateModified" content="2021-09-21T12:00:06&#43;09:00" />
+<meta itemprop="wordCount" content="748">
+
+
+
+<meta itemprop="keywords" content="ML," /><meta property="og:title" content="Linear Classifier" />
+<meta property="og:description" content="The blog explains how to create a linear classifier from scratch using MSE loss and Sigmoid Function." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://aurumnpegasus.github.io/website/posts/sigmoid/" />
+<meta property="article:published_time" content="2021-09-21T12:00:06+09:00" />
+<meta property="article:modified_time" content="2021-09-21T12:00:06+09:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linear Classifier"/>
+<meta name="twitter:description" content="The blog explains how to create a linear classifier from scratch using MSE loss and Sigmoid Function."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/website/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/website/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/website/favicon-16x16.png">
+	<link rel="manifest" href="/website/site.webmanifest">
+	<link rel="mask-icon" href="/website/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/website/favicon.ico">
+
+	<title>Linear Classifier</title>
+	<link rel="stylesheet" href="https://aurumnpegasus.github.io/website/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://aurumnpegasus.github.io/website/">Shivansh Subramanian</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://aurumnpegasus.github.io/website/posts/">Posts</a>
+				<a href="https://aurumnpegasus.github.io/website/about-hugo/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="mailto:subramanian.shivansh@gmail.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://instagram.com/shivansh._.21/" target="_blank" rel="noopener me" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a><a href="https://github.com/AurumnPegasus" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://aurumnpegasus.github.io/website/posts/">Posts</a></li>
+			<li><a href="https://aurumnpegasus.github.io/website/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Sep 21, 2021</span></div>
+				<h1>Linear Classifier</h1>
+			</header>
+			<div class="content">
+				<p>The blog explains how to create a linear classifier from scratch using MSE loss and Sigmoid Function.</p>
+<h2 id="introduction">Introduction<a href="#introduction" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>A classifier is a machine that can differentiate between objects of two or more different classes. We define a Loss Function J as the Mean Squared Error of the actual value vs the predicted value. The machine learns to differentiate between classes by minimising the function J (via gradient descent). For simplicity and explainibility, we have considered two categories and are trying to find a line that divides these two classes.
+The explanation below assumes that the reader has a decent understanding of calculus and gradient descent algorithms.</p>
+<h2 id="dataset">Dataset<a href="#dataset" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>We artificially generate a dataset using NumPy. Two classes are shown in a two-dimensional plot in red and blue, with class 1 centred around (-5, 3) and class 2 centred around (3, -5). We use the same covariance matrix for both classes.</p>
+<figure>
+    <img src="https://i.imgur.com/d3hqH4Y.png"/> 
+</figure>
+
+<p><br>
+Our training dataset consists of 1000 samples, with 500 belonging to class 1 and 500 belonging to class 2. The test dataset consists of 200 samples, with 100 belonging to each class.</p>
+<p>First, we get multiple samples from a multivariate normal distribution using NumPy.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">def</span> <span class="nf">getClasses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="c1"># Assumed equal amount of samples in each class, you can take anything</span>
+  <span class="c1"># covariance matrix = [[12, 0], [0, 12]]</span>
+
+  <span class="c1"># mean_a = [-5, 3]</span>
+  <span class="n">train_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mean_a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">covariance</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_len</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+  <span class="n">test_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mean_a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">covariance</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_len</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+
+  <span class="c1"># mean_b = [3, -5]</span>
+  <span class="n">train_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mean_b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">covariance</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_len</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+  <span class="n">test_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mean_b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">covariance</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_len</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="n">train_a</span><span class="p">,</span> <span class="n">test_a</span><span class="p">,</span> <span class="n">train_b</span><span class="p">,</span> <span class="n">test_b</span>
+</code></pre></div><p>Once we have samples from the two classes, we append them together (and add 1 for bias) to get train and test dataset.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="n">train_a</span><span class="p">,</span> <span class="n">test_a</span><span class="p">,</span> <span class="n">train_b</span><span class="p">,</span> <span class="n">test_b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getClasses</span><span class="p">()</span>
+
+  <span class="c1"># Assigning 1 label to class A and -1 to class B</span>
+  <span class="bp">self</span><span class="o">.</span><span class="n">train_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">train_a</span><span class="p">,</span> <span class="n">train_b</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train_len</span><span class="p">))</span><span class="o">.</span><span class="n">T</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+  <span class="bp">self</span><span class="o">.</span><span class="n">train_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train_len</span><span class="o">//</span><span class="mi">2</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train_len</span><span class="o">//</span><span class="mi">2</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+  <span class="bp">self</span><span class="o">.</span><span class="n">test_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">test_a</span><span class="p">,</span> <span class="n">test_b</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_len</span><span class="p">))</span><span class="o">.</span><span class="n">T</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+  <span class="bp">self</span><span class="o">.</span><span class="n">test_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_len</span><span class="o">//</span><span class="mi">2</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_len</span><span class="o">//</span><span class="mi">2</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</code></pre></div><h2 id="gradiant">Gradiant<a href="#gradiant" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>In two dimensions, a linear classifier is just a line. Let us denote it by \(f\) . We define our dataset as \(x = [x_0, x_1, 1]\) and weight \(w = [w_0, w_1, w_2]\), where \(w\) is the term we want to learn. Though our samples are in two-dimensions, we have \(x\) as three-dimensional vector so as to account for bias.</p>
+<p>Since we are using MSE loss, we get:</p>
+<p>$$ J = \frac{1}{N} \mid \mid y - \sigma(w.x^T) \mid \mid^2 $$</p>
+<p>Where:
+\(J\) is the loss function
+\(N\) is the number of samples
+\(y\) is the correct output
+\(\sigma(w.x^t)\) is the predicted output</p>
+<p>Now, we can differentiate it as:</p>
+<p>$$ \nabla J = \frac{\text{d} J}{\text{d} w} = \frac{1}{N} \times 2 \times (y - \sigma(w.x^T)) \odot \frac{\text{d} (y - \sigma(w.x^T))}{\text{d}w}$$</p>
+<p>The symbol $\odot$ symbolises <a href="https://en.wikipedia.org/wiki/Hadamard_product_(matrices)">Hadamard Product</a>.
+According to <a href="https://beckernick.github.io/sigmoid-derivative-neural-network/">in-depth proof</a>, we get:</p>
+<p>$$ \frac{\text{d} \sigma(x)}{\text{d} x} = \sigma(x) ( 1- \sigma(x) ) $$</p>
+<p>Substituting this formula</p>
+<p>$$ \nabla J = \frac{2}{N} \times (y - \sigma(w.x^T)) \times \sigma(w.x^T) (1 - \sigma(w.x^T) \times x^T$$</p>
+<h2 id="classification">Classification<a href="#classification" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>We have the gradiant, now using the gradiant descent formula we get</p>
+<p>$$ w = w - \eta\times \nabla J $$</p>
+<p>Continue doing this till the difference in improvement is less than 0.0001 (arbitrary number)</p>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">def</span> <span class="nf">training</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">getTrain</span><span class="p">()</span>
+
+  <span class="c1"># Pre-defining weights as 1</span>
+  <span class="n">w_prev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+  <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+  <span class="n">train_errors</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">iteration</span> <span class="o">=</span> <span class="mi">0</span>
+
+  <span class="k">while</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">w</span> <span class="o">-</span> <span class="n">w_prev</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-4</span><span class="p">:</span>
+
+      <span class="c1"># Computing the loss via MSE</span>
+      <span class="n">loss</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_len</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">x</span><span class="p">)))</span><span class="o">**</span><span class="mi">2</span>
+      <span class="n">train_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
+
+      <span class="n">w_prev</span> <span class="o">=</span> <span class="n">w</span>
+
+      <span class="c1"># w = w - η∇J</span>
+      <span class="c1"># @: hadamard product, matmul: dot product</span>
+      <span class="n">w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span><span class="o">*</span><span class="mi">2</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_len</span> <span class="o">*</span> <span class="p">(</span>
+          <span class="n">np</span><span class="o">.</span><span class="n">mat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">w</span><span class="nd">@x</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">w</span><span class="nd">@x</span><span class="p">)))))</span><span class="nd">@x.T</span> 
+          <span class="o">+</span> 
+          <span class="n">np</span><span class="o">.</span><span class="n">mat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">w</span><span class="nd">@x</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">w</span><span class="nd">@x</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">w</span><span class="nd">@x</span><span class="p">))))</span><span class="nd">@x.T</span>
+      <span class="p">)</span>
+      <span class="n">iteration</span> <span class="o">+=</span> <span class="mi">1</span>
+  
+  <span class="k">return</span> <span class="n">w</span>
+</code></pre></div><h2 id="results">Results<a href="#results" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>We use the learned $w$ to create the classification line (this is only possible since we have a 2-dimensional space, for higher dimensions it is impossible to visualise such equations).</p>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="n">weights</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">training</span><span class="p">()</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="o">-</span><span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">/</span> <span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">c</span>
+
+<span class="c1"># Plotting the line on train dataset (can do the same for test dataset as well)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">train_a</span><span class="p">],</span> <span class="p">[</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">train_a</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Class 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">train_b</span><span class="p">],</span> <span class="p">[</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">train_b</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Class 2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;-r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div><p>We see the learned classifier performing well on the training set:</p>
+<figure>
+    <img src="https://i.imgur.com/r49wLqC.png"/> 
+</figure>
+
+<p>Testing the same on test dataset we find:</p>
+<figure>
+    <img src="https://i.imgur.com/HvEWPcg.png"/> 
+</figure>
+
+<h2 id="references">References:<a href="#references" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Introduction to DL: <a href="https://github.com/sayarghoshroy/Intro_to_DL_tutorial">https://github.com/sayarghoshroy/Intro_to_DL_tutorial</a></p>
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://aurumnpegasus.github.io/website/tags/ml">ML</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>748 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-09-21 08:30 &#43;0530</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://aurumnpegasus.github.io/website/posts/rref/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Reduced Row Echelon Form</span>
+			</a>
+			<a class="prev-post" href="https://aurumnpegasus.github.io/website/posts/cooc_embeddings/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Co-Occurance Matrix</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2021 <a href="https://aurumnpegasus.github.io/website/">Shivansh Subramanian</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://aurumnpegasus.github.io/website/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+	</footer>
+
+
+
+	<script src="https://aurumnpegasus.github.io/website/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

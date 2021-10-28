@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Scotland Yard: Part 2">
+<meta itemprop="description" content="This blog contains an explanation of the paper &lsquo;The complexity of Scotland Yard&rsquo; by Merlijn Sevenster.
+This is part 2 of a two part blog. Part 1 explains the game, and lays out the foundations required for formalisation of the game. It also lists out the various assumptions we are going to consider in the game. Part 2 formalises the game and proves that it is of PSPACE complexity.
+The blog was originally published on &lsquo;GameLab&rsquo; for our course project. The website also contains additional information about heuristics used in Scotland Yard, and similar analysis for other board games.">
+<meta itemprop="datePublished" content="2020-11-22T12:00:06&#43;09:00" />
+<meta itemprop="dateModified" content="2020-11-22T12:00:06&#43;09:00" />
+<meta itemprop="wordCount" content="1592">
+
+
+
+<meta itemprop="keywords" content="paper,game," /><meta property="og:title" content="Scotland Yard: Part 2" />
+<meta property="og:description" content="This blog contains an explanation of the paper &lsquo;The complexity of Scotland Yard&rsquo; by Merlijn Sevenster.
+This is part 2 of a two part blog. Part 1 explains the game, and lays out the foundations required for formalisation of the game. It also lists out the various assumptions we are going to consider in the game. Part 2 formalises the game and proves that it is of PSPACE complexity.
+The blog was originally published on &lsquo;GameLab&rsquo; for our course project. The website also contains additional information about heuristics used in Scotland Yard, and similar analysis for other board games." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://aurumnpegasus.github.io/website/posts/scotland_yard_2/" />
+<meta property="article:published_time" content="2020-11-22T12:00:06+09:00" />
+<meta property="article:modified_time" content="2020-11-22T12:00:06+09:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Scotland Yard: Part 2"/>
+<meta name="twitter:description" content="This blog contains an explanation of the paper &lsquo;The complexity of Scotland Yard&rsquo; by Merlijn Sevenster.
+This is part 2 of a two part blog. Part 1 explains the game, and lays out the foundations required for formalisation of the game. It also lists out the various assumptions we are going to consider in the game. Part 2 formalises the game and proves that it is of PSPACE complexity.
+The blog was originally published on &lsquo;GameLab&rsquo; for our course project. The website also contains additional information about heuristics used in Scotland Yard, and similar analysis for other board games."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/website/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/website/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/website/favicon-16x16.png">
+	<link rel="manifest" href="/website/site.webmanifest">
+	<link rel="mask-icon" href="/website/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/website/favicon.ico">
+
+	<title>Scotland Yard: Part 2</title>
+	<link rel="stylesheet" href="https://aurumnpegasus.github.io/website/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://aurumnpegasus.github.io/website/">Shivansh Subramanian</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://aurumnpegasus.github.io/website/posts/">Posts</a>
+				<a href="https://aurumnpegasus.github.io/website/about-hugo/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="mailto:subramanian.shivansh@gmail.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://instagram.com/shivansh._.21/" target="_blank" rel="noopener me" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a><a href="https://github.com/AurumnPegasus" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://aurumnpegasus.github.io/website/posts/">Posts</a></li>
+			<li><a href="https://aurumnpegasus.github.io/website/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Nov 22, 2020</span></div>
+				<h1>Scotland Yard: Part 2</h1>
+			</header>
+			<div class="content">
+				<p>This blog contains an explanation of the paper <a href="https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=A042C241BA640121A461FBF99CD93FEC?doi=10.1.1.76.9583&amp;rep=rep1&amp;type=pdf">&lsquo;The complexity of Scotland Yard&rsquo;</a> by Merlijn Sevenster.</p>
+<p>This is part 2 of a two part blog. Part 1 explains the game, and lays out the foundations required for formalisation of the game. It also lists out the various assumptions we are going to consider in the game. Part 2 formalises the game and proves that it is of PSPACE complexity.</p>
+<p>The blog was originally published on <a href="https://captains-mistress.github.io/scotlandyard">&lsquo;GameLab&rsquo;</a> for our course project. The website also contains additional information about heuristics used in Scotland Yard, and similar analysis for other board games.</p>
+<h2 id="-formalisation">🤵 Formalisation<a href="#-formalisation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>We now know how to formalise any given perfect or imperfect information game. Now let&rsquo;s connect it to the game Scotland Yard.</p>
+<p>Let \(SY\) = \(\langle G, \langle u_* \overrightarrow{v_*} \rangle, f \rangle \) be a Scotland Yard instance. Then, let the extensive Scotland Yard game constitute by \(\mathcal{SY}\) be defined as the tuple
+$$ \mathcal{SY}(SY) = \langle N, H, P, \bullet, U \rangle $$</p>
+<p>Here,</p>
+<ul>
+<li>
+<p>\(G\) represents a digraph</p>
+</li>
+<li>
+<p>\(u_*\) represents the position of Mr X.</p>
+</li>
+<li>
+<p>\(\overrightarrow{v_*}\) is \(n\) dimensional vector, where \(n\) is the number of detectives. Each element in the vector represents the initial node of the detective.</p>
+</li>
+<li>
+<p>\(f\) is a function which when fed a number (no. of rounds) chooses one of the two elements from the set { \(show, hide\) }. This denotes whether Mr X needs to show their position or not.</p>
+</li>
+<li>
+<p>\(N\) represents total number of players. For convenience, \(N =\){\(\forall, \exists\)} where \(\forall\) represents Mr X and \(\exists_1, \exists_2 . . \exists_{N-1}\) represent the detectives.</p>
+</li>
+<li>
+<p>\(H\) represents a set of histories. Let \(\prec\) be the immediate successor relation on \(H\). So you can say that \(\langle h \rangle \prec \langle h, u \rangle\) where \(\langle h \rangle, \langle h, u\rangle \in H\)</p>
+</li>
+<li>
+<p>\(P\) represents the player function. Due to notational convenience, it is easy to assign the value of the player function. \(P(\langle h, u \rangle) = \forall P\) and \(P(\langle h, u , \overrightarrow{v} \rangle ) = \exists\) no matter \(u\) or \(\overrightarrow{v}\)</p>
+</li>
+<li>
+<p>\(\bullet\) is the indistinguishability relation. It is defined on the group \(H\). For any two histories \(h, h&rsquo; \in H\) where the length of both histories is equal, \(h \bullet h&rsquo;\) when:</p>
+<p>If \(h = \langle u_* , \overrightarrow{v_*}, u_1, \overrightarrow{v_1}, . . . u_i, \overrightarrow{v_i} \rangle \)and \(h&rsquo; = \langle u_* , \overrightarrow{v_*}, u&rsquo;_1, \overrightarrow{v&rsquo;_1}, . . . u&rsquo;_i, \overrightarrow{v&rsquo;_i} \rangle\) then</p>
+<ol>
+<li>\(\overrightarrow{v_j} = \overrightarrow{v&rsquo;_j} \space \forall \space 1 \leq j \leq i\) and</li>
+<li>\(u_j = u&rsquo;_j \space \forall \space 1 \leq j \leq 1\) such that \(f(j) = show\)</li>
+</ol>
+</li>
+<li>
+<p>\(U : Z \rightarrow \) {\(win,lose\)} is the utility function which determines whether \(\exists\) won or not.</p>
+</li>
+</ul>
+<p>$$ U(\langle h, u, \overrightarrow{v} \rangle) = \begin{cases} win, \space \space u\in \overrightarrow{v} \\\ lose, \space \space u \notin \overrightarrow{v} \end{cases} $$</p>
+<p>It is easy to see that the operation \(\bullet\) is Equivalent to the group $H$. We write \(\mathcal{H} \subseteq \wp(H)\) for the set of equivalent classes, or information cells, in which \(H\) is partitioned by \(\bullet\).</p>
+<p>\(\mathcal{H} = \{ C_1, C_2 . . . C_n\}\) where \(H = C_1 \cup C_2 . . \cup C_m\) for every \(1 \leq i \leq m\), if \(h \bullet h&rsquo;\) where \(h, h&rsquo; \in C_i\).</p>
+<p>We lift the relation \(\prec\) to \(H\), using the same symbol: For any pair \(C, C&rsquo; \in H\) we write \(C \prec C&rsquo;\) if there exists histories \(h \in C\) and \(h&rsquo; \in C&rsquo;\) such that \(h \prec h&rsquo;\)</p>
+<p>We can also extend this as if \(h, h&rsquo; \in C\) and \(C \in H\), then \(P(h) = P(h&rsquo;)\). Thus the player function is meaningfully lifted as follows: if \(C \in H\) and \(h \in C\), then \(P(C) = P(h)\).</p>
+<figure>
+    <img src="https://i.imgur.com/SivQWBP.png"/> 
+</figure>
+
+<p>Consider an example game \(G^x\). Let \(f^x\) be the information function where \(f^x(1) = hide\) and \(f^x(2) = show\). Let \(u_*\) and \(v_*\) as the initial position of \(\forall\) and \(\exists\). Consider that number of detectives to be 1. Let&rsquo;s play this game.</p>
+<p>The set of histories we can get from this game are:</p>
+<figure>
+    <img src="https://i.imgur.com/1RizdEh.png"/> 
+</figure>
+
+<p>where ! marks terminal histories. To reflect that this is a game of imperfect information, we can write \(\mathcal{H}\) as</p>
+<figure>
+    <img src="https://i.imgur.com/Wi26aWC.png"/> 
+</figure>
+
+<p>A graphical representation of this would be:</p>
+<figure>
+    <img src="https://i.imgur.com/K3w7PBf.png"/> 
+</figure>
+
+<h4 id="perfect-information-scotland-yard">Perfect Information Scotland Yard<a href="#perfect-information-scotland-yard" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>So, Perfect Information means that each and every aspect of the game is explicitly expressible. The only difference we need to model here is \(\forall\)&lsquo;s whereabouts. Since describing each position will convert Scotland Yard into a simple game of Cops and Thieves, we don&rsquo;t do that. Instead, to preserve the game, we describe the position of \(\forall\) as a set of possible nodes.</p>
+<p>More abstractly, \(\forall$\)’s powers are lifted from the level of picking up vertices to the level of picking up sets of vertices. \(\exists\)’s powers remain unaltered, as compared to the game with imperfect information that was explicated above. It is defined as:</p>
+<p>$$ \mathcal{SY-PI}(SY) : \langle N_{PI}, H_{PI}, P_{PI}, U_{PI} \rangle $$</p>
+<p>The above mentioned example will be converted to</p>
+<figure>
+    <img src="https://i.imgur.com/9WUsTIz.png"/> 
+</figure>
+
+<h4 id="effective-equivalence">Effective Equivalence<a href="#effective-equivalence" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>In this section, we establish that \(\exists\) has a winning strategy in \(\mathcal{SY}(SY)\) iff it has a winning strategy in \(\mathcal{SY-PI}(SY)\). In order to prove this, it will be shown that \(\langle H, \prec \rangle\) is isomorphic to \(\langle H_{PI}, \prec_{PI} \rangle\) in virtue of the bijection \(\beta\)</p>
+<p>The function \(\beta\) is a map from histories in the perfect information game \(\mathcal{SY-PI}(SY)\) to information cells in the game \(\mathcal{SY}\). To formally define it, \(\beta: H_{PI} \rightarrow \wp(H)\).</p>
+<p>For example, in the above mention \(G^X\) we will map \(\beta(\langle u_*, v_*, u_1 \rangle)\) where \(u_1 = \{a, b\}\) to \(C_1\) where \(C_1 = \{\langle u_*, v_* , a\rangle , \langle u_*, v_*, b \rangle \}\)</p>
+<p>Just as a reminder, \(C_i\) represents an indistinguishable state for \(\exists\) in \(\mathcal{SY}(SY)\).</p>
+<p>The perfect information Scotland Yard game was defined in such a way that \(\exists\)&lsquo;s imperfect information in \(\mathcal{SY}(SY)\) is propagated to perfect information about sets in \(\mathcal{SY-PI}(SY)\).</p>
+<p>Example of \(\beta\) in lieu of above mentioned example would be:</p>
+<figure>
+    <img src="https://i.imgur.com/Gk7mazm.png"/> 
+</figure>
+
+<p>It is important to note that though here \(\beta\) is defined to have a codomain \(\wp(H)\), it ends up having a range of \(\mathcal{H}\). This is due to the output always being \(C_i\) and \(\mathcal{H} = \{C_1, C_2 . . C_m \}\)</p>
+<p>To better define \(\beta\) and actually make it bijective, we redefine it as</p>
+<p>$$\beta: H_{PI} \rightarrow \mathcal{H}$$</p>
+<p>Now, let&rsquo;s prove that the groups \(\langle H, \prec \rangle\) and \(\langle H_{PI}, \prec_{PI} \rangle\) are isomorphic.</p>
+<p>It is proved that \(\beta\) is a bijection between \(H_{PI}\) and \(\mathcal{H}\). It remains to be shown that \(\beta\) preserves structure.</p>
+<p>Recall that for \(C&rsquo; \in \mathcal{H}\) to be an immediate successor of \(C \in \mathcal{H}\), there must exist two histories \(g, g&rsquo;\) in \(C, C&rsquo;\) respectively such that \(g \prec g&rsquo;\) (Proved earlier).</p>
+<p>What this proves is that for any histories \(h, h&rsquo; \in H_{PI}\) it is the case that \(h \prec_{PI} h&rsquo;\) iff \(\beta(h) \prec \beta(h&rsquo;)\)</p>
+<p>The claim is proved by a straightforward inductive argument on the length of the histories in \(H_{PI}\)</p>
+<p>Making use of the fact that \(\langle H_{PI}, \prec_{PI} \rangle\) and \(\langle H, \prec \rangle\) are isomorphic groups, an inductive argument proves that \(S\) is a winning strategy for \(\exists\) in \(\mathcal{SY-PI}\) iff \(S(\beta)\) is a winning strategy for \(\exists\) in \(\mathcal{SY}(SY)\).</p>
+<h2 id="-pspace">🌌 PSPACE<a href="#-pspace" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Let \(\text{SCOTLAND YARD}\) be the set of all Scotland Yard instances such that \(\exists\) has a winning strategy in \(\mathcal{SY}(SY)\).</p>
+<p>If we are able to prove that there is a winning strategy in PSPACE for \(\mathcal{SY}(SY)\), then it will stand true for \(\mathcal{SY-PI}(SY)\) as well.</p>
+<p>Papadimitriou, namely, observed that deciding the value of a game with perfect information can be done in PSPACE if the following requirements are met:</p>
+<ul>
+<li>The length of any legal sequence of moves is bounded by a polynomial in the size of the input</li>
+<li>Given a “board position” of the game there is a polynomial-space algorithm which constructs all possible subsequent actions and board positions; or, if there aren’t any, decides whether the board position is a win for either player.</li>
+</ul>
+<p>\(SY−PI(SY)\) meets those condition.</p>
+<p>For the first point, the length of the description of any history is bounded by the number of rounds \(k\), of the game. By assumption, \(k \leq |V|\), thus it is polynomially bounded.</p>
+<p>For the second point, as we have seen till now, each board game can be represented in form of a decision tree. More formally, if \(\langle h, U, \overrightarrow{v} \rangle\) is a non terminal history, then its successors are either (depending on \(f\)) only \(\langle h, U, \overrightarrow{v}, \{w_1 ,. . ., w_m \} \rangle\) or all of \(\langle h, U, \overrightarrow{v}, \{ w_1 \} \rangle\), . . . , \(\langle h, U, \overrightarrow{v}, \{ w_m \} \rangle\)</p>
+<p>Where \(E(U-\{\overrightarrow{v}\}) = \{ w_1, w_2 , . . , w_m\}\). These can easily be constructed in PSPACE.</p>
+<p>HENCE PROVED \(\mathcal{SY-PI}(SY)\), AND CONSEQUENTLY, \(\mathcal{SY}(SY)\) ARE PSPACE IN COMPLEXITY.</p>
+<hr>
+<p><strong>NOTE</strong>
+It is later shown that if there were a Scotland yard instance such that each $f = show$, then it would be <strong>PSPACE HARD</strong> in complexity. Also if each $f = hide$, then it would be <strong>NP HARD</strong> in complexity. These proofs are omitted due to the complexity of the math involved.</p>
+<h2 id="-references">📝 References<a href="#-references" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<ul>
+<li>
+<p>P. Nijssen and M. H. M. Winands, &ldquo;Monte Carlo Tree Search for the Hide-and-Seek Game Scotland Yard,&rdquo; in IEEE Transactions on Computational Intelligence and AI in Games, vol. 4, no. 4, pp. 282-294, Dec. 2012, doi: 10.1109/TCIAIG.2012.2210424.</p>
+</li>
+<li>
+<p>Sevenster, Merlijn. (2006). The complexity of Scotland Yard. Journal of Pharmacology and Experimental Therapeutics - J PHARMACOL EXP THER.</p>
+</li>
+</ul>
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://aurumnpegasus.github.io/website/tags/paper">paper</a></span><span class="tag"><a href="https://aurumnpegasus.github.io/website/tags/game">game</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1592 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-11-22 08:30 &#43;0530</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://aurumnpegasus.github.io/website/posts/scotland_yard_1/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Scotland Yard: Part 1</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2021 <a href="https://aurumnpegasus.github.io/website/">Shivansh Subramanian</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://aurumnpegasus.github.io/website/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+	</footer>
+
+
+
+	<script src="https://aurumnpegasus.github.io/website/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

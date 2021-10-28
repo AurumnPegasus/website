@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Co-Occurance Matrix">
+<meta itemprop="description" content="This blog contains an explanation and tutorial to create word embeddings via co-occurance matrix and svd">
+<meta itemprop="datePublished" content="2021-09-13T12:00:06&#43;09:00" />
+<meta itemprop="dateModified" content="2021-09-13T12:00:06&#43;09:00" />
+<meta itemprop="wordCount" content="712">
+
+
+
+<meta itemprop="keywords" content="nlp,ML," /><meta property="og:title" content="Co-Occurance Matrix" />
+<meta property="og:description" content="This blog contains an explanation and tutorial to create word embeddings via co-occurance matrix and svd" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://aurumnpegasus.github.io/website/posts/cooc_embeddings/" />
+<meta property="article:published_time" content="2021-09-13T12:00:06+09:00" />
+<meta property="article:modified_time" content="2021-09-13T12:00:06+09:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Co-Occurance Matrix"/>
+<meta name="twitter:description" content="This blog contains an explanation and tutorial to create word embeddings via co-occurance matrix and svd"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/website/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/website/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/website/favicon-16x16.png">
+	<link rel="manifest" href="/website/site.webmanifest">
+	<link rel="mask-icon" href="/website/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/website/favicon.ico">
+
+	<title>Co-Occurance Matrix</title>
+	<link rel="stylesheet" href="https://aurumnpegasus.github.io/website/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://aurumnpegasus.github.io/website/">Shivansh Subramanian</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://aurumnpegasus.github.io/website/posts/">Posts</a>
+				<a href="https://aurumnpegasus.github.io/website/about-hugo/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="mailto:subramanian.shivansh@gmail.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://instagram.com/shivansh._.21/" target="_blank" rel="noopener me" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a><a href="https://github.com/AurumnPegasus" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://aurumnpegasus.github.io/website/posts/">Posts</a></li>
+			<li><a href="https://aurumnpegasus.github.io/website/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Sep 13, 2021</span></div>
+				<h1>Co-Occurance Matrix</h1>
+			</header>
+			<div class="content">
+				<p>This blog contains an explanation and tutorial to create word embeddings via co-occurance matrix and svd</p>
+<h2 id="introduction">Introduction<a href="#introduction" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>A computer cannot understand the language of humans. It can do a lot by understanding where and how words occur in a sentence, but it still cannot understand the semantics of a word. To map the human semantic space into something which a computer can understand, compute and work with, Word-Embedding Space is created. This is an n-dimensional vector space where each vector within it represents a word. Words similar in meaning are close together, and words that are opposites are farther apart.</p>
+<h2 id="problem">Problem<a href="#problem" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>The problem here is that we are given a huge .json file which contains bunch of reviews. Our goal is to create a word embedding space by it so that we can represent all the words and their meaning via n-dimensional vectors</p>
+<h2 id="preparing-data">Preparing Data<a href="#preparing-data" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Data preparation for the task is quite simple, we will extract the reviews and tokenize them. We will <strong>not</strong> be removing stop words or lemmatizing since all high frequency words are important.</p>
+<p>First, we read the reviews from given json file. I have used <a href="https://pypi.org/project/ijson/">ijson</a>, which is a library which helps in iteratively parse huge json files (instead of loading the whole file to the RAM). I have also used <a href="https://spacy.io/">spacy</a> for tokenizing since its one of the best at it.</p>
+<p>The below code is simple to understand, I have created a class which creates our vocabulary, and tokenizes the sentences. There are various methods to do this but I felt this was a really cool and modular way to achieve this!</p>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">ijson</span>
+<span class="kn">import</span> <span class="nn">spacy</span>
+
+<span class="k">class</span> <span class="nc">Data</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+      <span class="c1"># All the variables in uppercase are globally defined constants</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">PATH</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">limit</span> <span class="o">=</span> <span class="n">LIMIT</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">WINDOW</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">DATASET</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">word2index</span> <span class="o">=</span> <span class="p">{}</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">index2word</span> <span class="o">=</span> <span class="p">{}</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">vocab</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+  
+  <span class="k">def</span> <span class="nf">getSentences</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sentences</span>
+
+  <span class="k">def</span> <span class="nf">getVocab</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">word2index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">index2word</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocab</span>
+
+  <span class="k">def</span> <span class="nf">readJSON</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+
+      <span class="c1"># Reading sentences line by line</span>
+      <span class="n">sentences</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+      <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">ijson</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s1">&#39;reviewText&#39;</span><span class="p">,</span> <span class="n">multiple_reviews</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+          <span class="n">sentences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+          <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span> <span class="o">==</span> <span class="n">limit</span><span class="p">:</span>
+              <span class="k">break</span>
+      
+      <span class="k">return</span> <span class="n">sentences</span>
+
+  <span class="k">def</span> <span class="nf">addWords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
+
+      <span class="c1"># Adding words to vocabulary (if they don&#39;t exist in it previously)</span>
+      <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">word2index</span><span class="p">:</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">word2index</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">index2word</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">word</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+  
+  <span class="k">def</span> <span class="nf">createVocab</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sentences</span><span class="p">):</span>
+
+      <span class="c1"># Going line by line and token by token</span>
+      <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+          <span class="n">words</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nlp</span><span class="p">(</span><span class="n">sent</span><span class="p">)</span>
+          <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+              <span class="bp">self</span><span class="o">.</span><span class="n">addWords</span><span class="p">(</span><span class="n">word</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">sentences</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">readJSON</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">limit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">createVocab</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sentences</span><span class="p">)</span>
+</code></pre></div><h2 id="creating-co-occurance-matrix">Creating Co-Occurance Matrix<a href="#creating-co-occurance-matrix" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Usually, the limit of numpy matrices are around the region of 1e5*1e5. In some cases, the data might exceed this limit, hence I have used sparse matrices (so that all the cases are covered). Sparse matrices are able to hold larger matrices given that they are sparse in nature (mostly 0s).</p>
+<p>I have used <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.lil_matrix.html">lil_matrix</a> to create the sparse matrix, you can also use <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_matrix.html">csr_matrix</a> instead.</p>
+<p>I have also used <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.svds.html">svds</a>, which is a function which returns the Singular Value Decomposition matrices given a matrix and is optimised to work on sparse matrices. You can also use <a href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.TruncatedSVD.html">truncated_svd</a> in place of it.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python">
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="kn">import</span> <span class="n">svds</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">lil_matrix</span>
+
+<span class="k">class</span> <span class="nc">Matrix</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sentences</span><span class="p">,</span> <span class="n">nlp</span><span class="p">,</span> <span class="n">word2index</span><span class="p">,</span> <span class="n">index2word</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">vocab</span><span class="p">):</span>
+
+      <span class="c1"># Window refers to the window size for calculating co-occurances</span>
+      <span class="c1"># K refers to the truncated value of svd we will be taking</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">sentences</span> <span class="o">=</span> <span class="n">sentences</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">nlp</span> <span class="o">=</span> <span class="n">nlp</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">WINDOW</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">word2index</span> <span class="o">=</span> <span class="n">word2index</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">index2word</span> <span class="o">=</span> <span class="n">index2word</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">vocab</span> <span class="o">=</span> <span class="n">vocab</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">K</span>
+
+  <span class="k">def</span> <span class="nf">getEmbeddings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span>
+
+  <span class="k">def</span> <span class="nf">getMatrix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span>
+
+  <span class="k">def</span> <span class="nf">wordEmbeddings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">word2index</span><span class="p">[</span><span class="n">word</span><span class="p">]]</span>
+
+  <span class="k">def</span> <span class="nf">moveWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">sentences</span><span class="p">):</span>
+
+      <span class="c1"># Going window to window to increment all co-occuring words</span>
+      <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+          <span class="n">words</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nlp</span><span class="p">(</span><span class="n">sent</span><span class="p">)</span>
+          <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">-</span> <span class="n">window</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+              <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">window</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                  <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+                      <span class="n">i_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">word2index</span><span class="p">[</span><span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">]</span>
+                      <span class="n">j_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">word2index</span><span class="p">[</span><span class="n">words</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">]</span>
+                      <span class="n">matrix</span><span class="p">[</span><span class="n">i_index</span><span class="p">,</span> <span class="n">j_index</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                      <span class="n">matrix</span><span class="p">[</span><span class="n">j_index</span><span class="p">,</span> <span class="n">i_index</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+      <span class="k">return</span> <span class="n">matrix</span>
+
+  <span class="k">def</span> <span class="nf">getSVD</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">):</span>
+
+      <span class="c1"># Performing Single Value Decomposition on matrix and taking top k columns</span>
+      <span class="c1"># The word embeddings is the right matrix, and hence we return only that</span>
+      <span class="n">right</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">left_t</span> <span class="o">=</span> <span class="n">svds</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">right</span>
+
+  <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">=</span> <span class="n">lil_matrix</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">moveWindow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sentences</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getSVD</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span>
+
+</code></pre></div>
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://aurumnpegasus.github.io/website/tags/nlp">nlp</a></span><span class="tag"><a href="https://aurumnpegasus.github.io/website/tags/ml">ML</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>712 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-09-13 08:30 &#43;0530</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://aurumnpegasus.github.io/website/posts/sigmoid/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Linear Classifier</span>
+			</a>
+			<a class="prev-post" href="https://aurumnpegasus.github.io/website/posts/huge_files/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Reversing Huge Files</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2021 <a href="https://aurumnpegasus.github.io/website/">Shivansh Subramanian</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://aurumnpegasus.github.io/website/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+	</footer>
+
+
+
+	<script src="https://aurumnpegasus.github.io/website/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

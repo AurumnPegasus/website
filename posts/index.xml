@@ -1,0 +1,1196 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Posts on Shivansh Subramanian</title>
+		<link>https://aurumnpegasus.github.io/website/posts/</link>
+		<description>Recent content in Posts on Shivansh Subramanian</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en-us</language>
+		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+		<lastBuildDate>Wed, 13 Oct 2021 12:00:06 +0900</lastBuildDate>
+		<atom:link href="https://aurumnpegasus.github.io/website/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Reduced Row Echelon Form</title>
+			<link>https://aurumnpegasus.github.io/website/posts/rref/</link>
+			<pubDate>Wed, 13 Oct 2021 12:00:06 +0900</pubDate>
+			
+			<guid>https://aurumnpegasus.github.io/website/posts/rref/</guid>
+			<description>&lt;p&gt;The blog explains how to find reduced row-echelon form of a matrix in python&lt;/p&gt;</description>
+			<content type="html"><![CDATA[<p>The blog explains how to find reduced row-echelon form of a matrix in python</p>
+<h2 id="introduction">Introduction</h2>
+<p>A matrix being in a row-echelon form means that <a href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination</a> has operated on the rows. A matrix is said to be in column-echelon form if its transpose is in row-echelon form. The specific conditions of RE are:</p>
+<ul>
+<li>All rows consisting of only zeros are at the bottom</li>
+<li>The leading coefficient (pivot) of a non zero row is always to the right of the leading coefficient of the row above it</li>
+</ul>
+<p>RREF (Reduced Row-Echelon Form) has 2 more conditions:</p>
+<ul>
+<li>Matrix must be in RE form</li>
+<li>All pivots must be 1</li>
+<li>Each column containing a leading 1 has zeros everywhere else.</li>
+</ul>
+<p>One might achieve the RREF via elementary row operations, and here is a code for that!</p>
+<h2 id="code">Code</h2>
+<p>Essentially, we want to do this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">def</span> <span class="nf">rref</span><span class="p">(</span><span class="n">matrix</span><span class="p">):</span>
+  <span class="n">dimension</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span>
+  <span class="n">numrows</span> <span class="o">=</span> <span class="n">dimension</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+  <span class="n">numcols</span> <span class="o">=</span> <span class="n">dimension</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+  <span class="n">lead</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># or pivot</span>
+  <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numrows</span><span class="p">):</span>
+      <span class="c1"># &lt;END: if you reach last column&gt;</span>
+
+      <span class="c1"># &lt;LOOP: to find next pivot&gt;</span>
+
+      <span class="c1"># &lt;CONVERT: convert all other rows based on pivot&gt;</span>
+</code></pre></div><p>Now, lets write code for each one by one. The first part is END, which is essentially that if you dont have any more columns, it means that the matrix is already in a RREF state, hence return.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="c1"># END:</span>
+<span class="k">if</span> <span class="n">lead</span> <span class="o">&gt;=</span> <span class="n">numcols</span><span class="p">:</span>
+  <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span>
+  <span class="k">return</span>
+</code></pre></div><p>The loop parts requires you to go through each column in the row to determine if the number is suitable to be a pivot. If you find none, then go to the next column! (this means current column was all zeros and must be put at last). If there are no pivots at all to be found, that means you have already reached RREF</p>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="c1"># LOOP:</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">r</span>
+<span class="k">while</span> <span class="n">matrix</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">lead</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">:</span>
+  <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+  <span class="k">if</span> <span class="n">numrows</span> <span class="o">==</span> <span class="n">index</span><span class="p">:</span>
+      <span class="c1"># No pivots in my row, all zeros</span>
+      <span class="n">lead</span> <span class="o">+=</span> <span class="mi">1</span>
+      <span class="k">if</span> <span class="n">lead</span> <span class="o">==</span> <span class="n">numcols</span><span class="p">:</span>
+          <span class="c1"># No pivots at all</span>
+          <span class="k">print</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
+          <span class="k">return</span>
+
+<span class="c1"># Swap if I had to go to the next column</span>
+<span class="n">matrix</span><span class="p">[[</span><span class="n">index</span><span class="p">,</span> <span class="n">r</span><span class="p">],</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[[</span><span class="n">r</span><span class="p">,</span> <span class="n">index</span><span class="p">],</span> <span class="p">:]</span>
+</code></pre></div><p>I have my pivot now <code>matrix[r][lead]</code>, which I need to convert to 1 via elementary row operations. Once that is done, everything else in the column needs to be converted to 0s as well</p>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="c1"># CONVERT:</span>
+
+<span class="c1"># R = R/k</span>
+<span class="n">matrix</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">/</span> <span class="n">matrix</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">lead</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numrows</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">r</span><span class="p">:</span>
+      <span class="c1"># I = I - cR</span>
+      <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">lead</span><span class="p">]</span><span class="o">*</span><span class="n">matrix</span><span class="p">[</span><span class="n">r</span><span class="p">]</span>
+</code></pre></div><h2 id="walkthrough">🚶Walkthrough:</h2>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">matrix: array([[ -12,  12,   2],
+               [ 12, -12,  -2],
+               [  2,  -2, -17]])
+------------------------------------------------------------------------
+
+Iteration 1:
+lead = 0, i = 0, r = 0
+
+After Swapping:
+matrix: array([[ -12,  12,   2],
+               [ 12, -12,  -2],
+               [ 2,  -2, -17]])
+
+Dividing by -12:
+matrix: array([[ 1,  -1,   0],
+               [ 12, -12,  -2],
+               [ 2,  -2, -17]])
+
+matrix[i] = [ 12 -12  -2] - 12*[ 1 -1  0]
+matrix[i] = [ 12 -12  -2] - 12*[ 1 -1  0]
+
+After Iteration 1:
+matrix: array([[ 1,  -1,   0],
+               [ 0,   0,  -2],
+               [ 0,   0, -17]])
+
+
+------------------------------------------------------------------------
+
+Iteration 2:
+lead = 1, i = 1, r = 1
+
+After Swapping:
+array([[ 1,  -1,   0],
+       [ 0,   0,  -2],
+       [ 0,   0, -17]])
+
+Dividing by -2:
+matrix: array([[ 1,  -1,   0],
+               [ 0,   0,   1],
+               [ 0,   0, -17]])
+
+matrix[i] = [ 1 -1  0] - 0*[0 0 1]
+matrix[i] = [  0   0 -17] - -17*[0 0 1]
+
+After Second Iteration:
+matrix: array([[ 1, -1,  0],
+               [ 0,  0,  1],
+               [ 0,  0,  0]])
+------------------------------------------------------------------------
+
+Third Iteration:
+
+since lead &gt;= numcols, exit
+</code></pre></div><h2 id="final-code">Final Code:</h2>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="k">class</span> <span class="nc">RREF</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">):</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">=</span> <span class="n">matrix</span>
+
+  <span class="k">def</span> <span class="nf">rref</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="n">dimension</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="o">.</span><span class="n">shape</span>
+      <span class="n">numrows</span> <span class="o">=</span> <span class="n">dimension</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+      <span class="n">numcols</span> <span class="o">=</span> <span class="n">dimension</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+      <span class="n">lead</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">numrows</span><span class="p">):</span>
+          <span class="k">if</span> <span class="n">numcols</span> <span class="o">&lt;=</span> <span class="n">lead</span><span class="p">:</span>
+              <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span>
+              <span class="k">return</span>
+
+          <span class="n">index</span> <span class="o">=</span> <span class="n">r</span>
+          <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">lead</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+              <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+              <span class="k">if</span> <span class="n">numrows</span> <span class="o">==</span> <span class="n">index</span><span class="p">:</span>
+                  <span class="n">index</span> <span class="o">=</span> <span class="n">r</span>
+                  <span class="n">lead</span> <span class="o">+=</span> <span class="mi">1</span>
+                  <span class="k">if</span> <span class="n">lead</span> <span class="o">==</span> <span class="n">numcols</span><span class="p">:</span>
+                      <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span>
+                      <span class="k">return</span>
+
+          <span class="c1"># swap if my row is all 0s</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[[</span><span class="n">index</span><span class="p">,</span> <span class="n">r</span><span class="p">],</span> <span class="p">:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[[</span><span class="n">r</span><span class="p">,</span> <span class="n">index</span><span class="p">],</span> <span class="p">:]</span>
+
+          <span class="c1"># make my first number = 1</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">lead</span><span class="p">]</span>
+
+          <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numrows</span><span class="p">):</span>
+              <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">r</span><span class="p">:</span>
+                  <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;Matrix: self.matrix[i] = {self.matrix[i]} - {self.matrix[i][lead]}*{self.matrix[r]}&#34;</span><span class="p">)</span>
+                  <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">lead</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">r</span><span class="p">]</span>
+          <span class="n">lead</span> <span class="o">+=</span> <span class="mi">1</span>
+
+      <span class="n">ic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+  <span class="p">[</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">17</span><span class="p">]</span>
+<span class="p">])</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">RREF</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">r</span><span class="o">.</span><span class="n">rref</span><span class="p">()</span>
+</code></pre></div><h2 id="references">References:</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Row_echelon_form#Reduced_row_echelon_form">Understanding RREF from wikipedia</a></li>
+<li><a href="https://rosettacode.org/wiki/Reduced_row_echelon_form">Psuedocode from Rosetta Code, containing implementation in lots of different languages!</a></li>
+</ul>]]></content>
+		</item>
+		
+		<item>
+			<title>Linear Classifier</title>
+			<link>https://aurumnpegasus.github.io/website/posts/sigmoid/</link>
+			<pubDate>Tue, 21 Sep 2021 12:00:06 +0900</pubDate>
+			
+			<guid>https://aurumnpegasus.github.io/website/posts/sigmoid/</guid>
+			<description>&lt;p&gt;The blog explains how to create a linear classifier from scratch using MSE loss and Sigmoid Function.&lt;/p&gt;</description>
+			<content type="html"><![CDATA[<p>The blog explains how to create a linear classifier from scratch using MSE loss and Sigmoid Function.</p>
+<h2 id="introduction">Introduction</h2>
+<p>A classifier is a machine that can differentiate between objects of two or more different classes. We define a Loss Function J as the Mean Squared Error of the actual value vs the predicted value. The machine learns to differentiate between classes by minimising the function J (via gradient descent). For simplicity and explainibility, we have considered two categories and are trying to find a line that divides these two classes.
+The explanation below assumes that the reader has a decent understanding of calculus and gradient descent algorithms.</p>
+<h2 id="dataset">Dataset</h2>
+<p>We artificially generate a dataset using NumPy. Two classes are shown in a two-dimensional plot in red and blue, with class 1 centred around (-5, 3) and class 2 centred around (3, -5). We use the same covariance matrix for both classes.</p>
+<figure>
+    <img src="https://i.imgur.com/d3hqH4Y.png"/> 
+</figure>
+
+<p><br>
+Our training dataset consists of 1000 samples, with 500 belonging to class 1 and 500 belonging to class 2. The test dataset consists of 200 samples, with 100 belonging to each class.</p>
+<p>First, we get multiple samples from a multivariate normal distribution using NumPy.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">def</span> <span class="nf">getClasses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="c1"># Assumed equal amount of samples in each class, you can take anything</span>
+  <span class="c1"># covariance matrix = [[12, 0], [0, 12]]</span>
+
+  <span class="c1"># mean_a = [-5, 3]</span>
+  <span class="n">train_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mean_a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">covariance</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_len</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+  <span class="n">test_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mean_a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">covariance</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_len</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+
+  <span class="c1"># mean_b = [3, -5]</span>
+  <span class="n">train_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mean_b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">covariance</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_len</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+  <span class="n">test_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mean_b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">covariance</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_len</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="n">train_a</span><span class="p">,</span> <span class="n">test_a</span><span class="p">,</span> <span class="n">train_b</span><span class="p">,</span> <span class="n">test_b</span>
+</code></pre></div><p>Once we have samples from the two classes, we append them together (and add 1 for bias) to get train and test dataset.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="n">train_a</span><span class="p">,</span> <span class="n">test_a</span><span class="p">,</span> <span class="n">train_b</span><span class="p">,</span> <span class="n">test_b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getClasses</span><span class="p">()</span>
+
+  <span class="c1"># Assigning 1 label to class A and -1 to class B</span>
+  <span class="bp">self</span><span class="o">.</span><span class="n">train_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">train_a</span><span class="p">,</span> <span class="n">train_b</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train_len</span><span class="p">))</span><span class="o">.</span><span class="n">T</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+  <span class="bp">self</span><span class="o">.</span><span class="n">train_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train_len</span><span class="o">//</span><span class="mi">2</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train_len</span><span class="o">//</span><span class="mi">2</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+  <span class="bp">self</span><span class="o">.</span><span class="n">test_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">test_a</span><span class="p">,</span> <span class="n">test_b</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_len</span><span class="p">))</span><span class="o">.</span><span class="n">T</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+  <span class="bp">self</span><span class="o">.</span><span class="n">test_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_len</span><span class="o">//</span><span class="mi">2</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_len</span><span class="o">//</span><span class="mi">2</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</code></pre></div><h2 id="gradiant">Gradiant</h2>
+<p>In two dimensions, a linear classifier is just a line. Let us denote it by \(f\) . We define our dataset as \(x = [x_0, x_1, 1]\) and weight \(w = [w_0, w_1, w_2]\), where \(w\) is the term we want to learn. Though our samples are in two-dimensions, we have \(x\) as three-dimensional vector so as to account for bias.</p>
+<p>Since we are using MSE loss, we get:</p>
+<p>$$ J = \frac{1}{N} \mid \mid y - \sigma(w.x^T) \mid \mid^2 $$</p>
+<p>Where:
+\(J\) is the loss function
+\(N\) is the number of samples
+\(y\) is the correct output
+\(\sigma(w.x^t)\) is the predicted output</p>
+<p>Now, we can differentiate it as:</p>
+<p>$$ \nabla J = \frac{\text{d} J}{\text{d} w} = \frac{1}{N} \times 2 \times (y - \sigma(w.x^T)) \odot \frac{\text{d} (y - \sigma(w.x^T))}{\text{d}w}$$</p>
+<p>The symbol $\odot$ symbolises <a href="https://en.wikipedia.org/wiki/Hadamard_product_(matrices)">Hadamard Product</a>.
+According to <a href="https://beckernick.github.io/sigmoid-derivative-neural-network/">in-depth proof</a>, we get:</p>
+<p>$$ \frac{\text{d} \sigma(x)}{\text{d} x} = \sigma(x) ( 1- \sigma(x) ) $$</p>
+<p>Substituting this formula</p>
+<p>$$ \nabla J = \frac{2}{N} \times (y - \sigma(w.x^T)) \times \sigma(w.x^T) (1 - \sigma(w.x^T) \times x^T$$</p>
+<h2 id="classification">Classification</h2>
+<p>We have the gradiant, now using the gradiant descent formula we get</p>
+<p>$$ w = w - \eta\times \nabla J $$</p>
+<p>Continue doing this till the difference in improvement is less than 0.0001 (arbitrary number)</p>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">def</span> <span class="nf">training</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">getTrain</span><span class="p">()</span>
+
+  <span class="c1"># Pre-defining weights as 1</span>
+  <span class="n">w_prev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+  <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+  <span class="n">train_errors</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">iteration</span> <span class="o">=</span> <span class="mi">0</span>
+
+  <span class="k">while</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">w</span> <span class="o">-</span> <span class="n">w_prev</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-4</span><span class="p">:</span>
+
+      <span class="c1"># Computing the loss via MSE</span>
+      <span class="n">loss</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_len</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">x</span><span class="p">)))</span><span class="o">**</span><span class="mi">2</span>
+      <span class="n">train_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
+
+      <span class="n">w_prev</span> <span class="o">=</span> <span class="n">w</span>
+
+      <span class="c1"># w = w - η∇J</span>
+      <span class="c1"># @: hadamard product, matmul: dot product</span>
+      <span class="n">w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span><span class="o">*</span><span class="mi">2</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_len</span> <span class="o">*</span> <span class="p">(</span>
+          <span class="n">np</span><span class="o">.</span><span class="n">mat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">w</span><span class="nd">@x</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">w</span><span class="nd">@x</span><span class="p">)))))</span><span class="nd">@x.T</span> 
+          <span class="o">+</span> 
+          <span class="n">np</span><span class="o">.</span><span class="n">mat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">w</span><span class="nd">@x</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">w</span><span class="nd">@x</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">w</span><span class="nd">@x</span><span class="p">))))</span><span class="nd">@x.T</span>
+      <span class="p">)</span>
+      <span class="n">iteration</span> <span class="o">+=</span> <span class="mi">1</span>
+  
+  <span class="k">return</span> <span class="n">w</span>
+</code></pre></div><h2 id="results">Results</h2>
+<p>We use the learned $w$ to create the classification line (this is only possible since we have a 2-dimensional space, for higher dimensions it is impossible to visualise such equations).</p>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="n">weights</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">training</span><span class="p">()</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="o">-</span><span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">/</span> <span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">c</span>
+
+<span class="c1"># Plotting the line on train dataset (can do the same for test dataset as well)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">train_a</span><span class="p">],</span> <span class="p">[</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">train_a</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Class 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">train_b</span><span class="p">],</span> <span class="p">[</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">train_b</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Class 2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;-r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div><p>We see the learned classifier performing well on the training set:</p>
+<figure>
+    <img src="https://i.imgur.com/r49wLqC.png"/> 
+</figure>
+
+<p>Testing the same on test dataset we find:</p>
+<figure>
+    <img src="https://i.imgur.com/HvEWPcg.png"/> 
+</figure>
+
+<h2 id="references">References:</h2>
+<p>Introduction to DL: <a href="https://github.com/sayarghoshroy/Intro_to_DL_tutorial">https://github.com/sayarghoshroy/Intro_to_DL_tutorial</a></p>]]></content>
+		</item>
+		
+		<item>
+			<title>Co-Occurance Matrix</title>
+			<link>https://aurumnpegasus.github.io/website/posts/cooc_embeddings/</link>
+			<pubDate>Mon, 13 Sep 2021 12:00:06 +0900</pubDate>
+			
+			<guid>https://aurumnpegasus.github.io/website/posts/cooc_embeddings/</guid>
+			<description>&lt;p&gt;This blog contains an explanation and tutorial to create word embeddings via co-occurance matrix and svd&lt;/p&gt;</description>
+			<content type="html"><![CDATA[<p>This blog contains an explanation and tutorial to create word embeddings via co-occurance matrix and svd</p>
+<h2 id="introduction">Introduction</h2>
+<p>A computer cannot understand the language of humans. It can do a lot by understanding where and how words occur in a sentence, but it still cannot understand the semantics of a word. To map the human semantic space into something which a computer can understand, compute and work with, Word-Embedding Space is created. This is an n-dimensional vector space where each vector within it represents a word. Words similar in meaning are close together, and words that are opposites are farther apart.</p>
+<h2 id="problem">Problem</h2>
+<p>The problem here is that we are given a huge .json file which contains bunch of reviews. Our goal is to create a word embedding space by it so that we can represent all the words and their meaning via n-dimensional vectors</p>
+<h2 id="preparing-data">Preparing Data</h2>
+<p>Data preparation for the task is quite simple, we will extract the reviews and tokenize them. We will <strong>not</strong> be removing stop words or lemmatizing since all high frequency words are important.</p>
+<p>First, we read the reviews from given json file. I have used <a href="https://pypi.org/project/ijson/">ijson</a>, which is a library which helps in iteratively parse huge json files (instead of loading the whole file to the RAM). I have also used <a href="https://spacy.io/">spacy</a> for tokenizing since its one of the best at it.</p>
+<p>The below code is simple to understand, I have created a class which creates our vocabulary, and tokenizes the sentences. There are various methods to do this but I felt this was a really cool and modular way to achieve this!</p>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">ijson</span>
+<span class="kn">import</span> <span class="nn">spacy</span>
+
+<span class="k">class</span> <span class="nc">Data</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+      <span class="c1"># All the variables in uppercase are globally defined constants</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">PATH</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">limit</span> <span class="o">=</span> <span class="n">LIMIT</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">WINDOW</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">DATASET</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">word2index</span> <span class="o">=</span> <span class="p">{}</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">index2word</span> <span class="o">=</span> <span class="p">{}</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">vocab</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+  
+  <span class="k">def</span> <span class="nf">getSentences</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sentences</span>
+
+  <span class="k">def</span> <span class="nf">getVocab</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">word2index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">index2word</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vocab</span>
+
+  <span class="k">def</span> <span class="nf">readJSON</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+
+      <span class="c1"># Reading sentences line by line</span>
+      <span class="n">sentences</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+      <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">ijson</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s1">&#39;reviewText&#39;</span><span class="p">,</span> <span class="n">multiple_reviews</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+          <span class="n">sentences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+          <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span> <span class="o">==</span> <span class="n">limit</span><span class="p">:</span>
+              <span class="k">break</span>
+      
+      <span class="k">return</span> <span class="n">sentences</span>
+
+  <span class="k">def</span> <span class="nf">addWords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
+
+      <span class="c1"># Adding words to vocabulary (if they don&#39;t exist in it previously)</span>
+      <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">word2index</span><span class="p">:</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">word2index</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">index2word</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">word</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+  
+  <span class="k">def</span> <span class="nf">createVocab</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sentences</span><span class="p">):</span>
+
+      <span class="c1"># Going line by line and token by token</span>
+      <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+          <span class="n">words</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nlp</span><span class="p">(</span><span class="n">sent</span><span class="p">)</span>
+          <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+              <span class="bp">self</span><span class="o">.</span><span class="n">addWords</span><span class="p">(</span><span class="n">word</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">sentences</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">readJSON</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">limit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">createVocab</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sentences</span><span class="p">)</span>
+</code></pre></div><h2 id="creating-co-occurance-matrix">Creating Co-Occurance Matrix</h2>
+<p>Usually, the limit of numpy matrices are around the region of 1e5*1e5. In some cases, the data might exceed this limit, hence I have used sparse matrices (so that all the cases are covered). Sparse matrices are able to hold larger matrices given that they are sparse in nature (mostly 0s).</p>
+<p>I have used <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.lil_matrix.html">lil_matrix</a> to create the sparse matrix, you can also use <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_matrix.html">csr_matrix</a> instead.</p>
+<p>I have also used <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.svds.html">svds</a>, which is a function which returns the Singular Value Decomposition matrices given a matrix and is optimised to work on sparse matrices. You can also use <a href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.TruncatedSVD.html">truncated_svd</a> in place of it.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python">
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="kn">import</span> <span class="n">svds</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">lil_matrix</span>
+
+<span class="k">class</span> <span class="nc">Matrix</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sentences</span><span class="p">,</span> <span class="n">nlp</span><span class="p">,</span> <span class="n">word2index</span><span class="p">,</span> <span class="n">index2word</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">vocab</span><span class="p">):</span>
+
+      <span class="c1"># Window refers to the window size for calculating co-occurances</span>
+      <span class="c1"># K refers to the truncated value of svd we will be taking</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">sentences</span> <span class="o">=</span> <span class="n">sentences</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">nlp</span> <span class="o">=</span> <span class="n">nlp</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">WINDOW</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">word2index</span> <span class="o">=</span> <span class="n">word2index</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">index2word</span> <span class="o">=</span> <span class="n">index2word</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">vocab</span> <span class="o">=</span> <span class="n">vocab</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">K</span>
+
+  <span class="k">def</span> <span class="nf">getEmbeddings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span>
+
+  <span class="k">def</span> <span class="nf">getMatrix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span>
+
+  <span class="k">def</span> <span class="nf">wordEmbeddings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">word2index</span><span class="p">[</span><span class="n">word</span><span class="p">]]</span>
+
+  <span class="k">def</span> <span class="nf">moveWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">sentences</span><span class="p">):</span>
+
+      <span class="c1"># Going window to window to increment all co-occuring words</span>
+      <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+          <span class="n">words</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nlp</span><span class="p">(</span><span class="n">sent</span><span class="p">)</span>
+          <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">-</span> <span class="n">window</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+              <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">window</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                  <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+                      <span class="n">i_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">word2index</span><span class="p">[</span><span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">]</span>
+                      <span class="n">j_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">word2index</span><span class="p">[</span><span class="n">words</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">]</span>
+                      <span class="n">matrix</span><span class="p">[</span><span class="n">i_index</span><span class="p">,</span> <span class="n">j_index</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                      <span class="n">matrix</span><span class="p">[</span><span class="n">j_index</span><span class="p">,</span> <span class="n">i_index</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+      <span class="k">return</span> <span class="n">matrix</span>
+
+  <span class="k">def</span> <span class="nf">getSVD</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">):</span>
+
+      <span class="c1"># Performing Single Value Decomposition on matrix and taking top k columns</span>
+      <span class="c1"># The word embeddings is the right matrix, and hence we return only that</span>
+      <span class="n">right</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">left_t</span> <span class="o">=</span> <span class="n">svds</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">right</span>
+
+  <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">=</span> <span class="n">lil_matrix</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">moveWindow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sentences</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getSVD</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span>
+
+</code></pre></div>]]></content>
+		</item>
+		
+		<item>
+			<title>Reversing Huge Files</title>
+			<link>https://aurumnpegasus.github.io/website/posts/huge_files/</link>
+			<pubDate>Mon, 13 Sep 2021 12:00:06 +0900</pubDate>
+			
+			<guid>https://aurumnpegasus.github.io/website/posts/huge_files/</guid>
+			<description>&lt;p&gt;This blog contains an explanation and tutorial of how to reverse very large files in C&lt;/p&gt;</description>
+			<content type="html"><![CDATA[<p>This blog contains an explanation and tutorial of how to reverse very large files in C</p>
+<h2 id="introduction">Introduction</h2>
+<p>To understand requiring a different method to read and reverse huge files, one must first understand the standard process. Your system loads the program you want to execute into the RAM, and since you are reading the whole file at once, it loads it into the RAM. Now, in standard systems, RAM is limited to about 4-8 GB; hence, it cannot load the whole file into the RAM at once.
+A simple work-around to this is not to load the file into the RAM at all. If you read everything directly from the disk storage, your program would execute, but it will become excruciatingly slow.</p>
+<h2 id="problem">Problem</h2>
+<p>The problem here is that we are given three values: path to the file, number of parts we want to divide the text into and the block we want to reverse. Just for a simple explanation, we will assume that the text length is perfectly divisible by the number of parts given.</p>
+<h2 id="solution">Solution</h2>
+<p>To solve this, instead of trying to either load the whole text into the RAM or not load it at all, we will load it block by block.  The text file will remain in the disk, but we will move the cursor so that it loads just X amount of characters into the RAM each time.</p>
+<h4 id="setup">Setup</h4>
+<p>First, we read the given arguments and get our source and destination files ready. It is important to know what each of the flags here do. For a better understanding, refer to its <a href="https://man7.org/linux/man-pages/man2/open.2.html">man page.</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-C" data-lang="C">
+<span class="c1">// O_RDONLY: Read Only  
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">source</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">O_RDONLY</span><span class="p">);</span>
+
+<span class="c1">// O_WRONLY: Write Only
+</span><span class="c1">// O_CREAT: Create the file if it does not exist
+</span><span class="c1">// O_TRUNC: Overwrite the file
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">destination</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="s">&#34;output.txt&#34;</span><span class="p">,</span> <span class="n">O_WRONLY</span> <span class="o">|</span> <span class="n">O_CREAT</span> <span class="o">|</span> <span class="n">O_TRUNC</span><span class="p">,</span> <span class="mo">0600</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="n">total_parts</span> <span class="o">=</span> <span class="o">*</span><span class="n">value</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="mi">48</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="o">*</span><span class="n">value</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="mi">48</span><span class="p">;</span>
+</code></pre></div><h4 id="main-code">Main Code</h4>
+<p>The star of our show is <a href="https://man7.org/linux/man-pages/man2/lseek.2.html">lseek.</a> It is a system call which repositions the cursor as we want (without loading it into the RAM). Before going into the main logic, we need to define some variables.</p>
+<div class="highlight"><pre class="chroma"><code class="language-C" data-lang="C">  <span class="c1">// in the source file, go the end of file and offset by 0
+</span><span class="c1"></span>  <span class="n">off_t</span> <span class="n">source_size</span> <span class="o">=</span> <span class="n">lseek</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SEEK_END</span><span class="p">);</span>
+
+  <span class="c1">// block size
+</span><span class="c1"></span>  <span class="kt">long</span> <span class="n">limit</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">;</span>
+
+  <span class="c1">// Length of each part of source file
+</span><span class="c1"></span>  <span class="kt">long</span> <span class="n">each_part</span> <span class="o">=</span> <span class="n">source_size</span><span class="o">/</span><span class="n">total_parts</span>
+
+  <span class="c1">// Start and ending position of part we need to reverse
+</span><span class="c1"></span>  <span class="kt">long</span> <span class="n">start</span> <span class="o">=</span> <span class="p">(</span><span class="n">index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">each_part</span><span class="p">;</span>
+  <span class="kt">long</span> <span class="n">end</span> <span class="o">=</span> <span class="p">(</span><span class="n">index</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">each_part</span> <span class="o">+</span> <span class="n">each_part</span>
+
+  <span class="c1">// Arrays for storing read and reversed part
+</span><span class="c1"></span>  <span class="kt">char</span> <span class="o">*</span><span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="n">malloc</span><span class="p">(</span><span class="n">limit</span><span class="p">);</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">rev</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="n">malloc</span><span class="p">(</span><span class="n">limit</span><span class="p">);</span>
+</code></pre></div><p>Now, onto the main logic (which is surprisingly small)</p>
+<div class="highlight"><pre class="chroma"><code class="language-C" data-lang="C">  <span class="k">for</span><span class="p">(</span><span class="kt">long</span> <span class="n">i</span><span class="o">=</span><span class="n">start</span><span class="o">+</span><span class="n">limit</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">end</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="n">limit</span><span class="p">){</span>
+
+      <span class="c1">// SET the cursor at the position given, which is end - i + start 
+</span><span class="c1"></span>      <span class="n">lseek</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">end</span> <span class="o">-</span><span class="n">i</span> <span class="o">+</span> <span class="n">start</span><span class="p">,</span> <span class="n">SEEK_SET</span><span class="p">);</span>
+
+      <span class="c1">// Read limit number of characters from source and store it into r
+</span><span class="c1"></span>      <span class="c1">// It is important to note that the cursor moves ahead limit amount of times due to reading
+</span><span class="c1"></span>      <span class="n">read</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">limit</span><span class="p">);</span>
+
+      <span class="c1">// Reverse the read array
+</span><span class="c1"></span>      <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">limit</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">){</span>
+          <span class="n">rev</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">limit</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="n">j</span><span class="p">];</span>
+      <span class="p">}</span>
+
+      <span class="c1">// SET the cursor at the position given, which is i - limit - start
+</span><span class="c1"></span>      <span class="n">lseek</span><span class="p">(</span><span class="n">destination</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span><span class="n">limit</span> <span class="o">-</span><span class="n">start</span><span class="p">,</span> <span class="n">SEEK_SET</span><span class="p">);</span>
+
+      <span class="c1">// Write the number of characters from rev into destination
+</span><span class="c1"></span>      <span class="c1">// It is important to note that the cursor moves ahead limit amount of times due to writing
+</span><span class="c1"></span>      <span class="n">write</span><span class="p">(</span><span class="n">destination</span><span class="p">,</span> <span class="n">rev</span><span class="p">,</span> <span class="n">limit</span><span class="p">);</span>
+
+      <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span><span class="n">limit</span> <span class="o">&gt;=</span> <span class="n">each_part</span><span class="p">){</span>
+          <span class="c1">// This part is left as an excercise, think why this is needed and what will come here
+</span><span class="c1"></span>          <span class="c1">// Also think about better ways to structure the loop so that you do not require this :p
+</span><span class="c1"></span>      <span class="p">}</span>
+  <span class="p">}</span>
+</code></pre></div>]]></content>
+		</item>
+		
+		<item>
+			<title>OWASP top10</title>
+			<link>https://aurumnpegasus.github.io/website/posts/owasp/</link>
+			<pubDate>Mon, 14 Jun 2021 12:00:06 +0900</pubDate>
+			
+			<guid>https://aurumnpegasus.github.io/website/posts/owasp/</guid>
+			<description>&lt;p&gt;This blog contains my walkthrough of the OWASP room in tryhackme while trying to learn more about cyber security. Check out the original room as well &lt;a href=&#34;https://tryhackme.com/room/owasptop10&#34;&gt;here.&lt;/a&gt;&lt;/p&gt;</description>
+			<content type="html"><![CDATA[<p>This blog contains my walkthrough of the OWASP room in tryhackme while trying to learn more about cyber security. Check out the original room as well <a href="https://tryhackme.com/room/owasptop10">here.</a></p>
+<h2 id="injection">Injection</h2>
+<h3 id="task-5-command-injection-practical">Task 5: Command Injection Practical</h3>
+<h4 id="what-strange-text-file-is-in-the-website-root-directory">What strange text file is in the website root directory?</h4>
+<p>Simply enter</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ls
+</code></pre></div><p>The console will display multiple file names, out of which the most probably answer is <code>drpepper.txt</code></p>
+<h4 id="how-many-non-rootnon-servicenon-daemon-users-are-there">How many non-root/non-service/non-daemon users are there?</h4>
+<p>Enter</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cat /etc/passwd 
+</code></pre></div><p>This will list a bunch of users and other information. I will go over it one by one.</p>
+<p>Firstly, the command is used to list the users that are locally stored in the system. The structure of each output is
+<code>user_name:encrypter_password:user_ID:user_group_ID:full_name:user_home_directory:user_bash_shell</code></p>
+<p>Now, a normal user has UID $\geq$ 1000. Hence all the other users are system users. As we can see, all the IDs mentioned are below 1000, hence we get the answer as <code>0</code>
+Read more about this <a href="https://linuxhandbook.com/linux-list-users/">here.</a></p>
+<h4 id="what-user-is-the-app-running-as">What user is the app running as?</h4>
+<p>Enter</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">whoami 
+</code></pre></div><p>As can be seen, the answer is <code>www-data</code></p>
+<h4 id="what-is-the-users-shell-set-as">What is the user&rsquo;s shell set as?</h4>
+<p>Again, enter</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cat /etc/passwd
+</code></pre></div><p>Now, you look at the user_bash_shell of <code>www-data</code> and we see that the answer is <code>/usr/sbin/nologin</code></p>
+<h4 id="what-version-of-ubuntu-is-running">What version of Ubuntu is running?</h4>
+<p>Enter</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">hostnamectl
+</code></pre></div><p>It will display a bunch of information about the OS the server is running on. Answer is <code>18.04.4</code></p>
+<h4 id="print-out-the-motd-what-favorite-beverage-is-shown">Print out the MOTD. What favorite beverage is shown?</h4>
+<p>Thew way I figured out the answer is simply by thinking that the name of strange text file was <code>drpepper.txt</code>. The name fit the answer so well :p</p>
+<p>For a proper answer which I then googled for:</p>
+<p>Enter</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ls /etc/update-motd.d/
+cat /etc/update-motd.d/00-header
+</code></pre></div><p>The last line of the output talks about <code>Dr Pepper</code> hence that is the answer.</p>
+<h2 id="broken-authentication">Broken Authentication</h2>
+<h3 id="task-7-broken-authentication-practical">Task 7: Broken Authentication Practical</h3>
+<h4 id="what-is-the-flag-you-find-in-darrens-account">What is the flag you find in darren&rsquo;s account?</h4>
+<p>Do as is mentioned, and once you log in you will see the flag <code>fe86079416a21a3c99937fea8874b667</code></p>
+<h4 id="now-try-to-do-the-same-trick-and-see-if-you-can-login-as-arthur">Now try to do the same trick and see if you can login as arthur</h4>
+<p>Yes, you can</p>
+<h4 id="what-is-the-flag-that-you-found-in-arthurs-account">What is the flag that you found in arthur&rsquo;s account?</h4>
+<p><code>d9ac0f7db4fda460ac3edeb75d75e16e</code></p>
+<h2 id="sensitive-data-exposure">Sensitive Data Exposure</h2>
+<h3 id="task-11-sensitive-data-exposure-challenge">Task 11: Sensitive Data Exposure (Challenge)</h3>
+<h4 id="what-is-the-name-of-the-mentioned-directory">What is the name of the mentioned directory</h4>
+<p>Since I thought they have mentioned the directory in the source code, I checked it but did not find anything in the main page. Then on going to the Log-In page I found <code>/assets</code></p>
+<h4 id="navigate-to-the-directory-you-found-in-question-one-what-file-stands-out-as-being-likely-to-contain-sensitive-data">Navigate to the directory you found in question one. What file stands out as being likely to contain sensitive data?</h4>
+<p>Go to <code>http://MACHINE_IP/assets/</code>. Here,  we can see all the files and directories from which the answer is <code>webapp.db</code></p>
+<h4 id="use-the-supporting-material-to-access-the-sensitive-data-what-is-the-password-hash-of-the-admin-user">Use the supporting material to access the sensitive data. What is the password hash of the admin user?</h4>
+<p>Download <code>webapp.db</code>. Then use the commands</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sqlite3 webapp.db
+</code></pre></div><p>Once that is done, use the following commands</p>
+<pre><code class="language-sqlite3" data-lang="sqlite3">&gt; .tables
+&gt; pragma table_info(users);
+&gt; select * from users;
+</code></pre><p>The answer is <code>6eea9b7ef19179a06954edd0f6c05ceb</code></p>
+<h4 id="crack-the-hash">Crack the hash.</h4>
+<p>Go to <a href="https://crackstation.net/">crackstation</a> as mentioned in the material and crack the password. The answer is <code>qwertyuiop</code></p>
+<h4 id="log-in-as-the-admin-what-is-the-flag">Log in as the admin, what is the flag?</h4>
+<p>Use the credentials you have, the answer is <code>THM{Yzc2YjdkMjE5N2VjMzNhOTE3NjdiMjdl}</code></p>
+<h2 id="xml-external-entity">XML External Entity</h2>
+<h3 id="task-13-extensible-markup-language">Task 13: eXtensible Markup Language</h3>
+<h4 id="full-form-of-xml">Full form of XML</h4>
+<p><code>Extensible Markup Language</code></p>
+<h4 id="is-it-compulsory-to-have-xml-prolog-in-xml-documents">is it compulsory to have XML prolog in XML documents?</h4>
+<p><code>no</code></p>
+<h4 id="can-we-validate-xml-documents-against-a-schema">Can we validate XML documents against a schema?</h4>
+<p><code>yes</code></p>
+<h4 id="how-can-we-specify-xml-version-and-encoding-in-xml-document">How can we specify XML version and encoding in XML document?</h4>
+<p><code>XML prolog</code></p>
+<h4 id="document-type-definition-dtd">Document Type Definition (DTD)</h4>
+<h4 id="how-do-you-define-a-new-element">How do you define a new ELEMENT?</h4>
+<p><code>!ELEMENT</code></p>
+<h4 id="how-do-you-define-a-root-element">How do you define a ROOT element?</h4>
+<p><code>!DOCTYPE</code></p>
+<h4 id="how-do-you-define-a-new-entity">How do you define a new ENTITY?</h4>
+<p><code>!ENTITY</code></p>
+<h3 id="task-16-exploiting">Task 16: Exploiting</h3>
+<h4 id="try-to-display-your-own-name-using-any-payload">Try to display your own name using any payload.</h4>
+<p>Enter</p>
+<div class="highlight"><pre class="chroma"><code class="language-XML" data-lang="XML"><span class="cp">&lt;!DOCTYPE replace [&lt;!ENTITY name &#34;feast&#34;&gt;</span> ]&gt;
+<span class="nt">&lt;userInfo&gt;</span>
+    <span class="nt">&lt;firstName&gt;</span>falcon<span class="nt">&lt;/firstName&gt;</span>
+    <span class="nt">&lt;lastName&gt;</span><span class="ni">&amp;name;</span><span class="nt">&lt;/lastName&gt;</span>
+<span class="nt">&lt;/userInfo&gt;</span>
+</code></pre></div><h4 id="see-if-you-can-read-the-etcpasswd">See if you can read the /etc/passwd</h4>
+<p>Enter</p>
+<div class="highlight"><pre class="chroma"><code class="language-XML" data-lang="XML"><span class="cp">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
+<span class="cp">&lt;!DOCTYPE root [&lt;!ENTITY read SYSTEM &#39;file:///etc/passwd&#39;&gt;</span>]&gt;
+<span class="nt">&lt;root&gt;</span><span class="ni">&amp;read;</span><span class="nt">&lt;/root&gt;</span>
+</code></pre></div><h4 id="what-is-the-name-of-the-user-in-etcpasswd">What is the name of the user in /etc/passwd?</h4>
+<p>This can be determined by the output of the previous question. The answer is <code>falcon</code></p>
+<h4 id="where-is-falcons-ssh-key-located">Where is falcon&rsquo;s SSH key located?</h4>
+<p>This was fairly simple to do. It is known that ssh keys are stored in either <code>.ssh/id_rsa</code> or <code>.ssh/id_rsa.pub</code> based on whether you need public or private key. As the next question asks for private key, we get the answer as <code>/home/falcon/.ssh/id_rsa</code></p>
+<h4 id="what-are-the-first-18-characters-for-falcons-private-key">What are the first 18 characters for falcon&rsquo;s private key?</h4>
+<p>Simple enough, just use the location mentioned in previous answers and cat the file. Answer is <code>MIIEogIBAAKCAQEA7</code></p>
+<h2 id="broken-access-control">Broken Access Control</h2>
+<h3 id="task-18-idor-challenge">Task 18: IDOR Challenge</h3>
+<h4 id="look-at-other-users-notes-what-is-the-flag">Look at other users notes. What is the flag?</h4>
+<p>There are better methods to do thus (using Burpsuite) but since I did not know about it when I started this challenge, I just had to luck out by getting the answer at <code>note=0</code></p>
+<h2 id="security-misconfiguration">Security Misconfiguration</h2>
+<h3 id="task-19-security-misconfiguration">Task 19: Security Misconfiguration</h3>
+<h4 id="hack-into-the-webapp-and-find-the-flag">Hack into the webapp, and find the flag!</h4>
+<p>So the first thing I did was go through the source code, but I couldnt find any comment of sorts there. Next, I thought to check it out in exploit db, but there too I did not get a good answer. I googled about then I found out that the answer was mentioned in its <a href="https://github.com/NinjaJc01/PensiveNotes">github page</a></p>
+<h2 id="cross-site-scripting">Cross-site Scripting</h2>
+<h4 id="cross-site-scripting-1">Cross-site Scripting</h4>
+<h4 id="craft-a-reflected-xss-payload-that-will-cause-a-popup-saying-hello">Craft a reflected XSS payload that will cause a popup saying &ldquo;Hello&rdquo;</h4>
+<p>The answer is simple enough</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">)&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div><h4 id="on-the-same-reflective-page-craft-a-reflected-xss-payload-that-will-cause-a-popup-with-your-machines-ip-address">On the same reflective page, craft a reflected XSS payload that will cause a popup with your machine&rsquo;s IP address.</h4>
+<p>Google around the command to display your machines IP address in JS, after which enter</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="nx">alert</span><span class="p">(</span><span class="nx">windows</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">host</span><span class="p">)&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div><h4 id="then-add-a-comment-and-see-if-you-can-insert-some-of-your-own-html">Then add a comment and see if you can insert some of your own HTML</h4>
+<p>You can enter any HTML code you want.</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span> Hi <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div><h4 id="on-the-same-page-create-an-alert-popup-box-appear-on-the-page-with-your-document-cookies">On the same page, create an alert popup box appear on the page with your document cookies.</h4>
+<p>Again, google around on how to display cookies in JS, then just write down the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="nx">alert</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">cookies</span><span class="p">)&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div><h4 id="change-xss-playground-to-i-am-a-hacker-by-adding-a-comment-and-using-js">Change &ldquo;XSS Playground&rdquo; to &ldquo;I am a hacker&rdquo; by adding a comment and using JS.</h4>
+<p>Go to the source code and figure out the document id of the element which has the title stored. Then use simple JS to change the heading (or use the hint :p)</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML">    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#thm-title&#39;</span><span class="p">).</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s1">&#39;I am a hacker&#39;</span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div><h2 id="insecure-deserialization">Insecure Deserialization</h2>
+<h3 id="task-21-insecure-deserialization">Task 21: Insecure Deserialization</h3>
+<h4 id="who-developed-the-tomcat-application">Who developed the Tomcat application?</h4>
+<p>Google around, I initially got the answer as a single person who was responsible for it, but then you get <code>The Apache Software Foundation</code></p>
+<h4 id="what-type-of-attack-that-crashes-services-can-be-performed-with-insecure-deserialisation">What type of attack that crashes services can be performed with insecure deserialisation?</h4>
+<p>DOS, or <code>Denial of Service</code></p>
+<h3 id="task-25-cookies-practical">Task 25: Cookies Practical</h3>
+<h4 id="1st-flag-cookie-value">1st flag (cookie value)</h4>
+<p>Follow the instructions mentioned in the text. The cookie value is base64 encoded, hence just use a normal base64 decoder to get the value of the cookies</p>
+<h4 id="2nd-flag-admin-dashboard">2nd flag (admin dashboard)</h4>
+<p>Simply change the value of <code>userType=&quot;admin&quot;</code>.</p>
+<h2 id="components-with-known-vulnerabilities">Components with Known Vulnerabilities</h2>
+<h3 id="task-29-lab">Task 29: Lab</h3>
+<h4 id="how-many-characters-are-in-etcpasswd">How many characters are in /etc/passwd</h4>
+<p>Go to exploit DB and see if you can find any exploits for <code>CSE Bookstore</code> or <code>projectworld</code> which will give us remote shell access. As we can see, there is <a href="https://www.exploit-db.com/exploits/47887">one</a>.</p>
+<p>Now, we just download them and run the script to execute it. There is sufficient documentation to know how to execute the command</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">python3 47887.py http://machine_ip/
+wc -c /etc/passwd
+</code></pre></div><h2 id="insuffecient-logging-and-monitoring">Insuffecient Logging and Monitoring</h2>
+<h3 id="task-30-insuffecient-logging-and-monitoring">Task 30: Insuffecient Logging and Monitoring</h3>
+<h4 id="what-ip-address-is-the-attacker-using">What IP address is the attacker using?</h4>
+<p>Look at the IP adress which is used the most and is unauthorised. As can bee seen, the answer is <code>49.99.13.16</code></p>
+<h4 id="what-kind-of-attack-is-being-carried-out">What kind of attack is being carried out?</h4>
+<p>From what can be seen, different usernames are used in each request. Also, using the hint, we can find out that the answer is <code>Brute Force</code></p>]]></content>
+		</item>
+		
+		<item>
+			<title>Networks</title>
+			<link>https://aurumnpegasus.github.io/website/posts/networks/</link>
+			<pubDate>Mon, 24 May 2021 20:32:11 +0530</pubDate>
+			
+			<guid>https://aurumnpegasus.github.io/website/posts/networks/</guid>
+			<description>Here is the stuff I read related to networks, different models and their working,
+OSI Model The OSI Model (Open Systems Interconnection Model) is a conceptual framework used to describe the functions of a networking system. It defines rules and requirements that support effortless data transfer between different products and software. In the OSI reference model, the communications between a computing system are split into seven different abstraction layers: Physical, Data Link, Network, Transport, Session, Presentation, and Application.</description>
+			<content type="html"><![CDATA[<p>Here is the stuff I read related to networks, different models and their working,</p>
+<h2 id="osi-model">OSI Model</h2>
+<p>The OSI Model (Open Systems Interconnection Model) is a conceptual framework used to describe the functions of a networking system. It defines rules and requirements that support effortless data transfer between different products and software. In the OSI reference model, the communications between a computing system are split into seven different abstraction layers: Physical, Data Link, Network, Transport, Session, Presentation, and Application.</p>
+<figure>
+    <img src="https://i.imgur.com/zau6tPo.png"/> 
+</figure>
+
+<h3 id="application">Application</h3>
+<p>The Application layer is the OSI layer closest to the end-user. In this layer, the user connects to the network via software that uses the internet, like Chrome, Firefox, MS Suite.  It is important to note that these applications do not reside within the application layer. Instead, the application layer defines protocols (or rules) for the functioning of these applications.
+Some examples of the protocols defined are:</p>
+<ul>
+<li>FTP: Used for file transfers</li>
+<li>HTTP/S: Used for web surfing</li>
+<li>SMTP: Used for emails</li>
+<li>Telnet: Used for virtual terminal.</li>
+</ul>
+<p>When data is given to the Application layer, it is passed down into the Presentation layer.</p>
+<h3 id="presentation">Presentation</h3>
+<p>The Presentation layer receives data from the Application layer and converts it into machine language. It has three main tasks:</p>
+<ul>
+<li>Conversion: Converts the machine-specific data from the Application layer into a standardised format that the application layer could understand in the receiving computer.</li>
+<li>Compression: Often, the binary code after conversion is too large. It is then compressed to reduce the memory it takes.</li>
+<li>Encryption: As an additional layer of security, the compressed data is then encrypted using SSL (Secure Sockets Layer).</li>
+</ul>
+<p>After these three tasks are done, the data is then transmitted to the Session layer. \</p>
+<h3 id="session">Session</h3>
+<p>The Session layer controls the conversations between different computers. On receiving the data, it looks to connect with the other computer across the network. If it can not be done, then it returns an error message. If a session can be established, the Session layer is in charge of maintaining it. The Session layer also needs to co-operate with the Session layer of the other computer to synchronise communications. Once communication is over, the Session layer terminates the connection as well.</p>
+<p>The Session layer creates unique sessions per communication request, due to which you can make multiple requests to different endpoints simultaneously (multiple tabs on a browser).</p>
+<p>Once we get the data from the network, it is converted into data packets and sent to the Transport layer.</p>
+<h3 id="transport">Transport</h3>
+<p>The Transport layer receives data packets from the Session layer and chooses the protocol over which the data is to be transmitted.</p>
+<ul>
+<li>TCP: Transmission Control Protocol. It is connection-based transmission, which means that connection between the computers is established and maintained throughout the request. These layers are slower since it has a feedback mechanism. Via the feedback, it is ensured that the lost/corrupted data can be retransmitted. It is generally used for EMails, Loading Webpage, File Transfer.</li>
+<li>UDP: User Datagram Protocol. It is connectionless transmission, where there is a high chance of data being lost. It is up to the receiving computer to keep up with the data which is sent. In this case, data transportation is faster, but due to the lack of feedback mechanism, loss/corrupted data cannot be regained. It is generally used for Video Streaming, Calls.</li>
+</ul>
+<p>The Transport layer divides the data into bite-sized pieces, where each piece contains a Source and Destination Port Number and Sequence Number.</p>
+<ul>
+<li>Port Number: Used to direct each segment to the correct Application</li>
+<li>Sequence Number: Used to reform the whole message in the correct order.</li>
+</ul>
+<p>These bite-sized pieces are called Segments if using TCP and datagram if using UDP.  They are then sent to the Network layer.</p>
+<p>The Transport layer is also in charge of flow control. If the server sends data at a higher rate than our machine can handle, it communicates and asks to send data at a lower rate. If the server sends data at a lower rate, it communicates to send data faster. In TCP, if data is corrupted, it uses Automated Repeat Request to restore the data.</p>
+<h3 id="network">Network</h3>
+<p>The Network layer is responsible for locating the destination of your request. The network layer takes the IP address (if you want to request information from a webpage) for the page and imgs out the best route to take.</p>
+<p>Logical Addresses (here, IP Address) are used to provide order to networks, categorising them. Each segment is assigned a sender and receiver IP address, which is called a packet. These packets travel through the network.</p>
+<p>The process of moving data packets from source to destination is called routing.</p>
+<h3 id="data-link">Data-Link</h3>
+<p>Data packets are sent from the Network layer to the Data-Link layer. The Data-Link layer adds a MAC (Media Access Control) Address to each packet for sender and receiver to make a Frame. Inside every network-enabled computer is a NIC (Network Interface Card) that comes with a unique MAC.</p>
+<p>The Data-Link layer serves another essential function. It checks if the received information is corrupted during transmission or not.</p>
+<h3 id="physical">Physical</h3>
+<p>The lowest layer of the OSI Model. The Physical layer receives data from the Data-Link layer as frames and converts them into binary format. Once it is converted into binary, it is then transmitted as electrical pulses.</p>
+<h2 id="receiving">Receiving</h2>
+<p>When the second computer receives the message, it reverses the process. It starts at the physical layer and sends the data up to the application layer, stripping the added information (de-encapsulation) as it goes up.</p>
+<figure>
+    <img src="https://i.imgur.com/b0D2wWQ.png"/> 
+</figure>
+
+<h2 id="references">References</h2>
+<ul>
+<li>TryHackMe Introductory Networking</li>
+<li>OSI Model Explained by TechTerms</li>
+</ul>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Connect Four, Part 1</title>
+			<link>https://aurumnpegasus.github.io/website/posts/connect_four_1/</link>
+			<pubDate>Sun, 22 Nov 2020 12:00:06 +0900</pubDate>
+			
+			<guid>https://aurumnpegasus.github.io/website/posts/connect_four_1/</guid>
+			<description>&lt;p&gt;This blog contains explanation of the paper by Victor Allis called &lt;a href=&#34;http://www.informatik.uni-trier.de/~fernau/DSL0607/Masterthesis-Viergewinnt.pdf&#34;&gt;&amp;lsquo;A Knowledge-based Approach of Connect-Four&amp;rsquo;&lt;/a&gt;&lt;/p&gt;</description>
+			<content type="html"><![CDATA[<p>This blog contains explanation of the paper by Victor Allis called <a href="http://www.informatik.uni-trier.de/~fernau/DSL0607/Masterthesis-Viergewinnt.pdf">&lsquo;A Knowledge-based Approach of Connect-Four&rsquo;</a></p>
+<h2 id="introduction">Introduction</h2>
+<p>Connect-Four is a game for two players. Both have <!-- raw HTML omitted -->21 identical coins<!-- raw HTML omitted -->. In the standard form of the game, one set of coins is yellow, and the other is red. You play the game on a vertical, rectangular board consisting of <!-- raw HTML omitted -->7<!-- raw HTML omitted --> vertical columns of <!-- raw HTML omitted -->6<!-- raw HTML omitted --> rows each. Each time a player puts a coin down, it falls to the lowest unoccupied block in that column. Players make a move in turns.</p>
+<p>If a player connects four coins either horizontally, vertically or diagonally, they win. Occupying each of the 7x6 blocks such that no other move is possible, and ensuring that there is no winning player, entails the draw condition.</p>
+<p>Now, some definitions to make referencing the board easier. The 7 columns are labelled &lsquo;a&rsquo; through &lsquo;g&rsquo;, while the rows are numbered 1 through 6. In this way, the lowest square in the middle column is called d1. For convenience&rsquo;s sake, we are taking the <strong>first player as White (W) and second as Black (B) (similar to Chess).</strong></p>
+<h2 id="approaching-the-game">Approaching the Game</h2>
+<p>Before you show off your excellent techniques, we need to first prove that the dumb approach does not work. It is easy to see that the number of possible positions is at most $3^{42} (\geq 10^{20}).$ This upper bound is a very crude one and can be brought into better proportions. For this purpose, a program was written in the C programming language, which is mentioned later. For the standard, <!-- raw HTML omitted -->7 x 6<!-- raw HTML omitted --> board, the program saw an upper bound of $7.1* 10^{13}$.</p>
+<p>So, too many possibilities, significantly less accuracy, brute force is not an efficient approach. A player cannot win just by instantiating each possible board and trying to follow it. You are a human after all, not a computer 😛</p>
+<h2 id="some-possible-boards">Some Possible Boards</h2>
+<p>Let&rsquo;s start small. Consider a board of <!-- raw HTML omitted -->n columns<!-- raw HTML omitted -->, but only <!-- raw HTML omitted -->2 rows<!-- raw HTML omitted -->. My claim is <strong>that Black will never lose a game on this board.</strong> Even if n were to be practical infinity.</p>
+<p>This is how B should play:</p>
+<ol>
+<li>Pair up all the n rows in groups of 2. If n is odd let the nth row be alone.</li>
+<li>If W plays in row 1, play in row 2 (pair). If W plays in row 2, play in row 1.</li>
+<li>If W plays in row N, play in row N.</li>
+</ol>
+<p>This will always result in a draw, since only way W could win is if it were to get its coin in 4 consecutive rows side by side. This is prevented by B.</p>
+<p>Another solved board is with <!-- raw HTML omitted -->2n rows<!-- raw HTML omitted --> (even) and <!-- raw HTML omitted -->columns ≤ 6<!-- raw HTML omitted -->. This strategy could also be used for ensuring B always draws.</p>
+<ol>
+<li>If W plays in columns 1, 2, 5 or 6, B plays in the same column.</li>
+<li>If W plays for the first time in column 3 or 4, B plays in the other column.</li>
+<li>Otherwise, if W plays in column 3 or 4, and B can still play in it, B plays in the same column</li>
+<li>If W plays in column 3 or 4, and B can not play in it, B plays in the other column.</li>
+</ol>
+<p>Since B never allows a vertical 4 for W, that is out of the question. For horizontal 4 at row 1, B ends up occupying at least 1 of the two bottom columns, hence denying that for W as well. For any other horizontal 4, it is only possible in odd rows for W. But in column 3 and 4, B ends up having at least 1 in either of the two in all odd rows. Diagonal is not possible at all since W will have all coins at odd rows in column 1, 2, 5 and 6.</p>
+<h2 id="threats">Threats</h2>
+<h4 id="useless-threats">Useless Threats</h4>
+<figure>
+    <img src="https://i.imgur.com/r60hfG3.png"/> 
+</figure>
+
+<p>The threats by <strong>W</strong> in <!-- raw HTML omitted -->row 3,4,5<!-- raw HTML omitted --> are considered to be useless, due to the threat by <strong>B</strong> in row 2. Since W cannot move in <!-- raw HTML omitted -->column 2<!-- raw HTML omitted --> and <!-- raw HTML omitted -->6<!-- raw HTML omitted -->, it has to fill column 7. Even number of rows mean that W will still have the turn when column 7 is filled, meaning B will end up winning.</p>
+<p>Whether a threat is useless or useful is dependant on control of Zugzwang (explained later).</p>
+<h4 id="odd-even-threat">Odd Even Threat</h4>
+<p>A threat is only useful if a player is forced to play in a row just below that of the threat. Usually that happens when other columns are filled. In such cases, <strong>generally</strong>, W has only odd rows, and B has even rows.</p>
+<p>Black has odd threats, and White has even. If they are in the same column, the lower threat will win (as seen above)</p>
+<p>Generally speaking, W threat is stronger than that of B. Here is how everything rolls out:</p>
+<ul>
+<li>W has odd, B has even threat: W will win.</li>
+<li>W has even, B has even threat: B will win.</li>
+<li>W has even, B has odd threat: Draw.</li>
+<li>W has odd, B has odd threat: Draw.
+A simple example consisting of multiple threats is:</li>
+</ul>
+<figure>
+    <img src="https://i.imgur.com/HvAXpVf.png"/> 
+</figure>
+
+<p>Here, <strong>B has odd threat</strong> at <!-- raw HTML omitted -->c3<!-- raw HTML omitted --> and <strong>W has odd threat</strong> at <!-- raw HTML omitted -->f3<!-- raw HTML omitted -->. Going by the table, it should be a draw. Lets play it out. <strong>W</strong> has to give up its own threat to play the game, which would ideally result in a draw, since <strong>B</strong> will have to give up its threat in <!-- raw HTML omitted -->c<!-- raw HTML omitted -->. But what happens is that <strong>B</strong> gets to create a new threat at <!-- raw HTML omitted -->c2<!-- raw HTML omitted --> due to coin at <!-- raw HTML omitted -->f5<!-- raw HTML omitted -->. This gives B consecutive threats, and thus it wins.</p>
+<p>This tells us that <strong>though parity of threats tells us a good amount about the winner, we need to be careful about new threats.</strong></p>
+<h2 id="zugzwang">Zugzwang</h2>
+<p>This is a very basic but powerful concept in Connect 4. <strong>Zugzwang</strong> basically means to force a player to make a move they would rather not make. This is due to the simple rule that they have to make a move, and the constraints of the board.</p>
+<h4 id="initial-position">Initial Position</h4>
+<p><strong>W always moves first.</strong> Therefore B always is in a position to play follow up, hence to control the Zugzwang. Suppose B plays follow up from the beginning, you would end up with a board like this:</p>
+<figure>
+    <img src="https://i.imgur.com/9qvEWpv.png"/> 
+</figure>
+
+<p>Though this is an illegal position, it is interesting to note who won first. Since <strong>W</strong> controls whole first row, naturally <strong>W</strong> won the game first. This shows that follow up is not a good strategy at the start of the game for <strong>B</strong>.</p>
+<h4 id="other-positions">Other Positions</h4>
+<p>The following board represents a position where W is in control of the Zugzwang:</p>
+<figure>
+    <img src="https://i.imgur.com/ncuhIkK.png"/> 
+</figure>
+
+<p>Here, <strong>W</strong> has an odd threat in <!-- raw HTML omitted -->column a<!-- raw HTML omitted -->. Knowing this, <strong>B</strong> won&rsquo;t play there. Since on the rest of the board, odd number of squares are remaining, whoever plays first here, the opposite will have to play in <!-- raw HTML omitted -->column a<!-- raw HTML omitted -->. Since <strong>W</strong> is playing the first, it can control the zugzwang to force <strong>B</strong> to play at <!-- raw HTML omitted -->a2<!-- raw HTML omitted -->. The only option <strong>B</strong> has to go against the zugzwang and connect its 4 men, but still, it is <strong>W&rsquo;s game to lose.</strong></p>
+<p><strong>In this case, B has control of Zugzwang due to even threats</strong></p>
+<figure>
+    <img src="https://i.imgur.com/rim4YUj.png"/> 
+</figure>
+
+<p><strong>B</strong> and <strong>W</strong> ideally do not want to be the first to play in <!-- raw HTML omitted -->b<!-- raw HTML omitted --> or <!-- raw HTML omitted -->f<!-- raw HTML omitted -->. Other than these 2, the total number of boxes remaining is even. This means whoever plays first here, will be the player *forced to play first in either column <!-- raw HTML omitted -->b<!-- raw HTML omitted --> or <!-- raw HTML omitted -->f<!-- raw HTML omitted -->. That means at the end, <strong>W</strong> will have to play in <!-- raw HTML omitted -->b1<!-- raw HTML omitted --> or <!-- raw HTML omitted -->f1<!-- raw HTML omitted -->, thus losing. <strong>B</strong> is in complete control of Zugzwang here and can play follow up</p>
+<figure>
+    <img src="https://i.imgur.com/7jwwzvm.png"/> 
+</figure>
+
+<h2 id="references">References</h2>
+<ul>
+<li>Resources by Victor Allis</li>
+<li>Alpha Beta Pruning based heuristics</li>
+<li>Principles and Tehniques BY Stanford</li>
+<li>C4 Numbers by oeis org</li>
+<li>Math oriented resources behind Connect-4</li>
+</ul>]]></content>
+		</item>
+		
+		<item>
+			<title>Connect Four, Part 2</title>
+			<link>https://aurumnpegasus.github.io/website/posts/connect_four_2/</link>
+			<pubDate>Sun, 22 Nov 2020 12:00:06 +0900</pubDate>
+			
+			<guid>https://aurumnpegasus.github.io/website/posts/connect_four_2/</guid>
+			<description>&lt;p&gt;This blog contains explanation of the paper by Victor Allis called &lt;a href=&#34;http://www.informatik.uni-trier.de/~fernau/DSL0607/Masterthesis-Viergewinnt.pdf&#34;&gt;&amp;lsquo;A Knowledge-based Approach of Connect-Four&amp;rsquo;&lt;/a&gt;
+This is a 2 part series exploring the paper, and I would suggest going through &lt;a href=&#34;&#34;&gt;&amp;lsquo;first part&amp;rsquo;&lt;/a&gt; if you haven&amp;rsquo;t already.&lt;/p&gt;</description>
+			<content type="html"><![CDATA[<p>This blog contains explanation of the paper by Victor Allis called <a href="http://www.informatik.uni-trier.de/~fernau/DSL0607/Masterthesis-Viergewinnt.pdf">&lsquo;A Knowledge-based Approach of Connect-Four&rsquo;</a>
+This is a 2 part series exploring the paper, and I would suggest going through <a href="">&lsquo;first part&rsquo;</a> if you haven&rsquo;t already.</p>
+<h2 id="-strategies">🕵️‍♂️ Strategies</h2>
+<p>A formal definition is given of the nine rules which are used to refute potential threats of the opponent. These can be only applied by the player in control of the Zugzwang. These are always applied in the places opponent has to move.</p>
+<h4 id="claimeven">Claimeven</h4>
+<p>This makes direct use of the fact that player in control of Zugzwang can get all even unclaimed positions, giving odd positions to the other.</p>
+<figure>
+    <img src="https://i.imgur.com/ScthNh3.png"/> 
+</figure>
+
+<p><strong>B</strong> is in control of Zugzwang here since <strong>W doesn&rsquo;t have any threat.</strong> Here, if B were to use claimeven, he could end up getting a draw, since any threat of W will need to have a coin in even row, which will not be possible.</p>
+<h4 id="baseinverse">Baseinverse</h4>
+<p>This is based on the logic that a player cannot play two directly playable moves in one turn. Therefore once the opponent has made the move, controller of Zugzwang can still cover the other position.</p>
+<figure>
+    <img src="https://i.imgur.com/Sqgzm1C.png"/> 
+</figure>
+
+<p>Here, if W cannot play in a1 and b1 at the same time. That means if W plays in a1, B plays in b1, and vice versa. Thus the threat is nullified.</p>
+<h4 id="verticle">Verticle</h4>
+<p>Similar to Baseinverse, this is based on the fact that a player cannot play two directly playable moves in a single column in one turn. Depending on the opponent, the player controlling the Zugzwang can either play second or first in the column to prevent a verticle 4.</p>
+<h4 id="aftereven">Aftereven</h4>
+<p>Aftereven uses a special side-effect of the usage of one or more Claimevens. If a group can be completed by the controller of zugzwang, then they can complete the whole board using claim even, and then complete that group:</p>
+<figure>
+    <img src="https://i.imgur.com/U8HBV2W.png"/> 
+</figure>
+
+<p>Here, <strong>B</strong> can use aftereven to complete the group at either <!-- raw HTML omitted -->b2<!-- raw HTML omitted --> or <!-- raw HTML omitted -->f2<!-- raw HTML omitted -->. Here, then <strong>B</strong> can use claimeven to finally force <strong>W</strong> to play in either <!-- raw HTML omitted -->b1<!-- raw HTML omitted --> or <!-- raw HTML omitted -->f1<!-- raw HTML omitted -->. This is called as aftereven, where you can form a group and win by using claimevens.</p>
+<h4 id="lowinverse">Lowinverse</h4>
+<p>Lowinverse is based on the fact that two odd numbers when summed give an even number. Normally, controller of Zugzwang will play lowest even square of the column containing odd number of empty squares. But when we have two columns (doesn&rsquo;t have to be consecutive) having odd number of empty squares, this will force the opponent to play first. In such a way controller of zugzwang gets to take the odd square above the opponent.</p>
+<h4 id="highinverse">Highinverse</h4>
+<p>This is based on the same principle as that of lowinverse:</p>
+<figure>
+    <img src="https://i.imgur.com/479IQjs.png"/> 
+</figure>
+
+<p>In lowinverse, we would consider <!-- raw HTML omitted -->c2, c3, d2, d3<!-- raw HTML omitted --> as important. Here we consider <!-- raw HTML omitted -->c4<!-- raw HTML omitted --> and <!-- raw HTML omitted -->d4<!-- raw HTML omitted --> as important too. Highinverse is nothing but a combination of lowinverse and claimeven. What this does is say <strong>W</strong> plays in <!-- raw HTML omitted -->c2<!-- raw HTML omitted -->, then using lowinverse <strong>B</strong> can get <!-- raw HTML omitted -->c3<!-- raw HTML omitted -->. Then <strong>B</strong> (controller of Zugzwang) convert <!-- raw HTML omitted -->d3<!-- raw HTML omitted --> and <!-- raw HTML omitted -->d4<!-- raw HTML omitted --> into a claimeven, to get <!-- raw HTML omitted -->d4<!-- raw HTML omitted -->. In such a way <strong>B</strong> ends up getting <!-- raw HTML omitted -->c3<!-- raw HTML omitted --> and <!-- raw HTML omitted -->d4<!-- raw HTML omitted -->.</p>
+<h4 id="baseclaim">Baseclaim</h4>
+<p>This is a combination of Baseinverse and Claimeven:</p>
+<figure>
+    <img src="https://i.imgur.com/0w4iKvV.png"/> 
+</figure>
+
+<p>Here, W can possibly have 3 threats formed: <!-- raw HTML omitted -->b1-e1, c1-f1, b1-e4<!-- raw HTML omitted -->(diagonal). <strong>B</strong> needs to play in a way to counter this.</p>
+<ul>
+<li><strong>W</strong> plays in <!-- raw HTML omitted -->b1<!-- raw HTML omitted -->, <strong>B</strong> plays in <!-- raw HTML omitted -->e1<!-- raw HTML omitted --> and then uses Claimeven at <!-- raw HTML omitted -->c1-c2<!-- raw HTML omitted --> to prevent <!-- raw HTML omitted -->b1-e4<!-- raw HTML omitted -->.</li>
+<li><strong>W</strong> plays in <!-- raw HTML omitted -->c1<!-- raw HTML omitted -->, <strong>B</strong> plays in <!-- raw HTML omitted -->e1<!-- raw HTML omitted --> and then uses Claimeven at <!-- raw HTML omitted -->b1-c2<!-- raw HTML omitted --> to prevent <!-- raw HTML omitted -->b1-e4<!-- raw HTML omitted -->.</li>
+<li><strong>W</strong> plays in <!-- raw HTML omitted -->e1<!-- raw HTML omitted -->, <strong>B</strong> plays in <!-- raw HTML omitted -->c1<!-- raw HTML omitted --> and then uses Claimeven at <!-- raw HTML omitted -->b1-c2<!-- raw HTML omitted --> to prevent <!-- raw HTML omitted -->b1-e4<!-- raw HTML omitted -->.</li>
+</ul>
+<p>In such ways <strong>B</strong> can nullify all of <strong>W</strong>&lsquo;s threats.</p>
+<h4 id="before">Before</h4>
+<p>This is a combination of Claimeven and Vertical:</p>
+<figure>
+    <img src="https://i.imgur.com/EuOTX0t.png"/> 
+</figure>
+
+<p>Here <!-- raw HTML omitted -->b4-e1<!-- raw HTML omitted --> is the Before group. Since <!-- raw HTML omitted -->b4<!-- raw HTML omitted --> and <!-- raw HTML omitted -->e1<!-- raw HTML omitted --> are still empty, this means it works for all groups needing both <!-- raw HTML omitted -->b5<!-- raw HTML omitted --> and <!-- raw HTML omitted -->e2 (b5-e2)<!-- raw HTML omitted -->. Here, before uses the squares <!-- raw HTML omitted -->b4-b5<!-- raw HTML omitted --> and <!-- raw HTML omitted -->e1-e2<!-- raw HTML omitted -->. As soon as <!-- raw HTML omitted -->b4<!-- raw HTML omitted --> is played, <!-- raw HTML omitted -->b5<!-- raw HTML omitted --> is played, and same with <!-- raw HTML omitted -->e1-e2<!-- raw HTML omitted -->. This will ensure <strong>B</strong> completing <!-- raw HTML omitted -->b4-e1<!-- raw HTML omitted --> or preventing <strong>W</strong>&lsquo;s <!-- raw HTML omitted -->b5-e2<!-- raw HTML omitted -->. In both cases <!-- raw HTML omitted -->b5-e2<!-- raw HTML omitted --> is a useless threat.</p>
+<p>It basically means that if there is a before group, the opponent cannot claim all the unclaimed squares in the threat column.</p>
+<h4 id="special-before">Special Before</h4>
+<figure>
+    <img src="https://i.imgur.com/39qjBJM.png"/> 
+</figure>
+
+<p>We use <!-- raw HTML omitted -->d2-g2<!-- raw HTML omitted --> as the before group. This can contain claim evens at <!-- raw HTML omitted -->f1-f2<!-- raw HTML omitted --> and <!-- raw HTML omitted -->g1-g2<!-- raw HTML omitted --> and vertical at <!-- raw HTML omitted -->e2-e3<!-- raw HTML omitted -->. We need to use baseinverse to solve <!-- raw HTML omitted -->a1-d1<!-- raw HTML omitted -->, which would give <strong>W</strong> a possibility of <!-- raw HTML omitted -->b1-e4<!-- raw HTML omitted -->. To combat this, we can use claimeven to get <!-- raw HTML omitted -->e4<!-- raw HTML omitted -->. This claimeven, however, is conflicting with vertical at <!-- raw HTML omitted -->e2-e3<!-- raw HTML omitted -->.</p>
+<p>The only reason <strong>B</strong> needs to play <!-- raw HTML omitted -->e3<!-- raw HTML omitted --> is to prevent <!-- raw HTML omitted -->d3-g3<!-- raw HTML omitted -->. So <strong>B</strong> can play <!-- raw HTML omitted -->d3<!-- raw HTML omitted --> as well. If <strong>W</strong> were to play at <!-- raw HTML omitted -->d3<!-- raw HTML omitted --> before, then <strong>B</strong> should immediately get <!-- raw HTML omitted -->e2<!-- raw HTML omitted --> to continue with the Before play. Therefore to play a Special Before, we need a before group <!-- raw HTML omitted -->(d2-g2)<!-- raw HTML omitted --> with one of the empty squares as directly playable <!-- raw HTML omitted -->(e2)<!-- raw HTML omitted -->. Furthermore, we need another playable square <!-- raw HTML omitted -->(d3)<!-- raw HTML omitted -->.</p>
+<h4 id="combination">Combination</h4>
+<figure>
+    <img src="https://i.imgur.com/0aqQXCz.png"/> 
+</figure>
+
+<h2 id="-black-and-white">⚫⚪ Black and White</h2>
+<h4 id="black">Black</h4>
+<p>We have developed a set of rules which can be used to show that certain potential threats can be refuted. Since some of the rules depend on Zugzwang, it is important that the person who applies them is in control of the Zugzwang.</p>
+<p><strong>B</strong> is in control of Zugzwang until <strong>W</strong> creates an odd threat. Till then if <strong>B</strong> just plays using the strategy. If <strong>W</strong> were to create a good threat (odd threat), <strong>B</strong> is no more in control of Zugzwang. Here we observe that no matter what <strong>B</strong> does from here on out, there generally will not be any set of rules which can refute that threat.</p>
+<p>From this we can conclude that we do not need to check who controls the Zugzwang for <strong>B</strong> before applying the rules. For if <strong>B</strong> is in control, we can apply the rules, if not, it doesn&rsquo;t matter what <strong>B</strong> does.</p>
+<h4 id="white">White</h4>
+<p><strong>W</strong> needs an odd threat to gain control of Zugzwang. Once it has that, he just needs to follow the strategic rules to fill up the rest of the board. If <strong>W</strong> has more than one odd threat, it can choose from which poison to kill <strong>B</strong> from.</p>
+<h4 id="victor">Victor</h4>
+<p>A position in which <strong>W</strong> has to move, can be evaluated as <strong>B</strong> as controller of Zugzwang, and vice versa. For <strong>W</strong> as a controller of Zugzwang, evaluation must be done removing the odd column out of viable options. The evaluation begins with finding all possible instances of the 9 strategic rules.</p>
+<p>For each position where any rule is applied, it is seen whether it can solve a problem or not. Each application of one of the rules which solve one or more problems is stored. These are called Solutions. This results in a list of solutions, where each solution is stored as a Struct. Struct consists of fields describing the rule, and the positions involved. Furthermore for each solution we have a list of groups solved by that solution.</p>
+<p>We also create a map with problem as the key and list of pointer(s) to the solution as the values. After all this, we need to see which solutions can work together and which cannot. To work this out, solutions are seen as nodes of an undirected graph. If two solutions can&rsquo;t be used simultaneously, they are connected. These connections are stored in an adjacency matrix. To fill it, it is important to know type of solutions and squares involved. Once it is filled, it is a normal square array.</p>
+<p>If we see the problems as nodes, too, and we connect a solution and a problem if the solution solves the problem, and no problems are connected, we can solve it as a pure graph problem.</p>
+<p>Given are two sets of nodes, S(olutions) and P(roblems). We try to find an allowable (in graph theory: independent) subset C(hosen) of S, with the property that P is contained in B(C) (the set of all neighbours of nodes in C)</p>
+<p>It can be solved using a simple backtracking algorithm.:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">FindChosenSet</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">P</span> <span class="o">==</span> <span class="n">EmptySet</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Eureka</span><span class="p">();</span> <span class="c1">// We have found a subset C
+</span><span class="c1"></span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">MostDifficultNode</span> <span class="o">=</span> <span class="n">NodeWithLeastNumberOfNeighbours</span><span class="p">(</span><span class="n">P</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">neighbours</span><span class="p">:</span> <span class="n">MostDifficultNode</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">FindChosenSet</span><span class="p">(</span>
+            <span class="n">P</span> <span class="o">-</span> <span class="p">{</span> <span class="n">MostDifficultNode</span> <span class="p">},</span>
+            <span class="n">S</span> <span class="o">-</span> <span class="n">AllNeighboursOf</span><span class="p">(</span><span class="n">ChosenNeighbour</span><span class="p">)</span>
+            <span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>If a set of solutions is found for a given position, these <strong>solutions show the plan which has to be followed to play the game</strong> until the desired result (win for White, or at least a draw for Black) is reached.</p>
+<h2 id="-food-for-thought">🧠 Food for Thought</h2>
+<p>Lets assume we have an oracle. This oracle cannot predict who will win, but for any given state of board, give the best possible outcome. Let us assume that we play such that for each state of board, we ask for help from the oracle. <strong>Therefore it is a &lsquo;perfect&rsquo; game. In such case, if W wins, does that mean W will always win if it were a perfect game?</strong></p>
+<p>The thing is, if for B we were to choose that draw is fine, it will not change any result. Since oracle predicts the best move, if the second scenario gives different result, that would mean Oracle could have chosen the best move, but did not. That is contradictory. That means that whoever will win with the help of the Oracle, is always at an advantage.</p>
+<p>Another thought to explore is number of legal ways to arrange $N$ coins in board. For now, we take the board to be the standard $7 \times 6$ board.</p>
+<figure>
+    <img src="https://i.imgur.com/EVrx7DC.png"/> 
+</figure>
+
+<h2 id="-references">📝 References</h2>
+<ul>
+<li>Resources by Victor Allis</li>
+<li>Alpha Beta Pruning based heuristics</li>
+<li>Principles and Tehniques BY Stanford</li>
+<li>C4 Numbers by oeis org</li>
+<li>Math oriented resources behind Connect-4</li>
+</ul>]]></content>
+		</item>
+		
+		<item>
+			<title>Scotland Yard: Part 1</title>
+			<link>https://aurumnpegasus.github.io/website/posts/scotland_yard_1/</link>
+			<pubDate>Sun, 22 Nov 2020 12:00:06 +0900</pubDate>
+			
+			<guid>https://aurumnpegasus.github.io/website/posts/scotland_yard_1/</guid>
+			<description>&lt;p&gt;This blog contains an explanation of the paper &lt;a href=&#34;https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=A042C241BA640121A461FBF99CD93FEC?doi=10.1.1.76.9583&amp;amp;rep=rep1&amp;amp;type=pdf&#34;&gt;&amp;lsquo;The complexity of Scotland Yard&amp;rsquo;&lt;/a&gt; by Merlijn Sevenster.&lt;/p&gt;
+&lt;p&gt;This is part 1 of a two part blog. Part 1 explains the game, and lays out the foundations required for formalisation of the game. It also lists out the various assumptions we are going to consider in the game.&lt;/p&gt;
+&lt;p&gt;The blog was originally published on &lt;a href=&#34;https://captains-mistress.github.io/scotlandyard&#34;&gt;&amp;lsquo;GameLab&amp;rsquo;&lt;/a&gt; for our course project. The website also contains additional information about heuristics used in Scotland Yard, and similar analysis for other board games.&lt;/p&gt;</description>
+			<content type="html"><![CDATA[<p>This blog contains an explanation of the paper <a href="https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=A042C241BA640121A461FBF99CD93FEC?doi=10.1.1.76.9583&amp;rep=rep1&amp;type=pdf">&lsquo;The complexity of Scotland Yard&rsquo;</a> by Merlijn Sevenster.</p>
+<p>This is part 1 of a two part blog. Part 1 explains the game, and lays out the foundations required for formalisation of the game. It also lists out the various assumptions we are going to consider in the game.</p>
+<p>The blog was originally published on <a href="https://captains-mistress.github.io/scotlandyard">&lsquo;GameLab&rsquo;</a> for our course project. The website also contains additional information about heuristics used in Scotland Yard, and similar analysis for other board games.</p>
+<h2 id="-introduction">📖 Introduction</h2>
+<p>Scotland yard is a popular board game, named after Scotland Yard, the headquarters of London&rsquo;s Metropolitan Police Service. It is played by 2-6 players in which one of the players is the criminal (Mr. X) and the remaining are detectives. As is intuitive, the objective of the game for the detectives is to catch the criminal, while the objective of the criminal is to run away from its pursuers for 22 rounds. <strong>It is an asymmetric board game since the players do not have the same goal.</strong></p>
+<h2 id="-rules">📜 Rules</h2>
+<p>Let&rsquo;s take a look at the rules once, before we jump into analysing the game.</p>
+<h4 id="movement-of-players">Movement of players:</h4>
+<p>Each detective and the criminal is assigned a pawn to mark their position on the board. There are a <strong>total of 199 positions on the Scotland Yard board</strong>. Each position can represent 1-3 stations, a taxi, a bus, and an underground route, which is marked by a number and the colour of the station it represents.</p>
+<p><strong>Every station on the map can be reached with the taxi</strong> (yellow). However, the distance that you can travel is short: You can only move (along the yellow line) to the next station.</p>
+<p>The bus (turquoise) <strong>only drives from stations with a turquoise semi-circle</strong>; a bus will take you a little further than the taxi (along the bus line).</p>
+<p>The underground (red) <strong>travels along the red line and covers the furthest distances the quickest</strong>. However, there are only a few underground stations (stations with a red inner rectangle) on the map.</p>
+<p>All playing pieces can only be moved to unoccupied stations. <strong>If there are no unoccupied stations for Mister X to travel to, he has lost the game. Mister X also loses if one of the detectives moves to the station where Mister X is located.</strong></p>
+<figure>
+    <img src="https://i.imgur.com/AonWaMh.png"/> 
+</figure>
+
+<h4 id="tickets">Tickets</h4>
+<p>Each detective receives ticket cards that allow him to across the board. At the start of the game, each detective gets <strong>4 underground tickets, 8 bus tickets, and 11 taxi tickets, and each detective receives 5 black tickets and 2 double move tickets.</strong></p>
+<p>In each round, after <strong>a detective</strong> has used up a ticket to travel to another position, <strong>they cannot use them again</strong>, however, this ticket is now available for Mr. X&rsquo;s use. If a detective no longer has any tickets or can&rsquo;t move from his current station with the tickets he has left, they have to sit out.</p>
+<p>A black ticket allows Mr.X to hide the route he used and also travel by ferry (a route only he is allowed), and a double move ticket allows him to make two moves to two different stations in one round.</p>
+<h4 id="initial-starting-position">Initial Starting Position</h4>
+<p>To determine each player’s starting position, a set of start cards marked D and X are shuffled separately and each detective selects from the D cards and places their playing piece on the respective position. Mr. X picks an X card but doesn’t reveal his position to the detectives or place his playing piece on the board.</p>
+<h4 id="gameplay">Gameplay</h4>
+<p>In total, <strong>22 rounds are played</strong>. In each round, Mr. X first makes their move, concealing his new position from the remaining players, and writes down the station he moved to on a paper, hiding the station with the ticket they used. (The detectives can see which mode of transport Mr.X has used.)</p>
+<p>When a detective makes a move, the used-up ticket is placed in the general draw pile where Mr. X gets his tickets (<strong>so Mr. X basically has an unlimited number of tickets</strong>).</p>
+<h4 id="moving-mr-x">Moving Mr. X</h4>
+<p>Each turn Mr. X conceals his move. However, there are special moves (<strong>3rd, 8th,13th, 18th, and 24th moves</strong>) where Mr. X must surface. He has to reveal his current position before moving to a new station, which gives detectives the chance to co-ordinate and corner the criminal!</p>
+<h4 id="moving-the-detectives">Moving the Detectives</h4>
+<p>The detectives use their tickets to move around the board. If they run out of tickets or don&rsquo;t have the required ticket to move out of a station, they must sit out of the game. Detectives can&rsquo;t trade tickets among themselves and all their remaining tickets have to be visible to Mr. X, so he can see the remaining means of transportation they have left.</p>
+<h4 id="winning-the-game">Winning the Game</h4>
+<p>Mr. X wins if -</p>
+<ul>
+<li>He is able to move around the board for 22 rounds without being caught.</li>
+</ul>
+<p>The detectives win if -</p>
+<ul>
+<li>They corner Mr. X (he has no stations to go to where a detective is not present)</li>
+<li>They move to a station where Mr. X is currently</li>
+</ul>
+<p>Now that we understand how to play, let&rsquo;s dive into different aspects of the game!</p>
+<h2 id="-objective">🎯 Objective</h2>
+<p>The goal of this page is to analyze the game Scotland Yard.</p>
+<p>We start off by venturing into proofs for <strong>Scotland Yard being a PSPACE problem and the similarities between Scotland Yard and a game of perfect information</strong>. It is easy to feel daunted by these claims, trust me I felt it too. To make it easier, we remove all the layers of abstraction from the game first. We convert the game into a problem of Groups, Graphs, and Sets.</p>
+<p>It is understandable if you think it still is going to be tough. We ensure that you will understand what these jargons are and how they interact with the game itself. We firstly introduce Games with the viewpoint of perfect and imperfect information. Then we connect Scotland Yard to that idea and remove all the layers of abstraction. Once that is done, we proceed with proofs.</p>
+<h2 id="-laying-the-foundation">🏗️ Laying the Foundation</h2>
+<p>To properly explain some concepts, we need to define some terms:</p>
+<p><strong>Extensive Games</strong>: Games that allow the representation of various key aspects. These aspects include a set of players, each player&rsquo;s moves, their decisions, the information (possibly imperfect) about a player, and their payoffs for all possible outcomes. Essentially, they are games that can be represented with a game (decision) tree.</p>
+<p><strong>Perfect Information Game</strong>: In a perfect information game, a player has complete information about all events which have previously occurred in the game.</p>
+<p><strong>Imperfect Information Game</strong>: Games which have some aspects of the game hidden are called imperfect information game.</p>
+<p>It is easily understandable why Scotland Yard comes under the bracket of the extensive game with imperfect information. For it to be an extensive game, it should formally represent each and every aspect of the game, which is the moves and mode of commutation each player uses. Even if the moves are hidden, they are definite and are represented. Since the moves are hidden, it is impossible for the detectives to know which route the criminal has taken, which makes it an imperfect information game.</p>
+<p>Now, let&rsquo;s look into some abstraction or representations.</p>
+<p>Any win-loss game $G$ with perfect information can be represented as a 4-tuple
+$$G = &lt; N, H, P, U&gt;$$</p>
+<ul>
+<li>\( N \): Represents the number of total players.</li>
+<li>\(H\):  Is a set of histories. A history (\(h\)) represents a given state of the board at some point in time. Every \(h = &lt;a_1, a_2, . . a_p &gt; \), where \(a_i\) is an action. Each history is an ordered list of actions.</li>
+<li>\(h&rsquo;\) = \(&lt;h, a'&gt;\) represents the immediate successor of \(h\), where \(h&rsquo;\) = \(&lt; a_1, a_2 . . . a_p, a'&gt;\). There are two types of history, terminal (\(Z\)) and non-terminal (\(H-Z\)). Terminal represents an end condition, after which no other action can be taken. A history becomes terminal when a player wins.</li>
+<li>\(P\): Is the player function. It assigns to each non-terminal history a particular player. Formally, we define it as \(P:\) { \(H - Z\) } \(\rightarrow N\). We say that a history \(h\) belongs to \(P(h)\), essentially when the last action in the set of actions that is \(h\) is made by the player.</li>
+<li>\(U\): Is the utility function, assigning each terminal history to a player. (the player has won the game). The formal definition would be \(U: Z \rightarrow N\)</li>
+</ul>
+<p>Given \(G\) defined as above, a function \(S\) is called a strategy for a player \(\space i \in N i∈N\) if it maps for every history \(h\) belonging to \(i\) to an action \(A(h)\).</p>
+<p>An extensive game with imperfect information extends a game with perfect information. To represent the former, all you need is to add is an Information function in the original tuple.</p>
+<p>$$G = &lt; N, H, P, \langle \mathcal{I}_i \rangle _{i \in N}, U &gt;$$</p>
+<p>The only difference in this is that \(\mathcal{I}_i\) carries information sets for each \(i \in N\). \(\mathcal{I}_i =\) {\(I_1, I_2, . . . I_q\)}. where each \(I\) represents a set of histories, there having been \(q\) rounds of the game played so far. Each \(I\) basically is a set of histories (or state changes of the board) of that round (till \(i\) makes an action again). Intuitively, an extensive game with imperfect information models the situation in which player \(i\) knows that some history \(h \in I \in \mathcal{I}_i\) has happened, but there are unable to tell h apart from the other histories in \(I\).</p>
+<p>In simple terms, they know other players have made a move based on the last action they took, but are not completely sure of the previous actions the player took.</p>
+<p>A function \(S\) is called a strategy for a player \(i\) in \(G\) if it maps every information partition \(I \in \mathcal{I}_i\) belonging to \(i\) onto action in \(A(I)\)</p>
+<h4 id="assumptions-for-mathematical-modelling">Assumptions for Mathematical Modelling</h4>
+<p>For convenience, there are some assumptions which have been taken.</p>
+<ol>
+<li><strong>There is only 1 mode of transport</strong>, that is Taxi. The same method described as follows can be easily translated with more modes of transport.</li>
+<li>A player will have \(k\) amount of tickets of Taxi, where \(k\) = number of rounds.</li>
+<li>There are only two players, Detective and Mr X.</li>
+<li>Only 1 player will be controlling all detectives.</li>
+<li>Value of \(k\) will be always \(\leq |V|\), where \(V\) is the number of nodes in the graph.</li>
+<li>We have used digraph to represent the game board.</li>
+<li><strong>Mr. X will always play the first move in each round.</strong></li>
+<li>Mr. X will be considered to be caught IF AND IF ONLY it is on a node occupied by a detective at the END of the round (after detectives have moved).</li>
+<li>Mr X will win if and if only the game goes on for \(&gt;k\) rounds, otherwise Detectives have won.</li>
+</ol>
+<h2 id="-references">📝 References</h2>
+<ul>
+<li>
+<p>P. Nijssen and M. H. M. Winands, &ldquo;Monte Carlo Tree Search for the Hide-and-Seek Game Scotland Yard,&rdquo; in IEEE Transactions on Computational Intelligence and AI in Games, vol. 4, no. 4, pp. 282-294, Dec. 2012, doi: 10.1109/TCIAIG.2012.2210424.</p>
+</li>
+<li>
+<p>Sevenster, Merlijn. (2006). The complexity of Scotland Yard. Journal of Pharmacology and Experimental Therapeutics - J PHARMACOL EXP THER.</p>
+</li>
+</ul>]]></content>
+		</item>
+		
+		<item>
+			<title>Scotland Yard: Part 2</title>
+			<link>https://aurumnpegasus.github.io/website/posts/scotland_yard_2/</link>
+			<pubDate>Sun, 22 Nov 2020 12:00:06 +0900</pubDate>
+			
+			<guid>https://aurumnpegasus.github.io/website/posts/scotland_yard_2/</guid>
+			<description>&lt;p&gt;This blog contains an explanation of the paper &lt;a href=&#34;https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=A042C241BA640121A461FBF99CD93FEC?doi=10.1.1.76.9583&amp;amp;rep=rep1&amp;amp;type=pdf&#34;&gt;&amp;lsquo;The complexity of Scotland Yard&amp;rsquo;&lt;/a&gt; by Merlijn Sevenster.&lt;/p&gt;
+&lt;p&gt;This is part 2 of a two part blog. Part 1 explains the game, and lays out the foundations required for formalisation of the game. It also lists out the various assumptions we are going to consider in the game. Part 2 formalises the game and proves that it is of PSPACE complexity.&lt;/p&gt;
+&lt;p&gt;The blog was originally published on &lt;a href=&#34;https://captains-mistress.github.io/scotlandyard&#34;&gt;&amp;lsquo;GameLab&amp;rsquo;&lt;/a&gt; for our course project. The website also contains additional information about heuristics used in Scotland Yard, and similar analysis for other board games.&lt;/p&gt;</description>
+			<content type="html"><![CDATA[<p>This blog contains an explanation of the paper <a href="https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=A042C241BA640121A461FBF99CD93FEC?doi=10.1.1.76.9583&amp;rep=rep1&amp;type=pdf">&lsquo;The complexity of Scotland Yard&rsquo;</a> by Merlijn Sevenster.</p>
+<p>This is part 2 of a two part blog. Part 1 explains the game, and lays out the foundations required for formalisation of the game. It also lists out the various assumptions we are going to consider in the game. Part 2 formalises the game and proves that it is of PSPACE complexity.</p>
+<p>The blog was originally published on <a href="https://captains-mistress.github.io/scotlandyard">&lsquo;GameLab&rsquo;</a> for our course project. The website also contains additional information about heuristics used in Scotland Yard, and similar analysis for other board games.</p>
+<h2 id="-formalisation">🤵 Formalisation</h2>
+<p>We now know how to formalise any given perfect or imperfect information game. Now let&rsquo;s connect it to the game Scotland Yard.</p>
+<p>Let \(SY\) = \(\langle G, \langle u_* \overrightarrow{v_*} \rangle, f \rangle \) be a Scotland Yard instance. Then, let the extensive Scotland Yard game constitute by \(\mathcal{SY}\) be defined as the tuple
+$$ \mathcal{SY}(SY) = \langle N, H, P, \bullet, U \rangle $$</p>
+<p>Here,</p>
+<ul>
+<li>
+<p>\(G\) represents a digraph</p>
+</li>
+<li>
+<p>\(u_*\) represents the position of Mr X.</p>
+</li>
+<li>
+<p>\(\overrightarrow{v_*}\) is \(n\) dimensional vector, where \(n\) is the number of detectives. Each element in the vector represents the initial node of the detective.</p>
+</li>
+<li>
+<p>\(f\) is a function which when fed a number (no. of rounds) chooses one of the two elements from the set { \(show, hide\) }. This denotes whether Mr X needs to show their position or not.</p>
+</li>
+<li>
+<p>\(N\) represents total number of players. For convenience, \(N =\){\(\forall, \exists\)} where \(\forall\) represents Mr X and \(\exists_1, \exists_2 . . \exists_{N-1}\) represent the detectives.</p>
+</li>
+<li>
+<p>\(H\) represents a set of histories. Let \(\prec\) be the immediate successor relation on \(H\). So you can say that \(\langle h \rangle \prec \langle h, u \rangle\) where \(\langle h \rangle, \langle h, u\rangle \in H\)</p>
+</li>
+<li>
+<p>\(P\) represents the player function. Due to notational convenience, it is easy to assign the value of the player function. \(P(\langle h, u \rangle) = \forall P\) and \(P(\langle h, u , \overrightarrow{v} \rangle ) = \exists\) no matter \(u\) or \(\overrightarrow{v}\)</p>
+</li>
+<li>
+<p>\(\bullet\) is the indistinguishability relation. It is defined on the group \(H\). For any two histories \(h, h&rsquo; \in H\) where the length of both histories is equal, \(h \bullet h&rsquo;\) when:</p>
+<p>If \(h = \langle u_* , \overrightarrow{v_*}, u_1, \overrightarrow{v_1}, . . . u_i, \overrightarrow{v_i} \rangle \)and \(h&rsquo; = \langle u_* , \overrightarrow{v_*}, u&rsquo;_1, \overrightarrow{v&rsquo;_1}, . . . u&rsquo;_i, \overrightarrow{v&rsquo;_i} \rangle\) then</p>
+<ol>
+<li>\(\overrightarrow{v_j} = \overrightarrow{v&rsquo;_j} \space \forall \space 1 \leq j \leq i\) and</li>
+<li>\(u_j = u&rsquo;_j \space \forall \space 1 \leq j \leq 1\) such that \(f(j) = show\)</li>
+</ol>
+</li>
+<li>
+<p>\(U : Z \rightarrow \) {\(win,lose\)} is the utility function which determines whether \(\exists\) won or not.</p>
+</li>
+</ul>
+<p>$$ U(\langle h, u, \overrightarrow{v} \rangle) = \begin{cases} win, \space \space u\in \overrightarrow{v} \\\ lose, \space \space u \notin \overrightarrow{v} \end{cases} $$</p>
+<p>It is easy to see that the operation \(\bullet\) is Equivalent to the group $H$. We write \(\mathcal{H} \subseteq \wp(H)\) for the set of equivalent classes, or information cells, in which \(H\) is partitioned by \(\bullet\).</p>
+<p>\(\mathcal{H} = \{ C_1, C_2 . . . C_n\}\) where \(H = C_1 \cup C_2 . . \cup C_m\) for every \(1 \leq i \leq m\), if \(h \bullet h&rsquo;\) where \(h, h&rsquo; \in C_i\).</p>
+<p>We lift the relation \(\prec\) to \(H\), using the same symbol: For any pair \(C, C&rsquo; \in H\) we write \(C \prec C&rsquo;\) if there exists histories \(h \in C\) and \(h&rsquo; \in C&rsquo;\) such that \(h \prec h&rsquo;\)</p>
+<p>We can also extend this as if \(h, h&rsquo; \in C\) and \(C \in H\), then \(P(h) = P(h&rsquo;)\). Thus the player function is meaningfully lifted as follows: if \(C \in H\) and \(h \in C\), then \(P(C) = P(h)\).</p>
+<figure>
+    <img src="https://i.imgur.com/SivQWBP.png"/> 
+</figure>
+
+<p>Consider an example game \(G^x\). Let \(f^x\) be the information function where \(f^x(1) = hide\) and \(f^x(2) = show\). Let \(u_*\) and \(v_*\) as the initial position of \(\forall\) and \(\exists\). Consider that number of detectives to be 1. Let&rsquo;s play this game.</p>
+<p>The set of histories we can get from this game are:</p>
+<figure>
+    <img src="https://i.imgur.com/1RizdEh.png"/> 
+</figure>
+
+<p>where ! marks terminal histories. To reflect that this is a game of imperfect information, we can write \(\mathcal{H}\) as</p>
+<figure>
+    <img src="https://i.imgur.com/Wi26aWC.png"/> 
+</figure>
+
+<p>A graphical representation of this would be:</p>
+<figure>
+    <img src="https://i.imgur.com/K3w7PBf.png"/> 
+</figure>
+
+<h4 id="perfect-information-scotland-yard">Perfect Information Scotland Yard</h4>
+<p>So, Perfect Information means that each and every aspect of the game is explicitly expressible. The only difference we need to model here is \(\forall\)&lsquo;s whereabouts. Since describing each position will convert Scotland Yard into a simple game of Cops and Thieves, we don&rsquo;t do that. Instead, to preserve the game, we describe the position of \(\forall\) as a set of possible nodes.</p>
+<p>More abstractly, \(\forall$\)’s powers are lifted from the level of picking up vertices to the level of picking up sets of vertices. \(\exists\)’s powers remain unaltered, as compared to the game with imperfect information that was explicated above. It is defined as:</p>
+<p>$$ \mathcal{SY-PI}(SY) : \langle N_{PI}, H_{PI}, P_{PI}, U_{PI} \rangle $$</p>
+<p>The above mentioned example will be converted to</p>
+<figure>
+    <img src="https://i.imgur.com/9WUsTIz.png"/> 
+</figure>
+
+<h4 id="effective-equivalence">Effective Equivalence</h4>
+<p>In this section, we establish that \(\exists\) has a winning strategy in \(\mathcal{SY}(SY)\) iff it has a winning strategy in \(\mathcal{SY-PI}(SY)\). In order to prove this, it will be shown that \(\langle H, \prec \rangle\) is isomorphic to \(\langle H_{PI}, \prec_{PI} \rangle\) in virtue of the bijection \(\beta\)</p>
+<p>The function \(\beta\) is a map from histories in the perfect information game \(\mathcal{SY-PI}(SY)\) to information cells in the game \(\mathcal{SY}\). To formally define it, \(\beta: H_{PI} \rightarrow \wp(H)\).</p>
+<p>For example, in the above mention \(G^X\) we will map \(\beta(\langle u_*, v_*, u_1 \rangle)\) where \(u_1 = \{a, b\}\) to \(C_1\) where \(C_1 = \{\langle u_*, v_* , a\rangle , \langle u_*, v_*, b \rangle \}\)</p>
+<p>Just as a reminder, \(C_i\) represents an indistinguishable state for \(\exists\) in \(\mathcal{SY}(SY)\).</p>
+<p>The perfect information Scotland Yard game was defined in such a way that \(\exists\)&lsquo;s imperfect information in \(\mathcal{SY}(SY)\) is propagated to perfect information about sets in \(\mathcal{SY-PI}(SY)\).</p>
+<p>Example of \(\beta\) in lieu of above mentioned example would be:</p>
+<figure>
+    <img src="https://i.imgur.com/Gk7mazm.png"/> 
+</figure>
+
+<p>It is important to note that though here \(\beta\) is defined to have a codomain \(\wp(H)\), it ends up having a range of \(\mathcal{H}\). This is due to the output always being \(C_i\) and \(\mathcal{H} = \{C_1, C_2 . . C_m \}\)</p>
+<p>To better define \(\beta\) and actually make it bijective, we redefine it as</p>
+<p>$$\beta: H_{PI} \rightarrow \mathcal{H}$$</p>
+<p>Now, let&rsquo;s prove that the groups \(\langle H, \prec \rangle\) and \(\langle H_{PI}, \prec_{PI} \rangle\) are isomorphic.</p>
+<p>It is proved that \(\beta\) is a bijection between \(H_{PI}\) and \(\mathcal{H}\). It remains to be shown that \(\beta\) preserves structure.</p>
+<p>Recall that for \(C&rsquo; \in \mathcal{H}\) to be an immediate successor of \(C \in \mathcal{H}\), there must exist two histories \(g, g&rsquo;\) in \(C, C&rsquo;\) respectively such that \(g \prec g&rsquo;\) (Proved earlier).</p>
+<p>What this proves is that for any histories \(h, h&rsquo; \in H_{PI}\) it is the case that \(h \prec_{PI} h&rsquo;\) iff \(\beta(h) \prec \beta(h&rsquo;)\)</p>
+<p>The claim is proved by a straightforward inductive argument on the length of the histories in \(H_{PI}\)</p>
+<p>Making use of the fact that \(\langle H_{PI}, \prec_{PI} \rangle\) and \(\langle H, \prec \rangle\) are isomorphic groups, an inductive argument proves that \(S\) is a winning strategy for \(\exists\) in \(\mathcal{SY-PI}\) iff \(S(\beta)\) is a winning strategy for \(\exists\) in \(\mathcal{SY}(SY)\).</p>
+<h2 id="-pspace">🌌 PSPACE</h2>
+<p>Let \(\text{SCOTLAND YARD}\) be the set of all Scotland Yard instances such that \(\exists\) has a winning strategy in \(\mathcal{SY}(SY)\).</p>
+<p>If we are able to prove that there is a winning strategy in PSPACE for \(\mathcal{SY}(SY)\), then it will stand true for \(\mathcal{SY-PI}(SY)\) as well.</p>
+<p>Papadimitriou, namely, observed that deciding the value of a game with perfect information can be done in PSPACE if the following requirements are met:</p>
+<ul>
+<li>The length of any legal sequence of moves is bounded by a polynomial in the size of the input</li>
+<li>Given a “board position” of the game there is a polynomial-space algorithm which constructs all possible subsequent actions and board positions; or, if there aren’t any, decides whether the board position is a win for either player.</li>
+</ul>
+<p>\(SY−PI(SY)\) meets those condition.</p>
+<p>For the first point, the length of the description of any history is bounded by the number of rounds \(k\), of the game. By assumption, \(k \leq |V|\), thus it is polynomially bounded.</p>
+<p>For the second point, as we have seen till now, each board game can be represented in form of a decision tree. More formally, if \(\langle h, U, \overrightarrow{v} \rangle\) is a non terminal history, then its successors are either (depending on \(f\)) only \(\langle h, U, \overrightarrow{v}, \{w_1 ,. . ., w_m \} \rangle\) or all of \(\langle h, U, \overrightarrow{v}, \{ w_1 \} \rangle\), . . . , \(\langle h, U, \overrightarrow{v}, \{ w_m \} \rangle\)</p>
+<p>Where \(E(U-\{\overrightarrow{v}\}) = \{ w_1, w_2 , . . , w_m\}\). These can easily be constructed in PSPACE.</p>
+<p>HENCE PROVED \(\mathcal{SY-PI}(SY)\), AND CONSEQUENTLY, \(\mathcal{SY}(SY)\) ARE PSPACE IN COMPLEXITY.</p>
+<hr>
+<p><strong>NOTE</strong>
+It is later shown that if there were a Scotland yard instance such that each $f = show$, then it would be <strong>PSPACE HARD</strong> in complexity. Also if each $f = hide$, then it would be <strong>NP HARD</strong> in complexity. These proofs are omitted due to the complexity of the math involved.</p>
+<h2 id="-references">📝 References</h2>
+<ul>
+<li>
+<p>P. Nijssen and M. H. M. Winands, &ldquo;Monte Carlo Tree Search for the Hide-and-Seek Game Scotland Yard,&rdquo; in IEEE Transactions on Computational Intelligence and AI in Games, vol. 4, no. 4, pp. 282-294, Dec. 2012, doi: 10.1109/TCIAIG.2012.2210424.</p>
+</li>
+<li>
+<p>Sevenster, Merlijn. (2006). The complexity of Scotland Yard. Journal of Pharmacology and Experimental Therapeutics - J PHARMACOL EXP THER.</p>
+</li>
+</ul>]]></content>
+		</item>
+		
+	</channel>
+</rss>

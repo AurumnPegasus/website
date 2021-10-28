@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>system on Shivansh Subramanian</title>
+    <link>https://aurumnpegasus.github.io/website/tags/system/</link>
+    <description>Recent content in system on Shivansh Subramanian</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Mon, 13 Sep 2021 12:00:06 +0900</lastBuildDate>
+    
+	<atom:link href="https://aurumnpegasus.github.io/website/tags/system/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Reversing Huge Files</title>
+      <link>https://aurumnpegasus.github.io/website/posts/huge_files/</link>
+      <pubDate>Mon, 13 Sep 2021 12:00:06 +0900</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/posts/huge_files/</guid>
+      <description>&lt;p&gt;This blog contains an explanation and tutorial of how to reverse very large files in C&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

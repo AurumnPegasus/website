@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>network on Shivansh Subramanian</title>
+    <link>https://aurumnpegasus.github.io/website/tags/network/</link>
+    <description>Recent content in network on Shivansh Subramanian</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Mon, 24 May 2021 20:32:11 +0530</lastBuildDate>
+    
+	<atom:link href="https://aurumnpegasus.github.io/website/tags/network/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Networks</title>
+      <link>https://aurumnpegasus.github.io/website/posts/networks/</link>
+      <pubDate>Mon, 24 May 2021 20:32:11 +0530</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/posts/networks/</guid>
+      <description>Here is the stuff I read related to networks, different models and their working,
+OSI Model The OSI Model (Open Systems Interconnection Model) is a conceptual framework used to describe the functions of a networking system. It defines rules and requirements that support effortless data transfer between different products and software. In the OSI reference model, the communications between a computing system are split into seven different abstraction layers: Physical, Data Link, Network, Transport, Session, Presentation, and Application.</description>
+    </item>
+    
+  </channel>
+</rss>

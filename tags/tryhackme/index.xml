@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TryHackMe on Shivansh Subramanian</title>
+    <link>https://aurumnpegasus.github.io/website/tags/tryhackme/</link>
+    <description>Recent content in TryHackMe on Shivansh Subramanian</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Mon, 14 Jun 2021 12:00:06 +0900</lastBuildDate>
+    
+	<atom:link href="https://aurumnpegasus.github.io/website/tags/tryhackme/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>OWASP top10</title>
+      <link>https://aurumnpegasus.github.io/website/posts/owasp/</link>
+      <pubDate>Mon, 14 Jun 2021 12:00:06 +0900</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/posts/owasp/</guid>
+      <description>&lt;p&gt;This blog contains my walkthrough of the OWASP room in tryhackme while trying to learn more about cyber security. Check out the original room as well &lt;a href=&#34;https://tryhackme.com/room/owasptop10&#34;&gt;here.&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
