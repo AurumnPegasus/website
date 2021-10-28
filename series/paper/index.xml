@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Paper on Aurumn Pegasus</title>
+    <link>https://aurumnpegasus.github.io/website/series/paper/</link>
+    <description>Recent content in Paper on Aurumn Pegasus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>subramanian.shivansh@gmail.com (Shivansh Subramanian)</managingEditor>
+    <webMaster>subramanian.shivansh@gmail.com (Shivansh Subramanian)</webMaster>
+    <copyright>©2021, All Rights Reserved</copyright>
+    <lastBuildDate>Sun, 22 Nov 2020 12:00:06 +0900</lastBuildDate>
+    
+        <atom:link href="https://aurumnpegasus.github.io/website/series/paper/index.xml" rel="self" type="application/rss+xml" />
+    
+
+      
+      <item>
+        <title>Connect Four, Part-1</title>
+        <link>https://aurumnpegasus.github.io/website/posts/connect_four_1/</link>
+        <pubDate>Sun, 22 Nov 2020 12:00:06 +0900</pubDate>
+        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
+        <atom:modified>Sun, 22 Nov 2020 12:00:06 +0900</atom:modified>
+        <guid>https://aurumnpegasus.github.io/website/posts/connect_four_1/</guid>
+        <description>&lt;p&gt;This blog contains explanation of the paper by Victor Allis called &lt;a href=&#34;http://www.informatik.uni-trier.de/~fernau/DSL0607/Masterthesis-Viergewinnt.pdf&#34;&gt;&amp;lsquo;A Knowledge-based Approach of Connect-Four&amp;rsquo;&lt;/a&gt;&lt;/p&gt;</description>
+        
+        <dc:creator>Shivansh S</dc:creator>
+        <media:content url="https://aurumnpegasus.github.io/website/images/feature1/connect_four_1.gif" medium="image"><media:title type="html">featured image</media:title></media:content>
+        
+        
+        
+          
+            
+              <category>paper</category>
+            
+          
+            
+              <category>connect4</category>
+            
+          
+        
+        
+          
+            
+              <category>game</category>
+            
+          
+        
+        
+          
+            
+              <category>Paper</category>
+            
+          
+        
+      </item>
+      
+      <item>
+        <title>Connect Four, Part-2</title>
+        <link>https://aurumnpegasus.github.io/website/posts/connect_four_2/</link>
+        <pubDate>Sun, 22 Nov 2020 12:00:06 +0900</pubDate>
+        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
+        <atom:modified>Sun, 22 Nov 2020 12:00:06 +0900</atom:modified>
+        <guid>https://aurumnpegasus.github.io/website/posts/connect_four_2/</guid>
+        <description>&lt;p&gt;This blog contains explanation of the paper by Victor Allis called &lt;a href=&#34;http://www.informatik.uni-trier.de/~fernau/DSL0607/Masterthesis-Viergewinnt.pdf&#34;&gt;&amp;lsquo;A Knowledge-based Approach of Connect-Four&amp;rsquo;&lt;/a&gt;&lt;br /&gt;
+This is a 2 part series exploring the paper, and I would suggest going through &lt;a href=&#34;&#34;&gt;&amp;lsquo;first part&amp;rsquo;&lt;/a&gt; if you haven&amp;rsquo;t already.&lt;/p&gt;</description>
+        
+        <dc:creator>Shivansh S</dc:creator>
+        <media:content url="https://aurumnpegasus.github.io/website/images/feature1/connect_four_1.gif" medium="image"><media:title type="html">featured image</media:title></media:content>
+        
+        
+        
+          
+            
+              <category>paper</category>
+            
+          
+            
+              <category>connect4</category>
+            
+          
+        
+        
+          
+            
+              <category>game</category>
+            
+          
+        
+        
+          
+            
+              <category>Paper</category>
+            
+          
+        
+      </item>
+      
+      <item>
+        <title>Scotland Yard: Part 1</title>
+        <link>https://aurumnpegasus.github.io/website/posts/scotland_yard_1/</link>
+        <pubDate>Sun, 22 Nov 2020 12:00:06 +0900</pubDate>
+        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
+        <atom:modified>Sun, 22 Nov 2020 12:00:06 +0900</atom:modified>
+        <guid>https://aurumnpegasus.github.io/website/posts/scotland_yard_1/</guid>
+        <description>&lt;p&gt;This blog contains an explanation of the paper &lt;a href=&#34;https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=A042C241BA640121A461FBF99CD93FEC?doi=10.1.1.76.9583&amp;amp;rep=rep1&amp;amp;type=pdf&#34;&gt;&amp;lsquo;The complexity of Scotland Yard&amp;rsquo;&lt;/a&gt; by Merlijn Sevenster.&lt;/p&gt;
+&lt;p&gt;This is part 1 of a two part blog. Part 1 explains the game, and lays out the foundations required for formalisation of the game. It also lists out the various assumptions we are going to consider in the game.&lt;/p&gt;
+&lt;p&gt;The blog was originally published on &lt;a href=&#34;https://captains-mistress.github.io/scotlandyard&#34;&gt;&amp;lsquo;GameLab&amp;rsquo;&lt;/a&gt; for our course project. The website also contains additional information about heuristics used in Scotland Yard, and similar analysis for other board games.&lt;/p&gt;</description>
+        
+        <dc:creator>Shivansh S</dc:creator>
+        <media:content url="https://aurumnpegasus.github.io/website/images/feature1/scotland_yard.png" medium="image"><media:title type="html">featured image</media:title></media:content>
+        
+        
+        
+          
+            
+              <category>paper</category>
+            
+          
+            
+              <category>scotland yard</category>
+            
+          
+        
+        
+          
+            
+              <category>game</category>
+            
+          
+        
+        
+          
+            
+              <category>Paper</category>
+            
+          
+        
+      </item>
+      
+      <item>
+        <title>Scotland Yard: Part 2</title>
+        <link>https://aurumnpegasus.github.io/website/posts/scotland_yard_2/</link>
+        <pubDate>Sun, 22 Nov 2020 12:00:06 +0900</pubDate>
+        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
+        <atom:modified>Sun, 22 Nov 2020 12:00:06 +0900</atom:modified>
+        <guid>https://aurumnpegasus.github.io/website/posts/scotland_yard_2/</guid>
+        <description>&lt;p&gt;This blog contains an explanation of the paper &lt;a href=&#34;https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=A042C241BA640121A461FBF99CD93FEC?doi=10.1.1.76.9583&amp;amp;rep=rep1&amp;amp;type=pdf&#34;&gt;&amp;lsquo;The complexity of Scotland Yard&amp;rsquo;&lt;/a&gt; by Merlijn Sevenster.&lt;/p&gt;
+&lt;p&gt;This is part 2 of a two part blog. Part 1 explains the game, and lays out the foundations required for formalisation of the game. It also lists out the various assumptions we are going to consider in the game. Part 2 formalises the game and proves that it is of PSPACE complexity.&lt;/p&gt;
+&lt;p&gt;The blog was originally published on &lt;a href=&#34;https://captains-mistress.github.io/scotlandyard&#34;&gt;&amp;lsquo;GameLab&amp;rsquo;&lt;/a&gt; for our course project. The website also contains additional information about heuristics used in Scotland Yard, and similar analysis for other board games.&lt;/p&gt;</description>
+        
+        <dc:creator>Shivansh S</dc:creator>
+        <media:content url="https://aurumnpegasus.github.io/website/images/feature1/scotland_yard.png" medium="image"><media:title type="html">featured image</media:title></media:content>
+        
+        
+        
+          
+            
+              <category>paper</category>
+            
+          
+            
+              <category>scotland yard</category>
+            
+          
+        
+        
+          
+            
+              <category>game</category>
+            
+          
+        
+        
+          
+            
+              <category>Paper</category>
+            
+          
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>

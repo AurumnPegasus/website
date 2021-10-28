@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Series on Aurumn Pegasus</title>
+    <link>https://aurumnpegasus.github.io/website/series/</link>
+    <description>Recent content in Series on Aurumn Pegasus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>subramanian.shivansh@gmail.com (Shivansh Subramanian)</managingEditor>
+    <webMaster>subramanian.shivansh@gmail.com (Shivansh Subramanian)</webMaster>
+    <copyright>©2021, All Rights Reserved</copyright>
+    <lastBuildDate>Wed, 13 Oct 2021 12:00:06 +0900</lastBuildDate>
+    
+        <atom:link href="https://aurumnpegasus.github.io/website/series/index.xml" rel="self" type="application/rss+xml" />
+    
+
+      
+      <item>
+        <title>Linear Algebra</title>
+        <link>https://aurumnpegasus.github.io/website/series/linear-algebra/</link>
+        <pubDate>Wed, 13 Oct 2021 12:00:06 +0900</pubDate>
+        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
+        
+        <guid>https://aurumnpegasus.github.io/website/series/linear-algebra/</guid>
+        <description></description>
+        
+        <dc:creator>Shivansh Subramanian</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>ML</title>
+        <link>https://aurumnpegasus.github.io/website/series/ml/</link>
+        <pubDate>Wed, 13 Oct 2021 12:00:06 +0900</pubDate>
+        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
+        
+        <guid>https://aurumnpegasus.github.io/website/series/ml/</guid>
+        <description></description>
+        
+        <dc:creator>Shivansh Subramanian</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>TryHackMe</title>
+        <link>https://aurumnpegasus.github.io/website/series/tryhackme/</link>
+        <pubDate>Mon, 14 Jun 2021 12:00:06 +0900</pubDate>
+        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
+        
+        <guid>https://aurumnpegasus.github.io/website/series/tryhackme/</guid>
+        <description></description>
+        
+        <dc:creator>Shivansh Subramanian</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Paper</title>
+        <link>https://aurumnpegasus.github.io/website/series/paper/</link>
+        <pubDate>Sun, 22 Nov 2020 12:00:06 +0900</pubDate>
+        <author>subramanian.shivansh@gmail.com (Shivansh Subramanian)</author>
+        
+        <guid>https://aurumnpegasus.github.io/website/series/paper/</guid>
+        <description></description>
+        
+        <dc:creator>Shivansh Subramanian</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>
