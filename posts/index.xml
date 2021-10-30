@@ -6,8 +6,31 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Wed, 13 Oct 2021 12:00:06 +0900</lastBuildDate>
+		<lastBuildDate>Sat, 30 Oct 2021 05:17:12 +0530</lastBuildDate>
 		<atom:link href="https://aurumnpegasus.github.io/website/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Setting up your PopOS</title>
+			<link>https://aurumnpegasus.github.io/website/posts/pop/</link>
+			<pubDate>Sat, 30 Oct 2021 05:17:12 +0530</pubDate>
+			
+			<guid>https://aurumnpegasus.github.io/website/posts/pop/</guid>
+			<description>So I used to love ElementaryOS (still do :p) even as a programmer, since its UI was intuitive and clean, and nothing else needed to be done on top of it. During one of my assignments though, I realised the issue I was having was my OS was in Ubuntu 18.04 instead of 20.04, which was a problem. Simple enough, I tried to update it as I had tried to update by Ubuntu (you could do that simply by a command on terminal).</description>
+			<content type="html"><![CDATA[<p>So I used to love ElementaryOS (still do :p) even as a programmer, since its UI was intuitive and clean, and nothing else needed to be done on top of it. During one of my assignments though, I realised the issue I was having was my OS was in Ubuntu 18.04 instead of 20.04, which was a problem. Simple enough, I tried to update it as I had tried to update by Ubuntu (you could do that simply by a command on terminal). Apparantly, not for Elementary, since it required me to
+do a fresh install.</p>
+<h2 id="why-popos">Why PopOS</h2>
+<p>Considering the reasons why I was using ElementaryOS in the first place, and the reason I moved, I felt it was the best choice. It is one of the most intuitive OS out there, meant to be user friendly (not more than Elementary though). Also, it is essentially built on Ubuntu (kinda), so for updating systems, all you need to do is write a line on terminal and boom!
+It also more supportive to programmers, since it has a lots of default keybindings and window tilings, which makes it easier for me to open multiple terminals at once and get my work done without lifting my hand to use my mouse.</p>
+<h2 id="get-started">Get Started</h2>
+<p>All you need is a empty pendrive of about 8-16GB. Go to <a href="https://pop.system76.com/%5D">https://pop.system76.com/]</a>  and click on Download. As of me posting this, the last LTS (stable) version of popOS out is 20.04, so go for it (although you can go for 21.04 as well if you want to). Just install whichever you think is a better choice for your laptop&rsquo;s specs (whether you want popOS with NVIDEA driver or not).
+Once you have installed it, you need to burn the iso file onto your pendrive. You can do this by using <a href="https://www.balena.io/etcher/,">https://www.balena.io/etcher/,</a> a lightweight program which etches your drive (warning, this will delete all existing data on your pendrive, so ensure that your pendrive doesnt have any important data in it). Once etched and verified, you are good to go!</p>
+<h2 id="partitions-and-booting">Partitions and Booting</h2>
+<p>Well, sorry, you are almost good to go. Last thing you need to do is create partitions on your disk. On Windows 10, its very easy to do so, just go to Disk Management (Google how to go to Disk Management if you dont know :p, its easy enough. Now, there are two cases. First, you might just have one drive (ideally SSD, but even if its HDD thats chill) or second, you might have 2 drives, one being SSD and other HDD. In general, its better if you use SSD, which is what I did, but ultimately
+thats your choice.
+Select the unpartitioned space and click on shrink. Allocate some memory here (dont worry, you are just preparing it for partitions, if you mess up its easy to correct at this stage). Ideally, you should allocate close to 100 GB to popOS (and ideally in SSD). Now, you have to partition that 100 GB as well, to create a smaller partition of 512 MB as well.
+Once you are done with this, lets go and boot this bad boi up</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Reduced Row Echelon Form</title>
