@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>os on Shivansh Subramanian</title>
+    <link>https://aurumnpegasus.github.io/website/tags/os/</link>
+    <description>Recent content in os on Shivansh Subramanian</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 30 Oct 2021 05:17:12 +0530</lastBuildDate>
+    
+	<atom:link href="https://aurumnpegasus.github.io/website/tags/os/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Setting up your PopOS</title>
+      <link>https://aurumnpegasus.github.io/website/posts/pop/</link>
+      <pubDate>Sat, 30 Oct 2021 05:17:12 +0530</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/posts/pop/</guid>
+      <description>So I used to love ElementaryOS (still do :p) even as a programmer, since its UI was intuitive and clean, and nothing else needed to be done on top of it. During one of my assignments though, I realised the issue I was having was my OS was in Ubuntu 18.04 instead of 20.04, which was a problem. Simple enough, I tried to update it as I had tried to update by Ubuntu (you could do that simply by a command on terminal).</description>
+    </item>
+    
+  </channel>
+</rss>
