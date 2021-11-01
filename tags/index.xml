@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 30 Oct 2021 05:17:12 +0530</lastBuildDate>
+    <lastBuildDate>Mon, 01 Nov 2021 10:28:11 +0530</lastBuildDate>
     
 	<atom:link href="https://aurumnpegasus.github.io/website/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>leetcode</title>
+      <link>https://aurumnpegasus.github.io/website/tags/leetcode/</link>
+      <pubDate>Mon, 01 Nov 2021 10:28:11 +0530</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/tags/leetcode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>string</title>
+      <link>https://aurumnpegasus.github.io/website/tags/string/</link>
+      <pubDate>Mon, 01 Nov 2021 10:28:11 +0530</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/tags/string/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>os</title>
@@ -81,24 +99,6 @@
       <pubDate>Mon, 24 May 2021 20:32:11 +0530</pubDate>
       
       <guid>https://aurumnpegasus.github.io/website/tags/network/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>game</title>
-      <link>https://aurumnpegasus.github.io/website/tags/game/</link>
-      <pubDate>Sun, 22 Nov 2020 12:00:06 +0900</pubDate>
-      
-      <guid>https://aurumnpegasus.github.io/website/tags/game/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>paper</title>
-      <link>https://aurumnpegasus.github.io/website/tags/paper/</link>
-      <pubDate>Sun, 22 Nov 2020 12:00:06 +0900</pubDate>
-      
-      <guid>https://aurumnpegasus.github.io/website/tags/paper/</guid>
       <description></description>
     </item>
     

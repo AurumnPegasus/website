@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Longest Substring Without Repeating Characters">
+<meta itemprop="description" content="Hey, so the whole idea of me posting leetcode solutions is not because I think I can explain better than thousands of others out there. Its just a place where I write down my thoughts and explanations so that I remember different techniques I worked through :)
+Problem Link: https://leetcode.com/problems/longest-substring-without-repeating-characters/
+Statement: Given a string s, find the length of the longest substring without repeating characters.
+Example:
+Input: s = &#34;abcabcbb&#34; Output: 3 Explanation: The answer is &#34;abc&#34;, with the length 3.">
+<meta itemprop="datePublished" content="2021-11-01T10:28:11&#43;05:30" />
+<meta itemprop="dateModified" content="2021-11-01T10:28:11&#43;05:30" />
+<meta itemprop="wordCount" content="818">
+
+
+
+<meta itemprop="keywords" content="leetcode,string," /><meta property="og:title" content="Longest Substring Without Repeating Characters" />
+<meta property="og:description" content="Hey, so the whole idea of me posting leetcode solutions is not because I think I can explain better than thousands of others out there. Its just a place where I write down my thoughts and explanations so that I remember different techniques I worked through :)
+Problem Link: https://leetcode.com/problems/longest-substring-without-repeating-characters/
+Statement: Given a string s, find the length of the longest substring without repeating characters.
+Example:
+Input: s = &#34;abcabcbb&#34; Output: 3 Explanation: The answer is &#34;abc&#34;, with the length 3." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://aurumnpegasus.github.io/website/posts/leetcode_3/" />
+<meta property="article:published_time" content="2021-11-01T10:28:11+05:30" />
+<meta property="article:modified_time" content="2021-11-01T10:28:11+05:30" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Longest Substring Without Repeating Characters"/>
+<meta name="twitter:description" content="Hey, so the whole idea of me posting leetcode solutions is not because I think I can explain better than thousands of others out there. Its just a place where I write down my thoughts and explanations so that I remember different techniques I worked through :)
+Problem Link: https://leetcode.com/problems/longest-substring-without-repeating-characters/
+Statement: Given a string s, find the length of the longest substring without repeating characters.
+Example:
+Input: s = &#34;abcabcbb&#34; Output: 3 Explanation: The answer is &#34;abc&#34;, with the length 3."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/website/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/website/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/website/favicon-16x16.png">
+	<link rel="manifest" href="/website/site.webmanifest">
+	<link rel="mask-icon" href="/website/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/website/favicon.ico">
+
+	<title>Longest Substring Without Repeating Characters</title>
+	<link rel="stylesheet" href="https://aurumnpegasus.github.io/website/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://aurumnpegasus.github.io/website/">Shivansh Subramanian</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://aurumnpegasus.github.io/website/posts/">Posts</a>
+				<a href="https://aurumnpegasus.github.io/website/about-hugo/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="mailto:subramanian.shivansh@gmail.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://instagram.com/shivansh._.21/" target="_blank" rel="noopener me" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a><a href="https://github.com/AurumnPegasus" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://aurumnpegasus.github.io/website/posts/">Posts</a></li>
+			<li><a href="https://aurumnpegasus.github.io/website/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Nov 1, 2021</span></div>
+				<h1>Longest Substring Without Repeating Characters</h1>
+			</header>
+			<div class="content">
+				<p>Hey, so the whole idea of me posting leetcode solutions is not because I think I can explain better than thousands of others out there. Its just a place where I write down my thoughts and explanations so that I remember different techniques I worked through :)</p>
+<h2 id="problem">Problem<a href="#problem" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><strong>Link</strong>: <a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/">https://leetcode.com/problems/longest-substring-without-repeating-characters/</a></p>
+<p><strong>Statement</strong>: Given a string <code>s</code>, find the length of the longest substring without repeating characters.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">Input: s = &#34;abcabcbb&#34;
+Output: 3
+Explanation: The answer is &#34;abc&#34;, with the length 3. 
+</code></pre></div><p><strong>Constraints</strong>:</p>
+<pre><code>0 &lt;= s.length &lt;= 5*1e4
+</code></pre><p><strong>Note</strong>: It is important to see that the question asks for substring (the characters must be continous) and not subsequence.</p>
+<h2 id="solution-1-binary-search--linear-search">Solution 1: Binary Search + Linear Search<a href="#solution-1-binary-search--linear-search" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><strong>Time Complexity: O(\(nlogn\))</strong></p>
+<p>So I will just explain the solution as nicely as possible. I wont give code for this since I believe you should write it yourself for practice (there is no sense if once just googles code for a given problem). Although, for questions which are difficult I would probably provide some snippets to enable understanding.</p>
+<p><strong>Thought Process</strong>: Well, we need to find length of longest substring but I cannot go do O(\(n^2\)). O(\(n\)) seems nice but complicated, I will leave that for now. So, looking at the string I see that it would be nice if I could just linearly search through all of them and see which one is the answer, but issue is that I cannot search through all <code>n</code> possibilities that way.
+So, I only search through selected values of <code>n</code> so that the complexity does not rise too much. Now, one thing I know is if there is no answer for <code>x</code> length, there is no answer for any length <code>&gt;x</code>. So, boom, this looks like a job for binary search.</p>
+<p><strong>Explanation</strong>
+So, we are doing binary search to find the required length of substring, and then doing linear search to confirm the condition (all characters must be unique). Naturally, if there exists even 1 substring which satisfies this condition, we say that the x satisfies the condition.
+Now, lets take our example of <code>abcabcbb</code>. Our first <code>x=4</code>, for which the answer is:
+<figure>
+    <img src="https://i.imgur.com/VoRoQdT.png"/> 
+</figure>
+</p>
+<p>Now, our search range is between <code>0 -&gt; 3</code>. Our next <code>x=1</code>, and it is obvious that satisfies condition. So now our search range is between <code>1 -&gt; 3</code>, and our next x is <code>x=2</code>. Again, its obvious this satisfies the condition. So our final range is between <code>2 -&gt; 3</code>. Now, lets check for <code>x=3</code>.
+<figure>
+    <img src="https://i.imgur.com/NtMC8E2.png"/> 
+</figure>
+</p>
+<p>As we can see, our answer is 3.</p>
+<h2 id="solution-2-pointer-with-dictionary">Solution 2: Pointer with Dictionary<a href="#solution-2-pointer-with-dictionary" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><strong>Time Complexity: O(\(n\))</strong></p>
+<p><strong>Thought Process</strong>: So we need O(\(n\)). One thing you must note is that when we are the ones trying to find the answer (as humans, unless you are a bot, I guess you are also welcome here? idk) is that we go linearly from left to right, and whenever a repeating character comes up, we cut off from where it previously occured, and continue. Neat. This will be our algorithm.</p>
+<p><strong>Explanation</strong>: Consider a dictionary <code>m</code> and a left pointer. Whenever I get a new character never seen before, I insert it into the dictionary with the index where it occured as its value. Whenever I see a character already in the dictionary, I make note of the current substring, and then update the value of <code>key</code> in dictionary with <code>value = i</code>. Simple enough?</p>
+<figure>
+    <img src="https://i.imgur.com/ZMThPq6.png"/> 
+</figure>
+
+<p>A couple of things we do need to note is that
+a) Well, what about the end?: Simple enough, we add a line which goes from my left pointer (I will tell you the use of this soon) and current index. This will be my last substring which satisfies the condition
+b) Uh, what if I get something like <code>xyyx</code>, where I have to cutoff after the first index. Fret not, this has been taken care of. We just make sure that any index I consider has to be after left at all costs.</p>
+<figure>
+    <img src="https://i.imgur.com/nXyuRDi.png"/> 
+</figure>
+
+<p>So, in this case I feel a bit of code is important.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Left is simply an int which remembers where my substring is starting from</span>
+<span class="c1"># m is my dictionary</span>
+<span class="c1"># sollen stores the max answer (initialised to 0)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span>
+    <span class="c1"># check if character exists </span>
+    <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">m</span><span class="p">:</span>
+       <span class="c1"># if it does, then check if it occurs before left</span>
+       <span class="c1"># (before it was cutoff)</span>
+       <span class="k">if</span> <span class="n">m</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">&lt;</span> <span class="n">left</span><span class="p">:</span>
+          <span class="c1"># if it was before it was cutoff, then my substring is valid </span>
+          <span class="c1"># I just need to update its value</span>
+          <span class="n">m</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span>
+       <span class="k">else</span><span class="p">:</span>
+          <span class="c1"># If not, then I need to cut my substring now</span>
+          <span class="c1"># Store the length of substring</span>
+          <span class="n">sollen</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">sollen</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span>
+          <span class="c1"># Update my left pointer to next occurance of repeated character</span>
+          <span class="n">left</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="mi">1</span>
+          <span class="c1"># Update value of repeated character</span>
+          <span class="n">m</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span>
+
+<span class="c1"># Check if the last substring might be the answer?          </span>
+<span class="n">sollen</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">sollen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span>
+<span class="k">return</span> <span class="n">sollen</span>
+</code></pre></div>
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://aurumnpegasus.github.io/website/tags/leetcode">leetcode</a></span><span class="tag"><a href="https://aurumnpegasus.github.io/website/tags/string">string</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>818 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-11-01 10:28 &#43;0530</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://aurumnpegasus.github.io/website/posts/pop/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Setting up your PopOS</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2021 <a href="https://aurumnpegasus.github.io/website/">Shivansh Subramanian</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://aurumnpegasus.github.io/website/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+	</footer>
+
+
+
+	<script src="https://aurumnpegasus.github.io/website/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

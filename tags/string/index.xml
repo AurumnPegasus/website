@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>string on Shivansh Subramanian</title>
+    <link>https://aurumnpegasus.github.io/website/tags/string/</link>
+    <description>Recent content in string on Shivansh Subramanian</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Mon, 01 Nov 2021 10:28:11 +0530</lastBuildDate>
+    
+	<atom:link href="https://aurumnpegasus.github.io/website/tags/string/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Longest Substring Without Repeating Characters</title>
+      <link>https://aurumnpegasus.github.io/website/posts/leetcode_3/</link>
+      <pubDate>Mon, 01 Nov 2021 10:28:11 +0530</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/posts/leetcode_3/</guid>
+      <description>Hey, so the whole idea of me posting leetcode solutions is not because I think I can explain better than thousands of others out there. Its just a place where I write down my thoughts and explanations so that I remember different techniques I worked through :)
+Problem Link: https://leetcode.com/problems/longest-substring-without-repeating-characters/
+Statement: Given a string s, find the length of the longest substring without repeating characters.
+Example:
+Input: s = &amp;#34;abcabcbb&amp;#34; Output: 3 Explanation: The answer is &amp;#34;abc&amp;#34;, with the length 3.</description>
+    </item>
+    
+  </channel>
+</rss>
