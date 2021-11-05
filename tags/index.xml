@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 01 Nov 2021 10:28:11 +0530</lastBuildDate>
+    <lastBuildDate>Fri, 05 Nov 2021 08:31:41 +0530</lastBuildDate>
     
 	<atom:link href="https://aurumnpegasus.github.io/website/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>daily</title>
+      <link>https://aurumnpegasus.github.io/website/tags/daily/</link>
+      <pubDate>Fri, 05 Nov 2021 08:31:41 +0530</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/tags/daily/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>math</title>
+      <link>https://aurumnpegasus.github.io/website/tags/math/</link>
+      <pubDate>Fri, 05 Nov 2021 08:31:41 +0530</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/tags/math/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>leetcode</title>
@@ -36,15 +54,6 @@
       <pubDate>Sat, 30 Oct 2021 05:17:12 +0530</pubDate>
       
       <guid>https://aurumnpegasus.github.io/website/tags/os/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>math</title>
-      <link>https://aurumnpegasus.github.io/website/tags/math/</link>
-      <pubDate>Wed, 13 Oct 2021 12:00:06 +0900</pubDate>
-      
-      <guid>https://aurumnpegasus.github.io/website/tags/math/</guid>
       <description></description>
     </item>
     
@@ -90,15 +99,6 @@
       <pubDate>Mon, 14 Jun 2021 12:00:06 +0900</pubDate>
       
       <guid>https://aurumnpegasus.github.io/website/tags/tryhackme/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>network</title>
-      <link>https://aurumnpegasus.github.io/website/tags/network/</link>
-      <pubDate>Mon, 24 May 2021 20:32:11 +0530</pubDate>
-      
-      <guid>https://aurumnpegasus.github.io/website/tags/network/</guid>
       <description></description>
     </item>
     

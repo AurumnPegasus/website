@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 01 Nov 2021 10:28:11 +0530</lastBuildDate>
+    <lastBuildDate>Fri, 05 Nov 2021 08:31:41 +0530</lastBuildDate>
     
 	<atom:link href="https://aurumnpegasus.github.io/website/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Arranging Coins</title>
+      <link>https://aurumnpegasus.github.io/website/posts/leetcode_441/</link>
+      <pubDate>Fri, 05 Nov 2021 08:31:41 +0530</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/posts/leetcode_441/</guid>
+      <description>So this is probably the simplest weekly question out there if you know the math required. I will just write down my thoughts so I know how I approached the problem later on, and not what the solution is per se.
+Problem: Link: https://leetcode.com/problems/arranging-coins/
+Statement: You have n coins, and you want to build a staircase with these coins. The staircase consists of k rows, where ith row has exactly i coins.</description>
+    </item>
     
     <item>
       <title>Longest Substring Without Repeating Characters</title>
@@ -96,16 +107,6 @@ OSI Model The OSI Model (Open Systems Interconnection Model) is a conceptual fra
       
       <guid>https://aurumnpegasus.github.io/website/posts/connect_four_1/</guid>
       <description>&lt;p&gt;This blog contains explanation of the paper by Victor Allis called &lt;a href=&#34;http://www.informatik.uni-trier.de/~fernau/DSL0607/Masterthesis-Viergewinnt.pdf&#34;&gt;&amp;lsquo;A Knowledge-based Approach of Connect-Four&amp;rsquo;&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Connect Four, Part 2</title>
-      <link>https://aurumnpegasus.github.io/website/posts/connect_four_2/</link>
-      <pubDate>Sun, 22 Nov 2020 12:00:06 +0900</pubDate>
-      
-      <guid>https://aurumnpegasus.github.io/website/posts/connect_four_2/</guid>
-      <description>&lt;p&gt;This blog contains explanation of the paper by Victor Allis called &lt;a href=&#34;http://www.informatik.uni-trier.de/~fernau/DSL0607/Masterthesis-Viergewinnt.pdf&#34;&gt;&amp;lsquo;A Knowledge-based Approach of Connect-Four&amp;rsquo;&lt;/a&gt;
-This is a 2 part series exploring the paper, and I would suggest going through &lt;a href=&#34;&#34;&gt;&amp;lsquo;first part&amp;rsquo;&lt;/a&gt; if you haven&amp;rsquo;t already.&lt;/p&gt;</description>
     </item>
     
   </channel>
