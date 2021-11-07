@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 05 Nov 2021 08:31:41 +0530</lastBuildDate>
+    <lastBuildDate>Sun, 07 Nov 2021 12:35:02 +0530</lastBuildDate>
     
 	<atom:link href="https://aurumnpegasus.github.io/website/tags/math/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Fast Multiplication</title>
+      <link>https://aurumnpegasus.github.io/website/posts/fast_multiplication/</link>
+      <pubDate>Sun, 07 Nov 2021 12:35:02 +0530</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/posts/fast_multiplication/</guid>
+      <description>Multiplication, generally, is relatively easy to do, understand and code. Even the 2nd standard algorithm of multiple each digit with every other digit is simple enough to write. The issue is that such an algorithm takes O(n^2) time complexity, which is a lot, especially if you want to multiply huge numbers. Hence why you need better algorithms in place to do your job. Note, languages like Python have lots of optimisations on top of specific algorithms used for computing products when the user types in a simple &amp;lsquo;*&#39;, but the article is more about understanding these algorithms.</description>
+    </item>
     
     <item>
       <title>Arranging Coins</title>
