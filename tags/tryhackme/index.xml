@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 14 Jun 2021 12:00:06 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 24 Nov 2021 20:23:56 +0530</lastBuildDate>
     
 	<atom:link href="https://aurumnpegasus.github.io/website/tags/tryhackme/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Pickle Rick</title>
+      <link>https://aurumnpegasus.github.io/website/posts/pickle_rick/</link>
+      <pubDate>Wed, 24 Nov 2021 20:23:56 +0530</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/posts/pickle_rick/</guid>
+      <description>Pickle Rick is a Rick and Morty themed challenge that requires you to exploit a webserver to find 3 ingredients that will help Rick make his potion to transform himself back into a human from a picke. No information related to the show is required.
+  On the first page, there is nothing worth looking at. I tried clicking around the picture a bit to see if they lead to a link but nothing of that sort.</description>
+    </item>
     
     <item>
       <title>OWASP top10</title>

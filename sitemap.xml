@@ -3,27 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://aurumnpegasus.github.io/website/posts/pickle_rick/</loc>
+    <lastmod>2021-11-24T20:23:56+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aurumnpegasus.github.io/website/posts/</loc>
+    <lastmod>2021-11-24T20:23:56+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aurumnpegasus.github.io/website/</loc>
+    <lastmod>2021-11-24T20:23:56+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aurumnpegasus.github.io/website/tags/</loc>
+    <lastmod>2021-11-24T20:23:56+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aurumnpegasus.github.io/website/tags/tryhackme/</loc>
+    <lastmod>2021-11-24T20:23:56+05:30</lastmod>
+  </url>
+  
+  <url>
     <loc>https://aurumnpegasus.github.io/website/posts/fast_multiplication/</loc>
     <lastmod>2021-11-07T12:35:02+05:30</lastmod>
   </url>
   
   <url>
     <loc>https://aurumnpegasus.github.io/website/tags/math/</loc>
-    <lastmod>2021-11-07T12:35:02+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://aurumnpegasus.github.io/website/posts/</loc>
-    <lastmod>2021-11-07T12:35:02+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://aurumnpegasus.github.io/website/</loc>
-    <lastmod>2021-11-07T12:35:02+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://aurumnpegasus.github.io/website/tags/</loc>
     <lastmod>2021-11-07T12:35:02+05:30</lastmod>
   </url>
   
@@ -104,11 +114,6 @@
   
   <url>
     <loc>https://aurumnpegasus.github.io/website/tags/room/</loc>
-    <lastmod>2021-06-14T12:00:06+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://aurumnpegasus.github.io/website/tags/tryhackme/</loc>
     <lastmod>2021-06-14T12:00:06+09:00</lastmod>
   </url>
   

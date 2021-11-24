@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 07 Nov 2021 12:35:02 +0530</lastBuildDate>
+    <lastBuildDate>Wed, 24 Nov 2021 20:23:56 +0530</lastBuildDate>
     
 	<atom:link href="https://aurumnpegasus.github.io/website/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Pickle Rick</title>
+      <link>https://aurumnpegasus.github.io/website/posts/pickle_rick/</link>
+      <pubDate>Wed, 24 Nov 2021 20:23:56 +0530</pubDate>
+      
+      <guid>https://aurumnpegasus.github.io/website/posts/pickle_rick/</guid>
+      <description>Pickle Rick is a Rick and Morty themed challenge that requires you to exploit a webserver to find 3 ingredients that will help Rick make his potion to transform himself back into a human from a picke. No information related to the show is required.
+  On the first page, there is nothing worth looking at. I tried clicking around the picture a bit to see if they lead to a link but nothing of that sort.</description>
+    </item>
     
     <item>
       <title>Fast Multiplication</title>
@@ -97,16 +107,6 @@ Input: s = &amp;#34;abcabcbb&amp;#34; Output: 3 Explanation: The answer is &amp;
       
       <guid>https://aurumnpegasus.github.io/website/posts/owasp/</guid>
       <description>&lt;p&gt;This blog contains my walkthrough of the OWASP room in tryhackme while trying to learn more about cyber security. Check out the original room as well &lt;a href=&#34;https://tryhackme.com/room/owasptop10&#34;&gt;here.&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Networks</title>
-      <link>https://aurumnpegasus.github.io/website/posts/networks/</link>
-      <pubDate>Mon, 24 May 2021 20:32:11 +0530</pubDate>
-      
-      <guid>https://aurumnpegasus.github.io/website/posts/networks/</guid>
-      <description>Here is the stuff I read related to networks, different models and their working,
-OSI Model The OSI Model (Open Systems Interconnection Model) is a conceptual framework used to describe the functions of a networking system. It defines rules and requirements that support effortless data transfer between different products and software. In the OSI reference model, the communications between a computing system are split into seven different abstraction layers: Physical, Data Link, Network, Transport, Session, Presentation, and Application.</description>
     </item>
     
   </channel>
