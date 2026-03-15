@@ -1,0 +1,56 @@
+baseURL = 'https://aurumnpegasus.com/'
+languageCode = 'en-us'
+title = 'Shivansh Subramanian'
+theme = 'hermit'
+rssLimit = 20
+enableEmoji = true
+disableKinds = ['RSS']
+copyright = 'This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.'
+
+[author]
+  name = 'Shivansh Subramanian'
+
+[taxonomies]
+  tag = 'tags'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
+
+[params]
+  dateform = 'Jan 2, 2006'
+  dateformShort = 'Jan 2'
+  dateformNum = '2006-01-02'
+  dateformNumTime = '2006-01-02 15:04 -0700'
+  themeColor = '#494f5c'
+  homeSubtitle = 'Welcome to my website :)'
+  footerCopyright = ' &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
+  authorName = 'Shivansh Subramanian'
+
+  [[params.social]]
+    name = 'email'
+    url = 'mailto:subramanian.shivansh@gmail.com'
+
+  [[params.social]]
+    name = 'instagram'
+    url = 'https://instagram.com/shivansh._.21/'
+
+  [[params.social]]
+    name = 'github'
+    url = 'https://github.com/AurumnPegasus'
+
+[menu]
+  [[menu.main]]
+    name = 'Posts'
+    url = 'posts/'
+    weight = 10
+
+  [[menu.main]]
+    name = 'About'
+    url = 'about/'
+    weight = 20
