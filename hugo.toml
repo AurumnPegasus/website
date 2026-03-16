@@ -28,7 +28,6 @@ copyright = 'This work is licensed under a Creative Commons Attribution-NonComme
   dateformNum = '2006-01-02'
   dateformNumTime = '2006-01-02 15:04 -0700'
   themeColor = '#494f5c'
-  homeSubtitle = 'Welcome to my website :)'
   footerCopyright = ' &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
   authorName = 'Shivansh Subramanian'
 
