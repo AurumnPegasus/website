@@ -1,6 +1,7 @@
 ---
 title: "Linear Classifier"
 date: 2021-09-21T12:00:06+09:00
+archived: true
 tags:
   - ml
 ---

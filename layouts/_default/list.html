@@ -4,28 +4,28 @@
 
 {{ define "main" }}
 	<main class="site-main section-inner thin animated fadeIn faster">
-		<h1>{{ .Site.Title }}</h1>
-		{{- with .Site.Params.homeSubtitle }}
+		<h1>{{ .Title }}</h1>
+		{{- if .Content }}
 		<div class="content">
-			<p>{{ . }}</p>
+			{{ .Content }}
 		</div>
 		{{- end }}
+		{{- $pages := where .Data.Pages "Params.archived" "ne" true }}
+		{{- range $pages.GroupByDate "2006" }}
 		<div class="posts-group">
-			<div class="post-year">Recent posts</div>
+			<div class="post-year" id="{{ .Key }}">{{ .Key }}</div>
 			<ul class="posts-list">
-				{{- range first 10 (where (where site.RegularPages "Section" "posts") "Params.archived" "ne" true) }}
+				{{- range .Pages }}
 				<li class="post-item">
 					<a href="{{ .Permalink }}">
 						<span class="post-title">{{ .Title }}</span>
-						<span class="post-day">{{ .Date.Format $.Site.Params.dateformShort }}</span>
+						<span class="post-day">{{ .Date.Format .Site.Params.dateformShort }}</span>
 					</a>
 				</li>
 				{{- end }}
 			</ul>
 		</div>
-		<div class="content">
-			<p><a href="{{ "posts/" | absLangURL }}">View all posts</a></p>
-		</div>
+		{{- end }}
 	</main>
 {{ end }}
 
