@@ -11,12 +11,16 @@ tags:
 <p><strong>Link</strong>: <a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/">https://leetcode.com/problems/longest-substring-without-repeating-characters/</a></p>
 <p><strong>Statement</strong>: Given a string <code>s</code>, find the length of the longest substring without repeating characters.</p>
 <p><strong>Example</strong>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">Input: s = &#34;abcabcbb&#34;
+{{< highlight text >}}
+Input: s = "abcabcbb"
 Output: 3
-Explanation: The answer is &#34;abc&#34;, with the length 3. 
-</code></pre></div><p><strong>Constraints</strong>:</p>
-<pre><code>0 &lt;= s.length &lt;= 5*1e4
-</code></pre><p><strong>Note</strong>: It is important to see that the question asks for substring (the characters must be continous) and not subsequence.</p>
+Explanation: The answer is "abc", with the length 3. 
+{{< /highlight >}}
+
+<p><strong>Constraints</strong>:</p>
+{{< highlight text >}}
+0 <= s.length <= 5*1e4
+{{< /highlight >}}<p><strong>Note</strong>: It is important to see that the question asks for substring (the characters must be continous) and not subsequence.</p>
 <h2 id="solution-1-binary-search--linear-search">Solution 1: Binary Search + Linear Search<a href="#solution-1-binary-search--linear-search" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p><strong>Time Complexity: O(\(nlogn\))</strong></p>
 <p>So I will just explain the solution as nicely as possible. I wont give code for this since I believe you should write it yourself for practice (there is no sense if once just googles code for a given problem). Although, for questions which are difficult I would probably provide some snippets to enable understanding.</p>
@@ -51,28 +55,29 @@ b) Uh, what if I get something like <code>xyyx</code>, where I have to cutoff af
 </figure>
 
 <p>So, in this case I feel a bit of code is important.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Left is simply an int which remembers where my substring is starting from</span>
-<span class="c1"># m is my dictionary</span>
-<span class="c1"># sollen stores the max answer (initialised to 0)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span>
-    <span class="c1"># check if character exists </span>
-    <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">m</span><span class="p">:</span>
-       <span class="c1"># if it does, then check if it occurs before left</span>
-       <span class="c1"># (before it was cutoff)</span>
-       <span class="k">if</span> <span class="n">m</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">&lt;</span> <span class="n">left</span><span class="p">:</span>
-          <span class="c1"># if it was before it was cutoff, then my substring is valid </span>
-          <span class="c1"># I just need to update its value</span>
-          <span class="n">m</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span>
-       <span class="k">else</span><span class="p">:</span>
-          <span class="c1"># If not, then I need to cut my substring now</span>
-          <span class="c1"># Store the length of substring</span>
-          <span class="n">sollen</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">sollen</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span>
-          <span class="c1"># Update my left pointer to next occurance of repeated character</span>
-          <span class="n">left</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="mi">1</span>
-          <span class="c1"># Update value of repeated character</span>
-          <span class="n">m</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span>
+{{< highlight python >}}
+# Left is simply an int which remembers where my substring is starting from
+# m is my dictionary
+# sollen stores the max answer (initialised to 0)
+for i in range(len(s)):
+    # check if character exists 
+    if s[i] in m:
+       # if it does, then check if it occurs before left
+       # (before it was cutoff)
+       if m[s[i]] < left:
+          # if it was before it was cutoff, then my substring is valid 
+          # I just need to update its value
+          m[s[i]] = i
+       else:
+          # If not, then I need to cut my substring now
+          # Store the length of substring
+          sollen = max(sollen, i - left)
+          # Update my left pointer to next occurance of repeated character
+          left = m[s[i]] + 1
+          # Update value of repeated character
+          m[s[i]] = i
 
-<span class="c1"># Check if the last substring might be the answer?          </span>
-<span class="n">sollen</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">sollen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span>
-<span class="k">return</span> <span class="n">sollen</span>
-</code></pre></div>
+# Check if the last substring might be the answer?          
+sollen = max(sollen, len(s) - left)
+return sollen
+{{< /highlight >}}

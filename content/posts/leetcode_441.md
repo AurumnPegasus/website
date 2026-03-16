@@ -11,7 +11,8 @@ tags:
 <p><strong>Link</strong>: <a href="https://leetcode.com/problems/arranging-coins/">https://leetcode.com/problems/arranging-coins/</a></p>
 <p><strong>Statement</strong>: You have n coins, and you want to build a staircase with these coins. The staircase consists of k rows, where ith row has exactly i coins. The last row may be incomplete. Given the integer n, return the number of complete rows of staircase you will build.</p>
 <p><strong>Example</strong>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">Input: n = 8
+{{< highlight text >}}
+Input: n = 8
 Output: 3
 Explanation:
 1st row: 1 coin 
@@ -20,9 +21,12 @@ Explanation:
 4th row: 2 coins
 
 as can be seen, row 1, row 2 and row 3 are the only complete rows
-</code></pre></div><p><strong>Constraints</strong>:</p>
-<pre><code>1 &lt;= n &lt;= 2^31 - 1
-</code></pre><figure>
+{{< /highlight >}}
+
+<p><strong>Constraints</strong>:</p>
+{{< highlight text >}}
+1 <= n <= 2^31 - 1
+{{< /highlight >}}<figure>
     <img src="https://i.imgur.com/SsWiiKs.png"/> 
 </figure>
 
@@ -49,11 +53,12 @@ We know that each row takes i coins, and we can sum them up to get the total num
 
 <p>The formula is the last part of the answer, but we just need to use a bit of common sense to realise that the number of coins cannot be negative, nor can it be a decimal value. Hence we just take the int value of the answer and boom, hence proved :p.</p>
 <h2 id="code">Code:<a href="#code" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">math</span>
-<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">arrangeCoins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="c1">## equation: r^2 + r - 2n &lt;= 0</span>
-        <span class="c1">## quadratic formula: (-b + sqrt(b^2 - 4ac))/2</span>
-        <span class="c1">## ans: (-1 + sqrt(1 + 8n))/2</span>
-        <span class="k">return</span> <span class="p">(</span><span class="nb">int</span><span class="p">)((</span><span class="o">-</span><span class="mi">1</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">8</span><span class="o">*</span><span class="n">n</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div>
+{{< highlight python >}}
+import math
+class Solution:
+    def arrangeCoins(self, n: int) -> int:
+        ## equation: r^2 + r - 2n <= 0
+        ## quadratic formula: (-b + sqrt(b^2 - 4ac))/2
+        ## ans: (-1 + sqrt(1 + 8n))/2
+        return (int)((-1 + math.sqrt(1 + 8*n))/2)
+{{< /highlight >}}

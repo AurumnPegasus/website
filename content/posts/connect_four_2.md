@@ -89,20 +89,23 @@ This is a 2 part series exploring the paper, and I would suggest going through <
 <p>If we see the problems as nodes, too, and we connect a solution and a problem if the solution solves the problem, and no problems are connected, we can solve it as a pure graph problem.</p>
 <p>Given are two sets of nodes, S(olutions) and P(roblems). We try to find an allowable (in graph theory: independent) subset C(hosen) of S, with the property that P is contained in B(C) (the set of all neighbours of nodes in C)</p>
 <p>It can be solved using a simple backtracking algorithm.:</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">FindChosenSet</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">P</span> <span class="o">==</span> <span class="n">EmptySet</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Eureka</span><span class="p">();</span> <span class="c1">// We have found a subset C
-</span><span class="c1"></span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="n">MostDifficultNode</span> <span class="o">=</span> <span class="n">NodeWithLeastNumberOfNeighbours</span><span class="p">(</span><span class="n">P</span><span class="p">);</span>
-        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">neighbours</span><span class="p">:</span> <span class="n">MostDifficultNode</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">FindChosenSet</span><span class="p">(</span>
-            <span class="n">P</span> <span class="o">-</span> <span class="p">{</span> <span class="n">MostDifficultNode</span> <span class="p">},</span>
-            <span class="n">S</span> <span class="o">-</span> <span class="n">AllNeighboursOf</span><span class="p">(</span><span class="n">ChosenNeighbour</span><span class="p">)</span>
-            <span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>If a set of solutions is found for a given position, these <strong>solutions show the plan which has to be followed to play the game</strong> until the desired result (win for White, or at least a draw for Black) is reached.</p>
+{{< highlight cpp >}}
+void FindChosenSet(P, S) {
+    if (P == EmptySet) {
+        Eureka(); // We have found a subset C
+    } else {
+        MostDifficultNode = NodeWithLeastNumberOfNeighbours(P);
+        for (auto neighbours: MostDifficultNode) {
+            FindChosenSet(
+            P - { MostDifficultNode },
+            S - AllNeighboursOf(ChosenNeighbour)
+            );
+        }
+    }
+}
+{{< /highlight >}}
+
+<p>If a set of solutions is found for a given position, these <strong>solutions show the plan which has to be followed to play the game</strong> until the desired result (win for White, or at least a draw for Black) is reached.</p>
 <h2 id="-food-for-thought">🧠 Food for Thought<a href="#-food-for-thought" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Lets assume we have an oracle. This oracle cannot predict who will win, but for any given state of board, give the best possible outcome. Let us assume that we play such that for each state of board, we ask for help from the oracle. <strong>Therefore it is a &lsquo;perfect&rsquo; game. In such case, if W wins, does that mean W will always win if it were a perfect game?</strong></p>
 <p>The thing is, if for B we were to choose that draw is fine, it will not change any result. Since oracle predicts the best move, if the second scenario gives different result, that would mean Oracle could have chosen the best move, but did not. That is contradictory. That means that whoever will win with the help of the Oracle, is always at an advantage.</p>

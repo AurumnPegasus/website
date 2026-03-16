@@ -49,9 +49,12 @@ and i3, and has amazing user interface (for programmers ofcourse).</p>
 </figure>
 
 <p>Installing it is super easy, just type in</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo add-apt-repository ppa:regolith:linux/release
-sudo apt install regolith-desktop-standard <span class="c1"># or regolith-desktop-mobile for laptops</span>
-</code></pre></div><p>Here is the official installation guide (which is pretty much the same): <a href="https://regolith-linux.org/docs/getting-started/install/">https://regolith-linux.org/docs/getting-started/install/</a></p>
+{{< highlight bash >}}
+sudo add-apt-repository ppa:regolith:linux/release
+sudo apt install regolith-desktop-standard # or regolith-desktop-mobile for laptops
+{{< /highlight >}}
+
+<p>Here is the official installation guide (which is pretty much the same): <a href="https://regolith-linux.org/docs/getting-started/install/">https://regolith-linux.org/docs/getting-started/install/</a></p>
 <h2 id="vim">Vim<a href="#vim" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>So, shifting to popOS and regolith is quite a new journey for me, and the important thing that I need to learn is to use keyboards for <strong>everything</strong>. There are keybindings for everything in regolith which make my life easier, but it would be wasted if I ended up just using <code>vscode</code> with my mouse for coding. So, I am actively trying to learn vim keybindings as well. For this, I looked into multiple vimrcs, tried writing my own and had to give up. A easy solution is to take the best
 vimrc available on github and use it (though I would suggest you experiment a bit before so you atleast know a bit about whats happening in your vimrc). The one I chose was <a href="https://github.com/amix/vimrc">https://github.com/amix/vimrc</a> which is, honestly, just so very well done.</p>

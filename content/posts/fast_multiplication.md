@@ -18,15 +18,18 @@ Well, since it&rsquo;s logN time, the first thought which comes to mind is that 
     <img src="https://i.imgur.com/7Jc5gu8.png"/> 
 </figure>
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">expo</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">power</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">power</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">1</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">expo</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">power</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">base</span> <span class="o">=</span> <span class="n">base</span><span class="o">*</span><span class="n">base</span>
-    <span class="k">if</span> <span class="n">n</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">*</span><span class="n">base</span>
-    <span class="k">return</span> <span class="n">result</span>
-</code></pre></div><h2 id="karatsuba-algorithm">Karatsuba Algorithm<a href="#karatsuba-algorithm" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+{{< highlight python >}}
+def expo(base, power):
+    if power == 0:
+        return 1
+    result = expo(base, power//2)
+    base = base*base
+    if n&1:
+        result = result*base
+    return result
+{{< /highlight >}}
+
+<h2 id="karatsuba-algorithm">Karatsuba Algorithm<a href="#karatsuba-algorithm" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Discovered by Antony Karatsuba, this is a fast multiplication algorithm that only slightly improves a typical O(\(n^2\)) case. It is based on dividing numbers into two and multiplying them recursively to answer (also, it has lesser space complexity :p)
 It is based on the straightforward thought that addition takes lesser time than multiplication, which, I hope, is not very hard to prove. Here, ideally, we will also be using previously learnt fast exponentiation.</p>
 <figure>
@@ -38,20 +41,23 @@ It is based on the straightforward thought that addition takes lesser time than 
     <img src="https://i.imgur.com/e9e3LPG.png"/> 
 </figure>
 
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">karatsuba</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span><span class="o">/</span><span class="mi">2</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="mi">10</span><span class="o">**</span><span class="n">n</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">10</span><span class="o">**</span><span class="n">n</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="n">y</span> <span class="o">/</span> <span class="mi">10</span><span class="o">**</span><span class="n">n</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="n">y</span> <span class="o">%</span> <span class="mi">10</span><span class="o">**</span><span class="n">n</span>
+{{< highlight python >}}
+def karatsuba(x, y):
+    if len(str(x)) == 1 or len(str(y)) == 1:
+        return x*y
+    n = max(len(str(x)), len(str(y)))/2
+    a = x / 10**n
+    b = x % 10**n
+    c = y / 10**n
+    d = y % 10**n
 
-    <span class="n">ac</span> <span class="o">=</span> <span class="n">karatsuba</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
-    <span class="n">bd</span> <span class="o">=</span> <span class="n">karatsuba</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
-    <span class="n">ad_bc</span> <span class="o">=</span> <span class="n">karatsuba</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="o">+</span><span class="n">d</span><span class="p">)</span> <span class="o">-</span> <span class="n">ac</span> <span class="o">-</span><span class="n">bd</span>
-    <span class="k">return</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">ac</span> <span class="o">+</span> <span class="mi">10</span><span class="o">**</span><span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">ad_bc</span><span class="p">)</span> <span class="o">+</span> <span class="n">bd</span>
-</code></pre></div><h2 id="fast-fourier-transformation">Fast Fourier Transformation<a href="#fast-fourier-transformation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+    ac = karatsuba(a, c)
+    bd = karatsuba(b, d)
+    ad_bc = karatsuba(a+b, c+d) - ac -bd
+    return 10**(2*n)*ac + 10**n * (ad_bc) + bd
+{{< /highlight >}}
+
+<h2 id="fast-fourier-transformation">Fast Fourier Transformation<a href="#fast-fourier-transformation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>This is the most complex algorithm out of the three so far. It is essentially used for multiplying polynomials, but you can ofcourse write a normal number as a polynomial quite easily. This requires knowledge about complex numbers so its advisable you read up on that before going through this.</p>
 <p>Let there be two polynomials A(x) and B(x) of degrees n and m respectively and we want to find C(x) = A(x) * B(x). Before going through best options, lets analyse stuff a bit.
 There are 3 traditional ways to represent a polynomial:</p>
@@ -169,52 +175,53 @@ $$ A(x) = A^{[0]}x^2 + xA^{[1]}x^2$$</p>
 $$ T(n) = 2*T(n/2) + \theta(n)
 = \theta(nlgn) $$</p>
 <p>Now, for interpolation of the complex roots, we write \(Y = V^{-1}A\) where \(V_{j,k}^{-1} = \frac{\omega^{-kj}_n}{n} \). Since this is of the same type as V, we can use the same procedure of divide and conquer when it comes to interpolating to get back to coefficient form.</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">using</span> <span class="n">cd</span> <span class="o">=</span> <span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">;</span>
-<span class="k">const</span> <span class="kt">double</span> <span class="n">PI</span> <span class="o">=</span> <span class="n">acos</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+{{< highlight cpp >}}
+using cd = complex<double>;
+const double PI = acos(-1);
 
-<span class="kt">void</span> <span class="nf">fft</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cd</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">invert</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="k">return</span><span class="p">;</span>
+void fft(vector<cd> & a, bool invert) {
+    int n = a.size();
+    if (n == 1)
+        return;
 
-    <span class="n">vector</span><span class="o">&lt;</span><span class="n">cd</span><span class="o">&gt;</span> <span class="n">a0</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">a1</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// divide
-</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">a0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">];</span>
-        <span class="n">a1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span> 
-    <span class="p">}</span>
-    <span class="n">fft</span><span class="p">(</span><span class="n">a0</span><span class="p">,</span> <span class="n">invert</span><span class="p">);</span> <span class="c1">// recursively divide
-</span><span class="c1"></span>    <span class="n">fft</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">invert</span><span class="p">);</span>
+    vector<cd> a0(n / 2), a1(n / 2); // divide
+    for (int i = 0; 2 * i < n; i++) {
+        a0[i] = a[2*i];
+        a1[i] = a[2*i+1]; 
+    }
+    fft(a0, invert); // recursively divide
+    fft(a1, invert);
 
-    <span class="kt">double</span> <span class="n">ang</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">PI</span> <span class="o">/</span> <span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">invert</span> <span class="o">?</span> <span class="o">-</span><span class="mi">1</span> <span class="o">:</span> <span class="mi">1</span><span class="p">);</span>
-    <span class="n">cd</span> <span class="n">w</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">wn</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">ang</span><span class="p">),</span> <span class="n">sin</span><span class="p">(</span><span class="n">ang</span><span class="p">));</span> <span class="c1">// omega 
-</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span> <span class="o">*</span> <span class="n">a1</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-        <span class="n">a</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">a0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">w</span> <span class="o">*</span> <span class="n">a1</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">invert</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span>
-            <span class="n">a</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="n">w</span> <span class="o">*=</span> <span class="n">wn</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+    double ang = 2 * PI / n * (invert ? -1 : 1);
+    cd w(1), wn(cos(ang), sin(ang)); // omega 
+    for (int i = 0; 2 * i < n; i++) {
+        a[i] = a0[i] + w * a1[i];
+        a[i + n/2] = a0[i] - w * a1[i];
+        if (invert) {
+            a[i] /= 2;
+            a[i + n/2] /= 2;
+        }
+        w *= wn;
+    }
+}
 
-<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">multiply</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">vector</span><span class="o">&lt;</span><span class="n">cd</span><span class="o">&gt;</span> <span class="n">fa</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">()),</span> <span class="n">fb</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">b</span><span class="p">.</span><span class="n">end</span><span class="p">());</span> <span class="c1">// defining vectors
-</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">+</span> <span class="n">b</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> 
-        <span class="n">n</span> <span class="o">&lt;&lt;=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="n">fa</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
-    <span class="n">fb</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+vector<int> multiply(vector<int> const& a, vector<int> const& b) {
+    vector<cd> fa(a.begin(), a.end()), fb(b.begin(), b.end()); // defining vectors
+    int n = 1;
+    while (n < a.size() + b.size()) 
+        n <<= 1;
+    fa.resize(n);
+    fb.resize(n);
 
-    <span class="n">fft</span><span class="p">(</span><span class="n">fa</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span> <span class="c1">// convert into sample form
-</span><span class="c1"></span>    <span class="n">fft</span><span class="p">(</span><span class="n">fb</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-        <span class="n">fa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*=</span> <span class="n">fb</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-    <span class="n">fft</span><span class="p">(</span><span class="n">fa</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span> <span class="c1">// convert answer back to coeff form
-</span><span class="c1"></span>
-    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">result</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-        <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">round</span><span class="p">(</span><span class="n">fa</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">real</span><span class="p">());</span> <span class="c1">// answer is only the real part
-</span><span class="c1"></span>    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
+    fft(fa, false); // convert into sample form
+    fft(fb, false);
+    for (int i = 0; i < n; i++)
+        fa[i] *= fb[i];
+    fft(fa, true); // convert answer back to coeff form
+
+    vector<int> result(n);
+    for (int i = 0; i < n; i++)
+        result[i] = round(fa[i].real()); // answer is only the real part
+    return result;
+}
+{{< /highlight >}}
