@@ -1,34 +1,39 @@
-{{ define "head" }}
-	{{ if .Site.Params.bgImg -}}
-	<style>.bg-img {background-image: url('{{.Site.Params.bgImg}}');}</style>
-	{{- else if .Site.Params.images -}}
-		{{- range first 1 .Site.Params.images -}}
-		<style>.bg-img {background-image: url('{{. | absURL}}');}</style>
-		{{- end -}}
-	{{- end -}}
+{{ define "header" }}
+{{ partialCached "header.html" . }}
 {{ end }}
 
 {{ define "main" }}
-	{{- if (or .Site.Params.images .Site.Params.bgImg) }}
-	<div class="bg-img"></div>
-	{{- end }}
-	<div id="spotlight" class="animated fadeIn">
-		<div id="home-center">
-			<h1 id="home-title">{{ .Site.Title }}</h1>
-			{{- with .Site.Params.homeSubtitle }}
-			<p id="home-subtitle">{{ . }}</p>
-			{{- end }}
-			{{- with .Site.Params.social }}
-			<div id="home-social">
-				{{ partialCached "social-icons.html" . }}
-			</div>
-			{{- end }}
-			<nav id="home-nav" class="site-nav">
-				{{ partialCached "menu.html" . }}
-			</nav>
+	<main class="site-main section-inner thin animated fadeIn faster">
+		<h1>{{ .Site.Title }}</h1>
+		{{- with .Site.Params.homeSubtitle }}
+		<div class="content">
+			<p>{{ . }}</p>
 		</div>
-		<div id="home-footer">
-			<p>&copy; {{ now.Format "2006" }} <a href="{{ .Site.BaseURL }}">{{ .Site.Params.authorName }}</a>{{ .Site.Params.footerCopyright | safeHTML }}</p>
+		{{- end }}
+		{{- with .Site.Params.social }}
+		<div class="content">
+			{{ partialCached "social-icons.html" . }}
 		</div>
-	</div>
+		{{- end }}
+		<div class="posts-group">
+			<div class="post-year">Recent posts</div>
+			<ul class="posts-list">
+				{{- range first 10 (where site.RegularPages "Section" "posts") }}
+				<li class="post-item">
+					<a href="{{ .Permalink }}">
+						<span class="post-title">{{ .Title }}</span>
+						<span class="post-day">{{ .Date.Format $.Site.Params.dateformShort }}</span>
+					</a>
+				</li>
+				{{- end }}
+			</ul>
+		</div>
+		<div class="content">
+			<p><a href="{{ "posts/" | absLangURL }}">View all posts</a></p>
+		</div>
+	</main>
+{{ end }}
+
+{{ define "footer" }}
+{{ partialCached "footer.html" . }}
 {{ end }}
