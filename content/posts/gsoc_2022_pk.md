@@ -1,5 +1,5 @@
 ---
-title: "Google Summer of Code: 2022 PK"
+title: "GSoC '22: sktime"
 date: 2022-11-17T15:08:33+05:30
 draft: false
 toc: false
