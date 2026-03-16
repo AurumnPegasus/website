@@ -31,6 +31,10 @@ copyright = 'This work is licensed under a Creative Commons Attribution-NonComme
   footerCopyright = ' &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
   authorName = 'Shivansh Subramanian'
 
+  # Paste the Cloudflare Web Analytics token here to enable cookieless analytics.
+  [params.cloudflareWebAnalytics]
+    token = '66d4244b8c0a48968bc38909d94446a4'
+
   [[params.social]]
     name = 'email'
     url = 'mailto:subramanian.shivansh@gmail.com'

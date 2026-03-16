@@ -28,6 +28,16 @@ git push origin master
 
 GitHub Actions builds the site and GitHub Pages publishes it to `https://aurumnpegasus.com/`.
 
+## Analytics
+
+Cloudflare Web Analytics is wired in via `layouts/partials/analytics.html`.
+
+To enable it:
+
+1. In Cloudflare, open `Web Analytics` for `aurumnpegasus.com` and copy the site token.
+2. Set `params.cloudflareWebAnalytics.token` in `hugo.toml`.
+3. Commit and push to `master`.
+
 ## Build
 
 ```sh
