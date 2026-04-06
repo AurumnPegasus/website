@@ -6,7 +6,7 @@ I build things at [FYDY](https://fydy.ai), where I am a co-founder. Before that,
 
 I care about a few things: 
 
-* Software should be private and ownder by the people who use it. 
+* Software should be private and owned by the people who use it. 
 * Building things carries a responsibilitiy to make life better for someone.
 * Freedom means to not be bound by any person, feeling or thought.
 
