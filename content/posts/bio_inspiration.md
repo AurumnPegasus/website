@@ -27,7 +27,7 @@ The problem is that binding by synchrony is, from my understanding, debatable at
 To be honest, I found the initial overview on Reddit thread, and then I verified using Claude. I do not claim to be a neuroscience / biology expert, but these links themselves do tell me that neural synchrony is a questionable foundation.
 
 $$
-S^t = Z^t \dot (Z^t)^T \in \R^{D \times t}
+S^t = Z^{t} \dot (Z^t)^T
 $$
 
 What makes it worse is how CTM actually implements "neural synchrony". It defines synchrony as a dot product over post-activation histories ([CTM technical overview][ctm-site]). Two neurons that activated high at the same timesteps and low at the same timesteps get high synchrony scores. That is a reasonable engineering choice, but its connection to the neuroscience literature on binding by synchrony is thin. Maybe it is expected information loss when translating biological concepts to computation. To me, it seemed more like retrofitting to make it work (which is becoming way too common).
