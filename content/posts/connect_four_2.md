@@ -7,7 +7,7 @@ tags:
 ---
 
 <p>This blog contains explanation of the paper by Victor Allis called <a href="http://www.informatik.uni-trier.de/~fernau/DSL0607/Masterthesis-Viergewinnt.pdf">&lsquo;A Knowledge-based Approach of Connect-Four&rsquo;</a>
-This is a 2 part series exploring the paper, and I would suggest going through <a href="">&lsquo;first part&rsquo;</a> if you haven&rsquo;t already.</p>
+This is a 2 part series exploring the paper, and I would suggest going through <a href="{{< relref "connect_four_1.md" >}}">&lsquo;first part&rsquo;</a> if you haven&rsquo;t already.</p>
 <h2 id="-strategies">🕵️‍♂️ Strategies<a href="#-strategies" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>A formal definition is given of the nine rules which are used to refute potential threats of the opponent. These can be only applied by the player in control of the Zugzwang. These are always applied in the places opponent has to move.</p>
 <h4 id="claimeven">Claimeven<a href="#claimeven" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>

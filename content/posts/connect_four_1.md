@@ -6,7 +6,8 @@ tags:
   - paper
 ---
 
-<p>This blog contains explanation of the paper by Victor Allis called <a href="http://www.informatik.uni-trier.de/~fernau/DSL0607/Masterthesis-Viergewinnt.pdf">&lsquo;A Knowledge-based Approach of Connect-Four&rsquo;</a></p>
+<p>This blog contains explanation of the paper by Victor Allis called <a href="http://www.informatik.uni-trier.de/~fernau/DSL0607/Masterthesis-Viergewinnt.pdf">&lsquo;A Knowledge-based Approach of Connect-Four&rsquo;</a>
+This is a 2 part series exploring the paper. Once you are done here, the <a href="{{< relref "connect_four_2.md" >}}">&lsquo;second part&rsquo;</a> covers the strategies and solving.</p>
 <h2 id="introduction">Introduction<a href="#introduction" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Connect-Four is a game for two players. Both have <!-- raw HTML omitted -->21 identical coins<!-- raw HTML omitted -->. In the standard form of the game, one set of coins is yellow, and the other is red. You play the game on a vertical, rectangular board consisting of <!-- raw HTML omitted -->7<!-- raw HTML omitted --> vertical columns of <!-- raw HTML omitted -->6<!-- raw HTML omitted --> rows each. Each time a player puts a coin down, it falls to the lowest unoccupied block in that column. Players make a move in turns.</p>
 <p>If a player connects four coins either horizontally, vertically or diagonally, they win. Occupying each of the 7x6 blocks such that no other move is possible, and ensuring that there is no winning player, entails the draw condition.</p>

@@ -7,7 +7,7 @@ tags:
 ---
 
 <p>This blog contains an explanation of the paper <a href="https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=A042C241BA640121A461FBF99CD93FEC?doi=10.1.1.76.9583&amp;rep=rep1&amp;type=pdf">&lsquo;The complexity of Scotland Yard&rsquo;</a> by Merlijn Sevenster.</p>
-<p>This is part 2 of a two part blog. Part 1 explains the game, and lays out the foundations required for formalisation of the game. It also lists out the various assumptions we are going to consider in the game. Part 2 formalises the game and proves that it is of PSPACE complexity.</p>
+<p>This is part 2 of a two part blog. <a href="{{< relref "scotland_yard_1.md" >}}">&lsquo;Part 1&rsquo;</a> explains the game, and lays out the foundations required for formalisation of the game. It also lists out the various assumptions we are going to consider in the game. Part 2 formalises the game and proves that it is of PSPACE complexity.</p>
 <p>The blog was originally published on <a href="https://captains-mistress.github.io/scotlandyard">&lsquo;GameLab&rsquo;</a> for our course project. The website also contains additional information about heuristics used in Scotland Yard, and similar analysis for other board games.</p>
 <h2 id="-formalisation">🤵 Formalisation<a href="#-formalisation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>We now know how to formalise any given perfect or imperfect information game. Now let&rsquo;s connect it to the game Scotland Yard.</p>
