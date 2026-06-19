@@ -1,7 +1,6 @@
 ---
 title: "Arranging Coins"
 date: 2021-11-05T08:31:41+05:30
-archived: true
 tags:
   - daily
   - math
